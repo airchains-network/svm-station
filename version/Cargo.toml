@@ -1,0 +1,31 @@
+[package]
+name = "solana-version"
+description = "Solana Version"
+documentation = "https://docs.rs/solana-version"
+version = { workspace = true }
+authors = { workspace = true }
+repository = { workspace = true }
+homepage = { workspace = true }
+license = { workspace = true }
+edition = { workspace = true }
+
+[dependencies]
+log = { workspace = true }
+semver = { workspace = true }
+serde = { workspace = true }
+serde_derive = { workspace = true }
+solana-frozen-abi = { workspace = true }
+solana-frozen-abi-macro = { workspace = true }
+solana-sdk = { workspace = true }
+
+[features]
+dummy-for-ci-check = []
+
+[lib]
+name = "solana_version"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[build-dependencies]
+rustc_version = { workspace = true }

@@ -1,0 +1,41 @@
+[package]
+name = "solana-dos"
+publish = false
+description = "Tool to send various requests to cluster in order to evaluate the effect on performance"
+version = { workspace = true }
+authors = { workspace = true }
+repository = { workspace = true }
+homepage = { workspace = true }
+license = { workspace = true }
+edition = { workspace = true }
+
+[dependencies]
+bincode = { workspace = true }
+clap = { version = "3.1.5", features = ["derive", "cargo"] }
+crossbeam-channel = { workspace = true }
+itertools = { workspace = true }
+log = { workspace = true }
+rand = { workspace = true }
+serde = { workspace = true }
+solana-bench-tps = { workspace = true }
+solana-client = { workspace = true }
+solana-core = { workspace = true }
+solana-faucet = { workspace = true }
+solana-gossip = { workspace = true }
+solana-logger = { workspace = true }
+solana-measure = { workspace = true }
+solana-net-utils = { workspace = true }
+solana-perf = { workspace = true }
+solana-rpc = { workspace = true }
+solana-rpc-client = { workspace = true }
+solana-sdk = { workspace = true }
+solana-streamer = { workspace = true }
+solana-tpu-client = { workspace = true }
+solana-version = { workspace = true }
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dev-dependencies]
+solana-local-cluster = { workspace = true }
+solana-thin-client = { workspace = true }
