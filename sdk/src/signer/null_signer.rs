@@ -6,7 +6,7 @@ use crate::{
     signer::{Signer, SignerError},
 };
 
-/// NullSigner - A `Signer` implementation that always produces `Signature::default()`.
+/// NullSigner - A `Signer` implementation that always produces `Signature::const_data()`.
 /// Used as a placeholder for absentee signers whose 'Pubkey` is required to construct
 /// the transaction
 #[derive(Clone, Debug, Default)]

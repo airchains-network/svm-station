@@ -80,7 +80,7 @@ impl TpuClient<QuicPool, QuicConnectionManager, QuicConfig> {
             ConnectionCache::Quic(cache) => cache,
             ConnectionCache::Udp(_) => {
                 return Err(TpuSenderError::Custom(String::from(
-                    "Invalid default connection cache",
+                    "Invalid const_data connection cache",
                 )))
             }
         };

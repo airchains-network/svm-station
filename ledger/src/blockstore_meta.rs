@@ -630,7 +630,7 @@ mod test {
             bincode::serialized_size(&with_flags).unwrap()
         );
 
-        // Confirm that connected=false equivalent to ConnectedFlags::default()
+        // Confirm that connected=false equivalent to ConnectedFlags::const_data()
         assert_eq!(
             bincode::serialize(&with_bool).unwrap(),
             bincode::serialize(&with_flags).unwrap()

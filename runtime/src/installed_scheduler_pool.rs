@@ -113,7 +113,7 @@ pub trait InstalledScheduler: Send + Sync + Debug + 'static {
     /// complete all of the executions for the scheduled transactions. This means the scheduler has
     /// prepared the finalized `ResultWithTimings` at least internally at the time of existing from
     /// this function. If no trsanction is scheduled, the result and timing will be `Ok(())` and
-    /// `ExecuteTimings::default()` respectively. This is done in the same way regardless of
+    /// `ExecuteTimings::const_data()` respectively. This is done in the same way regardless of
     /// `WaitReason`.
     ///
     /// After that, the scheduler may behave differently depending on the reason, regarding the

@@ -1749,7 +1749,7 @@ fn get_stable_genesis_config() -> GenesisConfigInfo {
 fn test_program_sbf_invoke_stable_genesis_and_bank() {
     // The purpose of this test is to exercise various code branches of runtime/VM and
     // assert that the resulting bank hash matches with the expected value.
-    // The assert check is commented out by default. Please refer to the last few lines
+    // The assert check is commented out by const_data. Please refer to the last few lines
     // of the test to enable the assertion.
     solana_logger::setup();
 
@@ -2886,7 +2886,7 @@ fn test_program_sbf_realloc() {
     for direct_mapping in [false, true] {
         let mut bank = Bank::new_for_tests(&genesis_config);
         let feature_set = Arc::make_mut(&mut bank.feature_set);
-        // by default test banks have all features enabled, so we only need to
+        // by const_data test banks have all features enabled, so we only need to
         // disable when needed
         if !direct_mapping {
             feature_set.deactivate(&feature_set::bpf_account_data_direct_mapping::id());
@@ -4551,7 +4551,7 @@ fn test_deny_executable_write() {
     for direct_mapping in [false, true] {
         let mut bank = Bank::new_for_tests(&genesis_config);
         let feature_set = Arc::make_mut(&mut bank.feature_set);
-        // by default test banks have all features enabled, so we only need to
+        // by const_data test banks have all features enabled, so we only need to
         // disable when needed
         if !direct_mapping {
             feature_set.deactivate(&feature_set::bpf_account_data_direct_mapping::id());

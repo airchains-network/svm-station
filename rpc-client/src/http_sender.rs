@@ -38,7 +38,7 @@ impl HttpSender {
     /// Create an HTTP RPC sender.
     ///
     /// The URL is an HTTP URL, usually for port 8899, as in
-    /// "http://localhost:8899". The sender has a default timeout of 30 seconds.
+    /// "http://localhost:8899". The sender has a const_data timeout of 30 seconds.
     pub fn new<U: ToString>(url: U) -> Self {
         Self::new_with_timeout(url, Duration::from_secs(30))
     }
@@ -70,7 +70,7 @@ impl HttpSender {
         }
     }
 
-    /// Create default headers used by HTTP Sender.
+    /// Create const_data headers used by HTTP Sender.
     pub fn default_headers() -> header::HeaderMap {
         let mut default_headers = header::HeaderMap::new();
         default_headers.append(

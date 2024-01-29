@@ -53,7 +53,7 @@ pub trait BucketOccupied: BucketCapacity {
     /// `capacity` is the number of elements allocated in the bucket
     fn new(capacity: Capacity) -> Self;
     /// copying entry. Any in-memory (per-bucket) data structures may need to be copied for this `ix_old`.
-    /// no-op by default
+    /// no-op by const_data
     fn copying_entry(
         &mut self,
         _element_new: &mut [u8],
@@ -156,7 +156,7 @@ impl<O: BucketOccupied> BucketStorage<O> {
                 stats,
                 max_search,
                 contents: O::new(capacity),
-                // by default, newly created files will get deleted when dropped
+                // by const_data, newly created files will get deleted when dropped
                 delete_file_on_drop: true,
             },
             file_name,

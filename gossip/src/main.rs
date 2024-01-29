@@ -107,7 +107,7 @@ fn parse_matches() -> ArgMatches<'static> {
                         .takes_value(true)
                         .validator(solana_net_utils::is_host)
                         .help("Gossip DNS name or IP address for the node to advertise in gossip \
-                               [default: ask --entrypoint, or 127.0.0.1 when --entrypoint is not provided]"),
+                               [const_data: ask --entrypoint, or 127.0.0.1 when --entrypoint is not provided]"),
                 )
                 .arg(
                     Arg::with_name("identity")
@@ -116,7 +116,7 @@ fn parse_matches() -> ArgMatches<'static> {
                         .value_name("PATH")
                         .takes_value(true)
                         .validator(is_keypair_or_ask_keyword)
-                        .help("Identity keypair [default: ephemeral keypair]"),
+                        .help("Identity keypair [const_data: ephemeral keypair]"),
                 )
                 .arg(
                     Arg::with_name("num_nodes")
@@ -151,7 +151,7 @@ fn parse_matches() -> ArgMatches<'static> {
                         .long("timeout")
                         .value_name("SECONDS")
                         .takes_value(true)
-                        .help("Maximum time to wait in seconds [default: wait forever]"),
+                        .help("Maximum time to wait in seconds [const_data: wait forever]"),
                 ),
         )
         .get_matches()

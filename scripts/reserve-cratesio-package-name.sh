@@ -73,7 +73,7 @@ case "${target_type}" in
     src_file_body='fn main() {}'
     ;;
   lib)
-    src_filename='lib.rs'
+    src_filename='lib_store'
     src_file_body=''
     ;;
   *)

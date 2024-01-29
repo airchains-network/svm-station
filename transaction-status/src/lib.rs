@@ -92,7 +92,8 @@ pub enum TransactionBinaryEncoding {
 #[derive(Serialize, Deserialize, Clone, Copy, Debug, Eq, Hash, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub enum UiTransactionEncoding {
-    Binary, // Legacy. Retained for RPC backwards compatibility
+    Binary,
+    // Legacy. Retained for RPC backwards compatibility
     Base64,
     Base58,
     Json,
@@ -295,13 +296,13 @@ pub struct UiTransactionTokenBalance {
     pub mint: String,
     pub ui_token_amount: UiTokenAmount,
     #[serde(
-        default = "OptionSerializer::skip",
-        skip_serializing_if = "OptionSerializer::should_skip"
+    default = "OptionSerializer::skip",
+    skip_serializing_if = "OptionSerializer::should_skip"
     )]
     pub owner: OptionSerializer<String>,
     #[serde(
-        default = "OptionSerializer::skip",
-        skip_serializing_if = "OptionSerializer::should_skip"
+    default = "OptionSerializer::skip",
+    skip_serializing_if = "OptionSerializer::should_skip"
     )]
     pub program_id: OptionSerializer<String>,
 }
@@ -366,48 +367,49 @@ impl Default for TransactionStatusMeta {
 #[serde(rename_all = "camelCase")]
 pub struct UiTransactionStatusMeta {
     pub err: Option<TransactionError>,
-    pub status: TransactionResult<()>, // This field is deprecated.  See https://github.com/solana-labs/solana/issues/9302
+    pub status: TransactionResult<()>,
+    // This field is deprecated.  See https://github.com/solana-labs/solana/issues/9302
     pub fee: u64,
     pub pre_balances: Vec<u64>,
     pub post_balances: Vec<u64>,
     #[serde(
-        default = "OptionSerializer::none",
-        skip_serializing_if = "OptionSerializer::should_skip"
+    default = "OptionSerializer::none",
+    skip_serializing_if = "OptionSerializer::should_skip"
     )]
     pub inner_instructions: OptionSerializer<Vec<UiInnerInstructions>>,
     #[serde(
-        default = "OptionSerializer::none",
-        skip_serializing_if = "OptionSerializer::should_skip"
+    default = "OptionSerializer::none",
+    skip_serializing_if = "OptionSerializer::should_skip"
     )]
     pub log_messages: OptionSerializer<Vec<String>>,
     #[serde(
-        default = "OptionSerializer::none",
-        skip_serializing_if = "OptionSerializer::should_skip"
+    default = "OptionSerializer::none",
+    skip_serializing_if = "OptionSerializer::should_skip"
     )]
     pub pre_token_balances: OptionSerializer<Vec<UiTransactionTokenBalance>>,
     #[serde(
-        default = "OptionSerializer::none",
-        skip_serializing_if = "OptionSerializer::should_skip"
+    default = "OptionSerializer::none",
+    skip_serializing_if = "OptionSerializer::should_skip"
     )]
     pub post_token_balances: OptionSerializer<Vec<UiTransactionTokenBalance>>,
     #[serde(
-        default = "OptionSerializer::none",
-        skip_serializing_if = "OptionSerializer::should_skip"
+    default = "OptionSerializer::none",
+    skip_serializing_if = "OptionSerializer::should_skip"
     )]
     pub rewards: OptionSerializer<Rewards>,
     #[serde(
-        default = "OptionSerializer::skip",
-        skip_serializing_if = "OptionSerializer::should_skip"
+    default = "OptionSerializer::skip",
+    skip_serializing_if = "OptionSerializer::should_skip"
     )]
     pub loaded_addresses: OptionSerializer<UiLoadedAddresses>,
     #[serde(
-        default = "OptionSerializer::skip",
-        skip_serializing_if = "OptionSerializer::should_skip"
+    default = "OptionSerializer::skip",
+    skip_serializing_if = "OptionSerializer::should_skip"
     )]
     pub return_data: OptionSerializer<UiTransactionReturnData>,
     #[serde(
-        default = "OptionSerializer::skip",
-        skip_serializing_if = "OptionSerializer::should_skip"
+    default = "OptionSerializer::skip",
+    skip_serializing_if = "OptionSerializer::should_skip"
     )]
     pub compute_units_consumed: OptionSerializer<u64>,
 }
@@ -544,8 +546,10 @@ pub enum TransactionConfirmationStatus {
 #[serde(rename_all = "camelCase")]
 pub struct TransactionStatus {
     pub slot: Slot,
-    pub confirmations: Option<usize>,  // None = rooted
-    pub status: TransactionResult<()>, // legacy field
+    pub confirmations: Option<usize>,
+    // None = rooted
+    pub status: TransactionResult<()>,
+    // legacy field
     pub err: Option<TransactionError>,
     pub confirmation_status: Option<TransactionConfirmationStatus>,
 }
@@ -599,7 +603,8 @@ pub struct ConfirmedTransactionStatusWithSignature {
 pub struct Reward {
     pub pubkey: String,
     pub lamports: i64,
-    pub post_balance: u64, // Account balance in lamports after `lamports` was applied
+    pub post_balance: u64,
+    // Account balance in lamports after `lamports` was applied
     pub reward_type: Option<RewardType>,
     pub commission: Option<u8>, // Vote account commission when the reward was credited, only present for voting and staking rewards
 }
@@ -1045,7 +1050,8 @@ pub struct EncodedConfirmedTransactionWithStatusMeta {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", untagged)]
 pub enum EncodedTransaction {
-    LegacyBinary(String), // Old way of expressing base-58, retained for RPC backwards compatibility
+    LegacyBinary(String),
+    // Old way of expressing base-58, retained for RPC backwards compatibility
     Binary(String, TransactionBinaryEncoding),
     Json(UiTransaction),
     Accounts(UiAccountsList),
@@ -1295,10 +1301,14 @@ pub struct UiParsedMessage {
 // the one's compliment of the slot so that rows may be listed in reverse order
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TransactionByAddrInfo {
-    pub signature: Signature,          // The transaction signature
-    pub err: Option<TransactionError>, // None if the transaction executed successfully
-    pub index: u32,                    // Where the transaction is located in the block
-    pub memo: Option<String>,          // Transaction memo
+    pub signature: Signature,
+    // The transaction signature
+    pub err: Option<TransactionError>,
+    // None if the transaction executed successfully
+    pub index: u32,
+    // Where the transaction is located in the block
+    pub memo: Option<String>,
+    // Transaction memo
     pub block_time: Option<UnixTimestamp>,
 }
 
@@ -1528,7 +1538,7 @@ mod test {
             }\
         }",
         )
-        .unwrap();
+            .unwrap();
         let ui_meta_from: UiTransactionStatusMeta = meta.clone().into();
         assert_eq!(
             serde_json::to_value(ui_meta_from).unwrap(),
@@ -1549,7 +1559,7 @@ mod test {
             \"rewards\":null\
         }",
         )
-        .unwrap();
+            .unwrap();
         let ui_meta_parse_with_rewards = UiTransactionStatusMeta::parse(meta.clone(), &[], true);
         assert_eq!(
             serde_json::to_value(ui_meta_parse_with_rewards).unwrap(),

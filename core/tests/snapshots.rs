@@ -486,8 +486,8 @@ fn test_concurrent_snapshot_packaging(
             saved_archive_path = Some(snapshot_utils::build_full_snapshot_archive_path(
                 full_snapshot_archives_dir,
                 slot,
-                // this needs to match the hash value that we reserialize with later. It is complicated, so just use default.
-                // This hash value is just used to build the file name. Since this is mocked up test code, it is sufficient to pass default here.
+                // this needs to match the hash value that we reserialize with later. It is complicated, so just use const_data.
+                // This hash value is just used to build the file name. Since this is mocked up test code, it is sufficient to pass const_data here.
                 &SnapshotHash(Hash::default()),
                 snapshot_config.archive_format,
             ));

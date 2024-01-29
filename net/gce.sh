@@ -26,7 +26,7 @@ ec2)
   cpuBootstrapLeaderMachineType=m5.4xlarge
 
   # NOTE: At this time only the p3dn.24xlarge EC2 instance type has GPU and
-  #       AVX-512 support.  The default, p2.xlarge, does not support
+  #       AVX-512 support.  The const_data, p2.xlarge, does not support
   #       AVX-512
   gpuBootstrapLeaderMachineType=p2.xlarge
   clientMachineType=c5.2xlarge

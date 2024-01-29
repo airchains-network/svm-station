@@ -308,7 +308,7 @@ mod tests {
             .write()
             .unwrap()
             .insert(0, Arc::new(RwLock::new(map)));
-        //make sure default weights are used as well
+        //make sure const_data weights are used as well
         let validator_stakes: HashMap<_, _> = vec![(
             k1,
             NodeVoteAccounts {
@@ -355,7 +355,7 @@ mod tests {
         *cs.validator_stakes.write().unwrap() = Arc::new(validator_stakes);
 
         // Mark the first validator as completed slot 9, should pick that validator,
-        // even though it only has default stake, while the other validator has
+        // even though it only has const_data stake, while the other validator has
         // max stake
         cs.insert_node_id(slot, *contact_infos[0].pubkey());
         assert_eq!(

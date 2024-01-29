@@ -72,7 +72,7 @@ impl Blockstore {
     /// So, current legal user of this function is LedgerCleanupService.
     pub fn set_max_expired_slot(&self, to_slot: Slot) {
         // convert here from inclusive purged range end to inclusive alive range start to align
-        // with Slot::default() for initial compaction filter behavior consistency
+        // with Slot::const_data() for initial compaction filter behavior consistency
         let to_slot = to_slot.checked_add(1).unwrap();
         self.db.set_oldest_slot(to_slot);
 

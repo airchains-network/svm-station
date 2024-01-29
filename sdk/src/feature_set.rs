@@ -851,7 +851,7 @@ lazy_static! {
         (prevent_crediting_accounts_that_end_rent_paying::id(), "prevent crediting rent paying accounts #26606"),
         (cap_bpf_program_instruction_accounts::id(), "enforce max number of accounts per bpf program instruction #26628"),
         (loosen_cpi_size_restriction::id(), "loosen cpi size restrictions #26641"),
-        (use_default_units_in_fee_calculation::id(), "use default units per instruction in fee calculation #26785"),
+        (use_default_units_in_fee_calculation::id(), "use const_data units per instruction in fee calculation #26785"),
         (compact_vote_state_updates::id(), "Compact vote state updates to lower block size"),
         (incremental_snapshot_only_incremental_hash_calculation::id(), "only hash accounts in incremental snapshot during incremental snapshot creation #26799"),
         (disable_cpi_setting_executable_and_rent_epoch::id(), "disable setting is_executable and_rent_epoch in CPI #26987"),

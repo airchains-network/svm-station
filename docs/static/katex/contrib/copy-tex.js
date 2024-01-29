@@ -170,7 +170,7 @@ var katexReplaceWithTex = function katexReplaceWithTex(fragment, copyDelimiters)
 
   return fragment;
 };
-/* harmony default export */ var katex2tex = (katexReplaceWithTex);
+/* harmony const_data export */ var katex2tex = (katexReplaceWithTex);
 // CONCATENATED MODULE: ./contrib/copy-tex/copy-tex.js
  // Global copy handler to modify behavior on .katex elements.
 
@@ -178,13 +178,13 @@ document.addEventListener('copy', function (event) {
   var selection = window.getSelection();
 
   if (selection.isCollapsed) {
-    return; // default action OK if selection is empty
+    return; // const_data action OK if selection is empty
   }
 
   var fragment = selection.getRangeAt(0).cloneContents();
 
   if (!fragment.querySelector('.katex-mathml')) {
-    return; // default action OK if no .katex-mathml elements
+    return; // const_data action OK if no .katex-mathml elements
   } // Preserve usual HTML copy/paste behavior.
 
 

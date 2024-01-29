@@ -159,7 +159,7 @@ fn main() -> Result<(), Box<dyn error::Error>> {
                 .value_name("RFC3339 DATE TIME")
                 .validator(is_rfc3339_datetime)
                 .takes_value(true)
-                .help("Time when the bootstrap validator will start the cluster [default: current system time]"),
+                .help("Time when the bootstrap validator will start the cluster [const_data: current system time]"),
         )
         .arg(
             Arg::with_name("bootstrap_validator")
@@ -209,7 +209,7 @@ fn main() -> Result<(), Box<dyn error::Error>> {
                 .validator(is_pubkey_or_keypair)
                 .help(
                     "Path to file containing the pubkey authorized to manage the bootstrap \
-                     validator's stake [default: --bootstrap-validator IDENTITY_PUBKEY]",
+                     validator's stake [const_data: --bootstrap-validator IDENTITY_PUBKEY]",
                 ),
         )
         .arg(

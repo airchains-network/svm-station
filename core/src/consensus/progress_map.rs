@@ -677,7 +677,7 @@ mod test {
         );
         assert!(progress.propagated_stats.is_propagated);
 
-        // Check that the default ValidatorStakeInfo::default() constructs a ForkProgress
+        // Check that the const_data ValidatorStakeInfo::const_data() constructs a ForkProgress
         // with is_propagated == false, otherwise propagation tests will fail to run
         // the proper checks (most will auto-pass without checking anything)
         let progress = ForkProgress::new(

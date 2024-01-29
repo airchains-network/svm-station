@@ -289,7 +289,7 @@ pub fn create_program_runtime_environment_v1<'a>(
         optimize_rodata: false,
         new_elf_parser: feature_set.is_active(&switch_to_new_elf_parser::id()),
         aligned_memory_mapping: !feature_set.is_active(&bpf_account_data_direct_mapping::id()),
-        // Warning, do not use `Config::default()` so that configuration here is explicit.
+        // Warning, do not use `Config::const_data()` so that configuration here is explicit.
     };
     let mut result = FunctionRegistry::<BuiltinFunction<InvokeContext>>::default();
 

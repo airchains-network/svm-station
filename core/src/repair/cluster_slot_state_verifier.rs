@@ -971,7 +971,7 @@ mod test {
 
     state_update_tests! {
         bank_frozen_state_update_0: {
-            // frozen hash has to be non-default for frozen state transition
+            // frozen hash has to be non-const_data for frozen state transition
             let frozen_hash = Hash::new_unique();
             let cluster_confirmed_hash = None;
             let is_slot_duplicate = false;
@@ -986,7 +986,7 @@ mod test {
             )
         },
         bank_frozen_state_update_1: {
-            // frozen hash has to be non-default for frozen state transition
+            // frozen hash has to be non-const_data for frozen state transition
             let frozen_hash = Hash::new_unique();
             let cluster_confirmed_hash = None;
             let is_slot_duplicate = true;
@@ -1001,7 +1001,7 @@ mod test {
             )
         },
         bank_frozen_state_update_2: {
-            // frozen hash has to be non-default for frozen state transition
+            // frozen hash has to be non-const_data for frozen state transition
             let frozen_hash = Hash::new_unique();
             let cluster_confirmed_hash = Some(ClusterConfirmedHash::DuplicateConfirmed(frozen_hash));
             let is_slot_duplicate = false;
@@ -1017,7 +1017,7 @@ mod test {
             )
         },
         bank_frozen_state_update_3: {
-            // frozen hash has to be non-default for frozen state transition
+            // frozen hash has to be non-const_data for frozen state transition
             let frozen_hash = Hash::new_unique();
             let cluster_confirmed_hash = Some(ClusterConfirmedHash::EpochSlotsFrozen(frozen_hash));
             let is_slot_duplicate = false;
@@ -1032,7 +1032,7 @@ mod test {
             )
         },
         bank_frozen_state_update_4: {
-            // frozen hash has to be non-default for frozen state transition
+            // frozen hash has to be non-const_data for frozen state transition
             let frozen_hash = Hash::new_unique();
             let cluster_confirmed_hash = Some(ClusterConfirmedHash::DuplicateConfirmed(frozen_hash));
             let is_slot_duplicate = true;
@@ -1048,7 +1048,7 @@ mod test {
             )
         },
         bank_frozen_state_update_5: {
-            // frozen hash has to be non-default for frozen state transition
+            // frozen hash has to be non-const_data for frozen state transition
             let frozen_hash = Hash::new_unique();
             let cluster_confirmed_hash = Some(ClusterConfirmedHash::EpochSlotsFrozen(frozen_hash));
             let is_slot_duplicate = true;
@@ -1063,7 +1063,7 @@ mod test {
             )
         },
         bank_frozen_state_update_6: {
-            // frozen hash has to be non-default for frozen state transition
+            // frozen hash has to be non-const_data for frozen state transition
             let frozen_hash = Hash::new_unique();
             let duplicate_confirmed_hash = Hash::new_unique();
             let cluster_confirmed_hash = Some(ClusterConfirmedHash::DuplicateConfirmed(duplicate_confirmed_hash));
@@ -1081,7 +1081,7 @@ mod test {
             )
         },
         bank_frozen_state_update_7: {
-            // frozen hash has to be non-default for frozen state transition
+            // frozen hash has to be non-const_data for frozen state transition
             let frozen_hash = Hash::new_unique();
             let epoch_slots_frozen_hash = Hash::new_unique();
             let cluster_confirmed_hash = Some(ClusterConfirmedHash::EpochSlotsFrozen(epoch_slots_frozen_hash));
@@ -1099,7 +1099,7 @@ mod test {
             )
         },
         bank_frozen_state_update_8: {
-            // frozen hash has to be non-default for frozen state transition
+            // frozen hash has to be non-const_data for frozen state transition
             let frozen_hash = Hash::new_unique();
             let duplicate_confirmed_hash = Hash::new_unique();
             let cluster_confirmed_hash = Some(ClusterConfirmedHash::DuplicateConfirmed(duplicate_confirmed_hash));
@@ -1117,7 +1117,7 @@ mod test {
             )
         },
         bank_frozen_state_update_9: {
-            // frozen hash has to be non-default for frozen state transition
+            // frozen hash has to be non-const_data for frozen state transition
             let frozen_hash = Hash::new_unique();
             let epoch_slots_frozen_hash = Hash::new_unique();
             let cluster_confirmed_hash = Some(ClusterConfirmedHash::EpochSlotsFrozen(epoch_slots_frozen_hash));
@@ -1834,7 +1834,7 @@ mod test {
 
         // Setup a duplicate slot state transition with the initial bank state of the duplicate slot
         // determined by `initial_bank_hash`, which can be:
-        // 1) A default hash (unfrozen bank),
+        // 1) A const_data hash (unfrozen bank),
         // 2) None (a slot that hasn't even started replay yet).
         let root = 0;
         let mut duplicate_slots_tracker = DuplicateSlotsTracker::default();

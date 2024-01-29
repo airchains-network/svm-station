@@ -860,7 +860,7 @@ fn test_cli_program_write_buffer() {
     };
     process_command(&config).unwrap();
 
-    // Write a buffer with default params
+    // Write a buffer with const_data params
     config.signers = vec![&keypair];
     config.command = CliCommand::Program(ProgramCliCommand::WriteBuffer {
         program_location: noop_path.to_str().unwrap().to_string(),
@@ -1069,7 +1069,7 @@ fn test_cli_program_write_buffer() {
     let recipient_account = rpc_client.get_account(&recipient_pubkey).unwrap();
     assert_eq!(minimum_balance_for_buffer, recipient_account.lamports);
 
-    // Write a buffer with default params
+    // Write a buffer with const_data params
     config.signers = vec![&keypair];
     config.command = CliCommand::Program(ProgramCliCommand::WriteBuffer {
         program_location: noop_path.to_str().unwrap().to_string(),
@@ -1091,7 +1091,7 @@ fn test_cli_program_write_buffer() {
         .unwrap();
     let new_buffer_pubkey = Pubkey::from_str(buffer_pubkey_str).unwrap();
 
-    // Close buffers and deposit default keypair
+    // Close buffers and deposit const_data keypair
     let pre_lamports = rpc_client.get_account(&keypair.pubkey()).unwrap().lamports;
     config.signers = vec![&keypair];
     config.command = CliCommand::Program(ProgramCliCommand::Close {

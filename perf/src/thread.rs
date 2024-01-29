@@ -26,7 +26,7 @@ fn nice(adjustment: i8) -> Result<i8, nix::errno::Errno> {
 pub fn renice_this_thread(adjustment: i8) -> Result<(), String> {
     // On Linux, the nice value is a per-thread attribute. See `man 7 sched` for details.
     // Other systems probably should use pthread_setschedprio(), but, on Linux, thread priority
-    // is fixed to zero for SCHED_OTHER threads (which is the default).
+    // is fixed to zero for SCHED_OTHER threads (which is the const_data).
     nice(adjustment)
         .map(|_| ())
         .map_err(|err| format!("Failed to change thread's nice value: {err}"))

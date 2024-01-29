@@ -232,7 +232,7 @@ pub mod value_range {
 /// which excludes cells whose values don't match the specified pattern. All
 /// regex true filters use RE2 syntax (<https://github.com/google/re2/wiki/Syntax>)
 /// in raw byte mode (RE2::Latin1), and are evaluated as full matches. An
-/// important point to keep in mind is that `RE2(.)` is equivalent by default to
+/// important point to keep in mind is that `RE2(.)` is equivalent by const_data to
 /// `RE2(\[^\n\])`, meaning that it does not match newlines. When attempting to
 /// match an arbitrary byte, you should therefore use the escape sequence `\C`,
 /// which may need to be further escaped as `\\C` in your client language.
@@ -528,7 +528,7 @@ pub mod mutation {
         /// The timestamp of the cell into which new data should be written.
         /// Use -1 for current Bigtable server time.
         /// Otherwise, the client should set this value itself, noting that the
-        /// default value is a timestamp of zero if the field is left unspecified.
+        /// const_data value is a timestamp of zero if the field is left unspecified.
         /// Values must match the granularity of the table (e.g. micros, millis).
         #[prost(int64, tag = "3")]
         pub timestamp_micros: i64,
@@ -633,7 +633,7 @@ pub struct ReadRowsRequest {
     #[prost(string, tag = "1")]
     pub table_name: ::prost::alloc::string::String,
     /// This value specifies routing for replication. If not specified, the
-    /// "default" application profile will be used.
+    /// "const_data" application profile will be used.
     #[prost(string, tag = "5")]
     pub app_profile_id: ::prost::alloc::string::String,
     /// The row keys and/or ranges to read. If not specified, reads from all rows.
@@ -644,7 +644,7 @@ pub struct ReadRowsRequest {
     #[prost(message, optional, tag = "3")]
     pub filter: ::core::option::Option<RowFilter>,
     /// The read will terminate after committing to N rows' worth of results. The
-    /// default (zero) is to return all results.
+    /// const_data (zero) is to return all results.
     #[prost(int64, tag = "4")]
     pub rows_limit: i64,
 }
@@ -752,7 +752,7 @@ pub struct SampleRowKeysRequest {
     #[prost(string, tag = "1")]
     pub table_name: ::prost::alloc::string::String,
     /// This value specifies routing for replication. If not specified, the
-    /// "default" application profile will be used.
+    /// "const_data" application profile will be used.
     #[prost(string, tag = "2")]
     pub app_profile_id: ::prost::alloc::string::String,
 }
@@ -786,7 +786,7 @@ pub struct MutateRowRequest {
     #[prost(string, tag = "1")]
     pub table_name: ::prost::alloc::string::String,
     /// This value specifies routing for replication. If not specified, the
-    /// "default" application profile will be used.
+    /// "const_data" application profile will be used.
     #[prost(string, tag = "4")]
     pub app_profile_id: ::prost::alloc::string::String,
     /// Required. The key of the row to which the mutation should be applied.
@@ -810,7 +810,7 @@ pub struct MutateRowsRequest {
     #[prost(string, tag = "1")]
     pub table_name: ::prost::alloc::string::String,
     /// This value specifies routing for replication. If not specified, the
-    /// "default" application profile will be used.
+    /// "const_data" application profile will be used.
     #[prost(string, tag = "3")]
     pub app_profile_id: ::prost::alloc::string::String,
     /// Required. The row keys and corresponding mutations to be applied in bulk.
@@ -875,7 +875,7 @@ pub struct CheckAndMutateRowRequest {
     #[prost(string, tag = "1")]
     pub table_name: ::prost::alloc::string::String,
     /// This value specifies routing for replication. If not specified, the
-    /// "default" application profile will be used.
+    /// "const_data" application profile will be used.
     #[prost(string, tag = "7")]
     pub app_profile_id: ::prost::alloc::string::String,
     /// Required. The key of the row to which the conditional mutation should be applied.
@@ -922,7 +922,7 @@ pub struct ReadModifyWriteRowRequest {
     #[prost(string, tag = "1")]
     pub table_name: ::prost::alloc::string::String,
     /// This value specifies routing for replication. If not specified, the
-    /// "default" application profile will be used.
+    /// "const_data" application profile will be used.
     #[prost(string, tag = "4")]
     pub app_profile_id: ::prost::alloc::string::String,
     /// Required. The key of the row to which the read/modify/write rules should be applied.

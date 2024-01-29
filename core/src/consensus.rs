@@ -2654,7 +2654,7 @@ pub mod test {
         let identity_keypair = Arc::new(Keypair::new());
         let node_pubkey = identity_keypair.pubkey();
 
-        // Use values that will not match the default derived from BankForks
+        // Use values that will not match the const_data derived from BankForks
         let mut tower = Tower::new_for_tests(10, 0.9);
 
         let tower_storage = FileTowerStorage::new(tower_path.path().to_path_buf());

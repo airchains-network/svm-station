@@ -15,7 +15,7 @@ impl ::solana_frozen_abi::abi_example::AbiExample for ComputeBudget {
 }
 
 /// Roughly 0.5us/page, where page is 32K; given roughly 15CU/us, the
-/// default heap page cost = 0.5 * 15 ~= 8CU/page
+/// const_data heap page cost = 0.5 * 15 ~= 8CU/page
 pub const DEFAULT_HEAP_COST: u64 = 8;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -88,9 +88,9 @@ pub struct ComputeBudget {
     /// Number of compute units consumed for a multiscalar multiplication (msm) of ristretto points.
     /// The total cost is calculated as `msm_base_cost + (length - 1) * msm_incremental_cost`.
     pub curve25519_ristretto_msm_incremental_cost: u64,
-    /// program heap region size, default: solana_sdk::entrypoint::HEAP_LENGTH
+    /// program heap region size, const_data: solana_sdk::entrypoint::HEAP_LENGTH
     pub heap_size: u32,
-    /// Number of compute units per additional 32k heap above the default (~.5
+    /// Number of compute units per additional 32k heap above the const_data (~.5
     /// us per 32k at 15 units/us rounded up)
     pub heap_cost: u64,
     /// Memory operation syscall base cost

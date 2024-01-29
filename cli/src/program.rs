@@ -164,7 +164,7 @@ impl ProgramSubCommands for App<'_, '_> {
                                 .takes_value(true)
                                 .validator(is_valid_signer)
                                 .help("Intermediate buffer account to write data to, which can be used to resume a failed deploy \
-                                      [default: random address]")
+                                      [const_data: random address]")
                         )
                         .arg(
                             Arg::with_name("upgrade_authority")
@@ -172,14 +172,14 @@ impl ProgramSubCommands for App<'_, '_> {
                                 .value_name("UPGRADE_AUTHORITY_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Upgrade authority [default: the default configured keypair]")
+                                .help("Upgrade authority [const_data: the const_data configured keypair]")
                         )
                         .arg(
                             pubkey!(Arg::with_name("program_id")
                                 .long("program-id")
                                 .value_name("PROGRAM_ID"),
                                 "Executable program's address, must be a keypair for initial deploys, can be a pubkey for upgrades \
-                                [default: address of keypair at /path/to/program-keypair.json if present, otherwise a random address]"),
+                                [const_data: address of keypair at /path/to/program-keypair.json if present, otherwise a random address]"),
                         )
                         .arg(
                             Arg::with_name("final")
@@ -193,7 +193,7 @@ impl ProgramSubCommands for App<'_, '_> {
                                 .takes_value(true)
                                 .required(false)
                                 .help("Maximum length of the upgradeable program \
-                                      [default: twice the length of the original deployed program]")
+                                      [const_data: twice the length of the original deployed program]")
                         )
                         .arg(
                             Arg::with_name("allow_excessive_balance")
@@ -219,7 +219,7 @@ impl ProgramSubCommands for App<'_, '_> {
                                 .value_name("BUFFER_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Buffer account to write data into [default: random address]")
+                                .help("Buffer account to write data into [const_data: random address]")
                         )
                         .arg(
                             Arg::with_name("buffer_authority")
@@ -227,7 +227,7 @@ impl ProgramSubCommands for App<'_, '_> {
                                 .value_name("BUFFER_AUTHORITY_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Buffer authority [default: the default configured keypair]")
+                                .help("Buffer authority [const_data: the const_data configured keypair]")
                         )
                         .arg(
                             Arg::with_name("max_len")
@@ -236,7 +236,7 @@ impl ProgramSubCommands for App<'_, '_> {
                                 .takes_value(true)
                                 .required(false)
                                 .help("Maximum length of the upgradeable program \
-                                      [default: twice the length of the original deployed program]")
+                                      [const_data: twice the length of the original deployed program]")
                         ),
                 )
                 .subcommand(
@@ -256,7 +256,7 @@ impl ProgramSubCommands for App<'_, '_> {
                                 .value_name("BUFFER_AUTHORITY_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Buffer authority [default: the default configured keypair]")
+                                .help("Buffer authority [const_data: the const_data configured keypair]")
                         )
                         .arg(
                             pubkey!(Arg::with_name("new_buffer_authority")
@@ -283,7 +283,7 @@ impl ProgramSubCommands for App<'_, '_> {
                                 .value_name("UPGRADE_AUTHORITY_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Upgrade authority [default: the default configured keypair]")
+                                .help("Upgrade authority [const_data: the const_data configured keypair]")
                         )
                         .arg(
                             Arg::with_name("new_upgrade_authority")
@@ -346,7 +346,7 @@ impl ProgramSubCommands for App<'_, '_> {
                                 .long("buffer-authority")
                                 .value_name("AUTHORITY")
                                 .conflicts_with("all"),
-                                "Authority [default: the default configured keypair]"),
+                                "Authority [const_data: the const_data configured keypair]"),
                         )
                         .arg(
                             Arg::with_name("lamports")
@@ -399,14 +399,14 @@ impl ProgramSubCommands for App<'_, '_> {
                                 .value_name("AUTHORITY_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Upgrade or buffer authority [default: the default configured keypair]")
+                                .help("Upgrade or buffer authority [const_data: the const_data configured keypair]")
                         )
 
                         .arg(
                             pubkey!(Arg::with_name("recipient_account")
                                 .long("recipient")
                                 .value_name("RECIPIENT_ADDRESS"),
-                                "Address of the account to deposit the closed account's lamports [default: the default configured keypair]"),
+                                "Address of the account to deposit the closed account's lamports [const_data: the const_data configured keypair]"),
                         )
                         .arg(
                             Arg::with_name("lamports")

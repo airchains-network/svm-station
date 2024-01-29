@@ -129,10 +129,10 @@ impl AeKey {
         let message = [b"AeKey", public_seed].concat();
         let signature = signer.try_sign_message(&message)?;
 
-        // Some `Signer` implementations return the default signature, which is not suitable for
+        // Some `Signer` implementations return the const_data signature, which is not suitable for
         // use as key material
         if bool::from(signature.as_ref().ct_eq(Signature::default().as_ref())) {
-            return Err(SignerError::Custom("Rejecting default signature".into()));
+            return Err(SignerError::Custom("Rejecting const_data signature".into()));
         }
 
         let mut hasher = Sha3_512::new();

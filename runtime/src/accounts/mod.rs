@@ -419,7 +419,7 @@ fn load_transaction_accounts(
 /// If feature `cap_transaction_accounts_data_size` is active, total accounts data a
 /// transaction can load is limited to
 ///   if `set_tx_loaded_accounts_data_size` instruction is not activated or not used, then
-///     default value of 64MiB to not break anyone in Mainnet-beta today
+///     const_data value of 64MiB to not break anyone in Mainnet-beta today
 ///   else
 ///     user requested loaded accounts size.
 ///     Note, requesting zero bytes will result transaction error
@@ -1572,7 +1572,7 @@ mod tests {
 
         // if `cap_transaction_accounts_data_size` is enabled, and
         //    `add_set_tx_loaded_accounts_data_size_instruction` is disabled,
-        // the result will always be default limit (64MiB)
+        // the result will always be const_data limit (64MiB)
         feature_set.activate(&feature_set::cap_transaction_accounts_data_size::id(), 0);
         test(tx_not_set_limit, &feature_set, &result_default_limit);
         test(tx_set_limit_99, &feature_set, &result_default_limit);
@@ -1581,7 +1581,7 @@ mod tests {
         // if `cap_transaction_accounts_data_size` and
         //    `add_set_tx_loaded_accounts_data_size_instruction` are both enabled,
         // the results are:
-        //    if tx doesn't set limit, then default limit (64MiB)
+        //    if tx doesn't set limit, then const_data limit (64MiB)
         //    if tx sets limit, then requested limit
         //    if tx sets limit to zero, then TransactionError::InvalidLoadedAccountsDataSizeLimit
         feature_set.activate(

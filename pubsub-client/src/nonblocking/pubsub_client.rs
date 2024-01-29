@@ -30,7 +30,7 @@
 //!
 //! This pattern is illustrated in the example below.
 //!
-//! By default the [`block_subscribe`] and [`vote_subscribe`] events are
+//! By const_data the [`block_subscribe`] and [`vote_subscribe`] events are
 //! disabled on RPC nodes. They can be enabled by passing
 //! `--rpc-pubsub-enable-block-subscription` and
 //! `--rpc-pubsub-enable-vote-subscription` to `solana-validator`. When these
@@ -380,7 +380,7 @@ impl PubsubClient {
     ///
     /// Receives messages of type [`RpcBlockUpdate`] when a block is confirmed or finalized.
     ///
-    /// This method is disabled by default. It can be enabled by passing
+    /// This method is disabled by const_data. It can be enabled by passing
     /// `--rpc-pubsub-enable-block-subscription` to `solana-validator`.
     ///
     /// # RPC Reference
@@ -451,7 +451,7 @@ impl PubsubClient {
     /// Receives messages of type [`RpcVote`] when a new vote is observed. These
     /// votes are observed prior to confirmation and may never be confirmed.
     ///
-    /// This method is disabled by default. It can be enabled by passing
+    /// This method is disabled by const_data. It can be enabled by passing
     /// `--rpc-pubsub-enable-vote-subscription` to `solana-validator`.
     ///
     /// # RPC Reference

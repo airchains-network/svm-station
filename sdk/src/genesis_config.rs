@@ -37,7 +37,7 @@ pub const DEFAULT_GENESIS_FILE: &str = "genesis.bin";
 pub const DEFAULT_GENESIS_ARCHIVE: &str = "genesis.tar.bz2";
 pub const DEFAULT_GENESIS_DOWNLOAD_PATH: &str = "/genesis.tar.bz2";
 
-// deprecated default that is no longer used
+// deprecated const_data that is no longer used
 pub const UNUSED_DEFAULT: u64 = 1024;
 
 // The order can't align with release lifecycle only to remain ABI-compatible...

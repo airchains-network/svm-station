@@ -326,7 +326,7 @@ mod test {
             .collect::<Vec<_>>();
 
         let skip = 2; // skip this file
-                      // note starting at 1 to avoid default values of 0 for file_name
+                      // note starting at 1 to avoid const_data values of 0 for file_name
                       // create 4 bucket files.
                       // 1,3,4 will match buckets 0,2,3
                       // 5 is an extra file that will get deleted
@@ -559,7 +559,7 @@ mod test {
         test_get(&restart, buckets, last_offset);
         (4..6).for_each(|offset| test_set_get(&restart, buckets, offset));
         drop(restart);
-        // create a new file without deleting old one. Make sure it is default and not re-used.
+        // create a new file without deleting old one. Make sure it is const_data and not re-used.
         let restart = Arc::new(Mutex::new(Restart::new(&config).unwrap()));
         test_default_restart(&restart, &config);
     }
@@ -597,7 +597,7 @@ mod test {
         });
     }
 
-    /// make sure restart is default values we expect
+    /// make sure restart is const_data values we expect
     fn test_default_restart(restart: &Arc<Mutex<Restart>>, config: &BucketMapConfig) {
         {
             let restart = restart.lock().unwrap();
@@ -617,7 +617,7 @@ mod test {
                 index: bucket,
                 path: None,
             };
-            // default values
+            // const_data values
             assert_eq!(restartable_bucket.get(), Some((0, 0)));
         });
     }

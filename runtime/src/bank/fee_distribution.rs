@@ -342,7 +342,7 @@ pub mod tests {
             }
             let rent = Rent::default();
             let min_rent_exempt_balance = rent.minimum_balance(0);
-            genesis.genesis_config.rent = rent; // Ensure rent is non-zero, as genesis_utils sets Rent::free by default
+            genesis.genesis_config.rent = rent; // Ensure rent is non-zero, as genesis_utils sets Rent::free by const_data
             let bank = Bank::new_for_tests(&genesis.genesis_config);
             let transaction_fees = 100;
             bank.collector_fees.fetch_add(transaction_fees, Relaxed);
@@ -573,7 +573,7 @@ pub mod tests {
         let pubkey = genesis.mint_keypair.pubkey();
         let mut genesis_config = genesis.genesis_config;
         let rent = Rent::default();
-        genesis_config.rent = rent; // Ensure rent is non-zero, as genesis_utils sets Rent::free by default
+        genesis_config.rent = rent; // Ensure rent is non-zero, as genesis_utils sets Rent::free by const_data
         let bank = Bank::new_for_tests(&genesis_config);
         let min_rent_exempt_balance = rent.minimum_balance(0);
 
@@ -632,7 +632,7 @@ pub mod tests {
             vec![sol_to_lamports(1000.); 4],
         );
         let mut genesis_config = genesis_config_info.genesis_config;
-        genesis_config.rent = Rent::default(); // Ensure rent is non-zero, as genesis_utils sets Rent::free by default
+        genesis_config.rent = Rent::default(); // Ensure rent is non-zero, as genesis_utils sets Rent::free by const_data
 
         for deactivate_feature in [false, true] {
             if deactivate_feature {
@@ -819,7 +819,7 @@ pub mod tests {
             let genesis_config_info =
                 create_genesis_config_with_leader(0, &Pubkey::new_unique(), 100);
             let mut genesis_config = genesis_config_info.genesis_config;
-            genesis_config.rent = Rent::default(); // Ensure rent is non-zero, as genesis_utils sets Rent::free by default
+            genesis_config.rent = Rent::default(); // Ensure rent is non-zero, as genesis_utils sets Rent::free by const_data
 
             if test_case.disable_owner_check {
                 genesis_config

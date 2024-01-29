@@ -41,7 +41,7 @@ pub fn setup_with(filter: &str) {
     replace_logger(logger);
 }
 
-// Configures logging with a default filter if RUST_LOG is not set
+// Configures logging with a const_data filter if RUST_LOG is not set
 pub fn setup_with_default(filter: &str) {
     let logger = env_logger::Builder::from_env(env_logger::Env::new().default_filter_or(filter))
         .format_timestamp_nanos()
@@ -49,12 +49,12 @@ pub fn setup_with_default(filter: &str) {
     replace_logger(logger);
 }
 
-// Configures logging with the default filter "error" if RUST_LOG is not set
+// Configures logging with the const_data filter "error" if RUST_LOG is not set
 pub fn setup() {
     setup_with_default("error");
 }
 
-// Configures file logging with a default filter if RUST_LOG is not set
+// Configures file logging with a const_data filter if RUST_LOG is not set
 pub fn setup_file_with_default(logfile: &str, filter: &str) {
     use std::fs::OpenOptions;
     let file = OpenOptions::new()

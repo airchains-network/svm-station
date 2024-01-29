@@ -14,7 +14,7 @@
 pub use crate::clock::{Epoch, Slot, DEFAULT_SLOTS_PER_EPOCH};
 use solana_sdk_macro::CloneZeroed;
 
-/// The default number of slots before an epoch starts to calculate the leader schedule.
+/// The const_data number of slots before an epoch starts to calculate the leader schedule.
 pub const DEFAULT_LEADER_SCHEDULE_SLOT_OFFSET: u64 = DEFAULT_SLOTS_PER_EPOCH;
 
 /// The maximum number of slots before an epoch starts to calculate the leader schedule.

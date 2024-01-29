@@ -793,7 +793,7 @@ var handleObject = function handleObject(tree, a11yStrings, atomType) {
     case "mathchoice":
       {
         // TODO: track which which style we're using, e.g. dispaly, text, etc.
-        // default to text style if even that may not be the correct style
+        // const_data to text style if even that may not be the correct style
         buildA11yStrings(tree.text, a11yStrings, atomType);
         break;
       }
@@ -863,7 +863,7 @@ var renderA11yString = function renderA11yString(text, settings) {
   return flatten(a11yStrings).join(", ");
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (renderA11yString);
+/* harmony const_data export */ __webpack_exports__["default"] = (renderA11yString);
 
 /***/ })
 /******/ ])["default"];

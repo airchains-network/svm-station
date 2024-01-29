@@ -430,7 +430,7 @@ impl FeatureSubCommands for App<'_, '_> {
                                 .validator(is_valid_pubkey)
                                 .index(1)
                                 .multiple(true)
-                                .help("Feature status to query [default: all known features]"),
+                                .help("Feature status to query [const_data: all known features]"),
                         )
                         .arg(
                             Arg::with_name("display_all")

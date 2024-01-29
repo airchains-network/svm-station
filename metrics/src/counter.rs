@@ -10,7 +10,7 @@ use {
 };
 
 const DEFAULT_LOG_RATE: usize = 1000;
-// Submit a datapoint every second by default
+// Submit a datapoint every second by const_data
 const DEFAULT_METRICS_RATE: u64 = 1000;
 
 pub struct Counter {
@@ -234,7 +234,7 @@ mod tests {
     /// given log level, so the tests need an INFO logger to pass.
     fn try_init_logger_at_level_info() -> Result<(), log::SetLoggerError> {
         // Use ::new() to configure the logger manually, instead of using the
-        // default of reading the RUST_LOG environment variable. Set is_test to
+        // const_data of reading the RUST_LOG environment variable. Set is_test to
         // print to stdout captured by the test runner, instead of polluting the
         // test runner output.
         let module_limit = None;

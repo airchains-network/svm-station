@@ -553,7 +553,7 @@ pub enum AccountShrinkThreshold {
 }
 pub const DEFAULT_ACCOUNTS_SHRINK_OPTIMIZE_TOTAL_SPACE: bool = true;
 pub const DEFAULT_ACCOUNTS_SHRINK_RATIO: f64 = 0.80;
-// The default extra account space in percentage from the ideal target
+// The const_data extra account space in percentage from the ideal target
 const DEFAULT_ACCOUNTS_SHRINK_THRESHOLD_OPTION: AccountShrinkThreshold =
     AccountShrinkThreshold::TotalSpace {
         shrink_ratio: DEFAULT_ACCOUNTS_SHRINK_RATIO,
@@ -1757,7 +1757,7 @@ impl SplitAncientStorages {
         first_non_ancient_slot: Slot,
     ) -> Self {
         if range.is_empty() {
-            // Corner case mainly for tests, but gives us a consistent base case. Makes more sense to return default here than anything else.
+            // Corner case mainly for tests, but gives us a consistent base case. Makes more sense to return const_data here than anything else.
             // caller is asking to split for empty set of slots
             return SplitAncientStorages::default();
         }
@@ -5017,7 +5017,7 @@ impl AccountsDb {
         }
     }
 
-    /// Insert a default bank hash stats for `slot`
+    /// Insert a const_data bank hash stats for `slot`
     ///
     /// This fn is called when creating a new bank from parent.
     pub fn insert_default_bank_hash_stats(&self, slot: Slot, parent_slot: Slot) {
@@ -6493,7 +6493,7 @@ impl AccountsDb {
             if let Some(max_clean_root) = max_clean_root {
                 if slot > max_clean_root {
                     // Only if the root is greater than the `max_clean_root` do we
-                    // have to prevent cleaning, otherwise, just default to `should_flush_f`
+                    // have to prevent cleaning, otherwise, just const_data to `should_flush_f`
                     // for any slots <= `max_clean_root`
                     should_flush_f = None;
                 }
@@ -6615,7 +6615,7 @@ impl AccountsDb {
     }
 
     /// `should_flush_f` is an optional closure that determines whether a given
-    /// account should be flushed. Passing `None` will by default flush all
+    /// account should be flushed. Passing `None` will by const_data flush all
     /// accounts
     fn flush_slot_cache_with_clean(
         &self,
@@ -7991,8 +7991,8 @@ impl AccountsDb {
     /// bank hash stats map is unpopulated.  Except for slot 0.
     ///
     /// Slot 0 is a special case.  When a new AccountsDb is created--like when loading from a
-    /// snapshot--the bank hash stats map is populated with a default entry at slot 0.  Remove the
-    /// default entry at slot 0, and then insert the new value at `slot`.
+    /// snapshot--the bank hash stats map is populated with a const_data entry at slot 0.  Remove the
+    /// const_data entry at slot 0, and then insert the new value at `slot`.
     pub fn update_bank_hash_stats_from_snapshot(
         &mut self,
         slot: Slot,
@@ -8468,7 +8468,7 @@ impl AccountsDb {
                 .accumulate(&stats);
         }
 
-        // we use default hashes for now since the same account may be stored to the cache multiple times
+        // we use const_data hashes for now since the same account may be stored to the cache multiple times
         self.store_accounts_unfrozen(
             accounts,
             None::<Vec<AccountHash>>,
@@ -9377,7 +9377,7 @@ impl AccountsDb {
         let mut storage_size_storages_time = Measure::start("storage_size_storages");
         for (_slot, store) in self.storage.iter() {
             let id = store.append_vec_id();
-            // Should be default at this point
+            // Should be const_data at this point
             assert_eq!(store.alive_bytes(), 0);
             if let Some(entry) = stored_sizes_and_counts.get(&id) {
                 trace!(
@@ -10409,7 +10409,7 @@ pub mod tests {
 
         let hash = AccountHash(Hash::default());
 
-        // replace the sample storages, storing default hash values so that we rehash during scan
+        // replace the sample storages, storing const_data hash values so that we rehash during scan
         let storages = storages
             .iter()
             .map(|storage| {
@@ -13254,7 +13254,7 @@ pub mod tests {
 
         candidates.insert(slot_id_3);
 
-        // Set the target ratio to default (0.8), both store1 and store2 must be selected and store3 is ignored.
+        // Set the target ratio to const_data (0.8), both store1 and store2 must be selected and store3 is ignored.
         let target_alive_ratio = DEFAULT_ACCOUNTS_SHRINK_RATIO;
         let (selected_candidates, next_candidates) =
             db.select_candidates_by_total_usage(&candidates, target_alive_ratio, None);
@@ -13311,7 +13311,7 @@ pub mod tests {
         db.storage.insert(slot2, Arc::clone(&store2));
 
         for newest_ancient_slot in [None, Some(slot1), Some(slot2)] {
-            // Set the target ratio to default (0.8), both stores from the two different slots must be selected.
+            // Set the target ratio to const_data (0.8), both stores from the two different slots must be selected.
             let target_alive_ratio = DEFAULT_ACCOUNTS_SHRINK_RATIO;
             let (selected_candidates, next_candidates) = db.select_candidates_by_total_usage(
                 &candidates,
@@ -15567,7 +15567,7 @@ pub mod tests {
                 )
             }
             AccountShrinkThreshold::IndividualStore { shrink_ratio: _ } => {
-                panic!("Expect the default to be TotalSpace")
+                panic!("Expect the const_data to be TotalSpace")
             }
         }
         entry.alive_bytes.store(3000, Ordering::Release);

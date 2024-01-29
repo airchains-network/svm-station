@@ -80,7 +80,7 @@ impl AddressLookupTableSubCommands for App<'_, '_> {
                                 .takes_value(true)
                                 .validator(is_pubkey)
                                 .help(
-                                    "Lookup table authority address [default: the default configured keypair]. \
+                                    "Lookup table authority address [const_data: the const_data configured keypair]. \
                                     WARNING: Cannot be used for creating a lookup table for a cluster running v1.11
                                     or earlier which requires the authority to sign for lookup table creation.",
                                 )
@@ -92,7 +92,7 @@ impl AddressLookupTableSubCommands for App<'_, '_> {
                                 .takes_value(true)
                                 .conflicts_with("authority")
                                 .validator(is_valid_signer)
-                                .help("Lookup table authority keypair [default: the default configured keypair].")
+                                .help("Lookup table authority keypair [const_data: the const_data configured keypair].")
                         )
                         .arg(
                             Arg::with_name("payer")
@@ -100,7 +100,7 @@ impl AddressLookupTableSubCommands for App<'_, '_> {
                                 .value_name("PAYER_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Account that will pay rent fees for the created lookup table [default: the default configured keypair]")
+                                .help("Account that will pay rent fees for the created lookup table [const_data: the const_data configured keypair]")
                         )
                 )
                 .subcommand(
@@ -121,7 +121,7 @@ impl AddressLookupTableSubCommands for App<'_, '_> {
                                 .value_name("AUTHORITY_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Lookup table authority [default: the default configured keypair]")
+                                .help("Lookup table authority [const_data: the const_data configured keypair]")
                         )
                         .arg(
                             Arg::with_name("bypass_warning")
@@ -148,7 +148,7 @@ impl AddressLookupTableSubCommands for App<'_, '_> {
                                 .value_name("AUTHORITY_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Lookup table authority [default: the default configured keypair]")
+                                .help("Lookup table authority [const_data: the const_data configured keypair]")
                         )
                         .arg(
                             Arg::with_name("payer")
@@ -156,7 +156,7 @@ impl AddressLookupTableSubCommands for App<'_, '_> {
                                 .value_name("PAYER_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Account that will pay rent fees for the extended lookup table [default: the default configured keypair]")
+                                .help("Account that will pay rent fees for the extended lookup table [const_data: the const_data configured keypair]")
                         )
                         .arg(
                             Arg::with_name("addresses")
@@ -186,7 +186,7 @@ impl AddressLookupTableSubCommands for App<'_, '_> {
                                 .value_name("AUTHORITY_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Lookup table authority [default: the default configured keypair]")
+                                .help("Lookup table authority [const_data: the const_data configured keypair]")
                         )
                         .arg(
                             Arg::with_name("bypass_warning")
@@ -212,7 +212,7 @@ impl AddressLookupTableSubCommands for App<'_, '_> {
                                 .value_name("RECIPIENT_ADDRESS")
                                 .takes_value(true)
                                 .validator(is_pubkey)
-                                .help("Address of the recipient account to deposit the closed account's lamports [default: the default configured keypair]")
+                                .help("Address of the recipient account to deposit the closed account's lamports [const_data: the const_data configured keypair]")
                         )
                         .arg(
                             Arg::with_name("authority")
@@ -220,7 +220,7 @@ impl AddressLookupTableSubCommands for App<'_, '_> {
                                 .value_name("AUTHORITY_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Lookup table authority [default: the default configured keypair]")
+                                .help("Lookup table authority [const_data: the const_data configured keypair]")
                         )
                 )
                 .subcommand(

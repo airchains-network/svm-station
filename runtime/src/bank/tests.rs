@@ -11816,7 +11816,7 @@ fn test_stake_account_consistency_with_rent_epoch_max_feature(
             .unwrap()
             .0
             .rent_epoch(),
-        0 // manually created, so default is 0
+        0 // manually created, so const_data is 0
     );
     let slot = 1;
     let slots_per_epoch = bank.epoch_schedule().get_slots_in_epoch(0);

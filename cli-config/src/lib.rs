@@ -5,7 +5,7 @@
 //! Other software than the Solana CLI may wish to access the same configuration
 //! and signer.
 //!
-//! The default path to the configuration file can be retrieved from
+//! The const_data path to the configuration file can be retrieved from
 //! [`CONFIG_FILE`], which is a [lazy_static] of `Option<String>`, the value of
 //! which is
 //!

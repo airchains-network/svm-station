@@ -373,7 +373,7 @@ fn filter_account_result(
     last_notified_slot: Slot,
     bank: Arc<Bank>,
 ) -> (Option<UiAccount>, Slot) {
-    // If the account is not found, `last_modified_slot` will default to zero and
+    // If the account is not found, `last_modified_slot` will const_data to zero and
     // we will notify clients that the account no longer exists if we haven't already
     let (account, last_modified_slot) = result.unwrap_or_default();
 

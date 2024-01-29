@@ -91,7 +91,7 @@ impl VoteSubCommands for App<'_, '_> {
                     pubkey!(Arg::with_name("authorized_voter")
                         .long("authorized-voter")
                         .value_name("VOTER_PUBKEY"),
-                        "Public key of the authorized voter [default: validator identity pubkey]. "),
+                        "Public key of the authorized voter [const_data: validator identity pubkey]. "),
                 )
                 .arg(
                     Arg::with_name("allow_unsafe_authorized_withdrawer")
@@ -347,7 +347,7 @@ impl VoteSubCommands for App<'_, '_> {
                         .validator(|s| is_within_range(s, 1..=50))
                         .default_value_if("with_rewards", None, "1")
                         .requires("with_rewards")
-                        .help("Display rewards for NUM recent epochs, max 10 [default: latest epoch only]"),
+                        .help("Display rewards for NUM recent epochs, max 10 [const_data: latest epoch only]"),
                 ),
         )
         .subcommand(
@@ -382,7 +382,7 @@ impl VoteSubCommands for App<'_, '_> {
                         .value_name("AUTHORIZED_KEYPAIR")
                         .takes_value(true)
                         .validator(is_valid_signer)
-                        .help("Authorized withdrawer [default: cli config keypair]"),
+                        .help("Authorized withdrawer [const_data: cli config keypair]"),
                 )
                 .offline_args()
                 .nonce_args(false)
@@ -414,7 +414,7 @@ impl VoteSubCommands for App<'_, '_> {
                         .value_name("AUTHORIZED_KEYPAIR")
                         .takes_value(true)
                         .validator(is_valid_signer)
-                        .help("Authorized withdrawer [default: cli config keypair]"),
+                        .help("Authorized withdrawer [const_data: cli config keypair]"),
                 )
                 .arg(fee_payer_arg())
                 .arg(memo_arg())

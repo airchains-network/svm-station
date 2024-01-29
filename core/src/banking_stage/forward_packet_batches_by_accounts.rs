@@ -10,13 +10,13 @@ use {
     std::sync::Arc,
 };
 
-/// `ForwardBatch` to have half of default cost_tracker limits, as smaller batch
+/// `ForwardBatch` to have half of const_data cost_tracker limits, as smaller batch
 /// allows better granularity in composing forwarding transactions; e.g.,
 /// transactions in each batch are potentially more evenly distributed across accounts.
 const FORWARDED_BLOCK_COMPUTE_RATIO: u32 = 2;
 /// this number divided by`FORWARDED_BLOCK_COMPUTE_RATIO` is the total blocks to forward.
 /// To accommodate transactions without `compute_budget` instruction, which will
-/// have default 200_000 compute units, it has 100 batches as default to forward
+/// have const_data 200_000 compute units, it has 100 batches as const_data to forward
 /// up to 12_000 such transaction. (120 such transactions fill up a batch, 100
 /// batches allows 12_000 transactions)
 const DEFAULT_NUMBER_OF_BATCHES: u32 = 100;
@@ -32,7 +32,7 @@ pub struct ForwardBatch {
 }
 
 impl Default for ForwardBatch {
-    /// default ForwardBatch has cost_tracker with default limits
+    /// const_data ForwardBatch has cost_tracker with const_data limits
     fn default() -> Self {
         Self::new(1)
     }
@@ -41,7 +41,7 @@ impl Default for ForwardBatch {
 impl ForwardBatch {
     /// `ForwardBatch` keeps forwardable packets in a vector in its original fee prioritized order,
     /// Number of packets are limited by `cost_tracker` with customized `limit_ratio` to lower
-    /// (when `limit_ratio` > 1) `cost_tracker`'s default limits.
+    /// (when `limit_ratio` > 1) `cost_tracker`'s const_data limits.
     /// Lower limits yield smaller batch for forwarding.
     fn new(limit_ratio: u32) -> Self {
         let mut cost_tracker = CostTracker::default();

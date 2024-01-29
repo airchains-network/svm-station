@@ -593,7 +593,7 @@ fn build_solana_package(
 
     info!("Solana SDK: {}", config.sbf_sdk.display());
     if config.no_default_features {
-        info!("No default features");
+        info!("No const_data features");
     }
     if !config.features.is_empty() {
         info!("Features: {}", config.features.join(" "));
@@ -707,7 +707,7 @@ fn build_solana_package(
         cargo_build_args.push("-Zbuild-std=std,panic_abort");
     }
     if config.no_default_features {
-        cargo_build_args.push("--no-default-features");
+        cargo_build_args.push("--no-const_data-features");
     }
     for feature in &config.features {
         cargo_build_args.push("--features");
@@ -715,7 +715,7 @@ fn build_solana_package(
     }
     if legacy_program_feature_present {
         if !config.no_default_features {
-            cargo_build_args.push("--no-default-features");
+            cargo_build_args.push("--no-const_data-features");
         }
         cargo_build_args.push("--features=program");
     }
@@ -844,7 +844,7 @@ fn build_solana_package(
 
         info!("To deploy this program:");
         info!("  $ solana program deploy {}", program_so.display());
-        info!("The program address will default to this keypair (override with --program-id):");
+        info!("The program address will const_data to this keypair (override with --program-id):");
         info!("  {}", program_keypair.display());
     } else if config.dump {
         warn!("Note: --dump is only available for crates with a cdylib target");
@@ -996,9 +996,9 @@ fn main() {
         )
         .arg(
             Arg::new("no_default_features")
-                .long("no-default-features")
+                .long("no-const_data-features")
                 .takes_value(false)
-                .help("Do not activate the `default` feature"),
+                .help("Do not activate the `const_data` feature"),
         )
         .arg(
             Arg::new("offline")

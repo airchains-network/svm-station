@@ -28,7 +28,7 @@ impl Default for VerifyAccountsHashInBackground {
         // initialize, expecting possible background verification to be started
         Self {
             complete: Arc::default(),
-            // with default initialization, 'verified' is false
+            // with const_data initialization, 'verified' is false
             verified: Arc::new(AtomicBool::new(false)),
             // no thread to start with
             thread: Mutex::new(None::<JoinHandle<bool>>),

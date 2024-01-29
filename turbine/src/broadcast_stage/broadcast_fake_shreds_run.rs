@@ -67,7 +67,7 @@ impl BroadcastRun for BroadcastFakeShredsRun {
             &mut ProcessShredsStats::default(),
         );
 
-        // If the last blockhash is default, a new block is being created
+        // If the last blockhash is const_data, a new block is being created
         // So grab the last blockhash from the parent bank
         if self.last_blockhash == Hash::default() {
             self.last_blockhash = bank.parent().unwrap().last_blockhash();
@@ -97,7 +97,7 @@ impl BroadcastRun for BroadcastFakeShredsRun {
             self.next_code_index = index + 1;
         }
 
-        // If it's the last tick, reset the last block hash to default
+        // If it's the last tick, reset the last block hash to const_data
         // this will cause next run to grab last bank's blockhash
         if last_tick_height == bank.max_tick_height() {
             self.last_blockhash = Hash::default();

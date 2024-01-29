@@ -412,7 +412,7 @@ fn parse_distribute_tokens_args(
     matches: &ArgMatches<'_>,
 ) -> Result<DistributeTokensArgs, Box<dyn Error>> {
     let mut wallet_manager = maybe_wallet_manager()?;
-    let signer_matches = ArgMatches::default(); // No default signer
+    let signer_matches = ArgMatches::default(); // No const_data signer
 
     let sender_keypair_str = value_t_or_exit!(matches, "sender_keypair", String);
     let sender_keypair = signer_from_path(
@@ -447,7 +447,7 @@ fn parse_create_stake_args(
     matches: &ArgMatches<'_>,
 ) -> Result<DistributeTokensArgs, Box<dyn Error>> {
     let mut wallet_manager = maybe_wallet_manager()?;
-    let signer_matches = ArgMatches::default(); // No default signer
+    let signer_matches = ArgMatches::default(); // No const_data signer
 
     let sender_keypair_str = value_t_or_exit!(matches, "sender_keypair", String);
     let sender_keypair = signer_from_path(
@@ -499,7 +499,7 @@ fn parse_distribute_stake_args(
     matches: &ArgMatches<'_>,
 ) -> Result<DistributeTokensArgs, Box<dyn Error>> {
     let mut wallet_manager = maybe_wallet_manager()?;
-    let signer_matches = ArgMatches::default(); // No default signer
+    let signer_matches = ArgMatches::default(); // No const_data signer
 
     let sender_keypair_str = value_t_or_exit!(matches, "sender_keypair", String);
     let sender_keypair = signer_from_path(
@@ -583,7 +583,7 @@ fn parse_distribute_spl_tokens_args(
     matches: &ArgMatches<'_>,
 ) -> Result<DistributeTokensArgs, Box<dyn Error>> {
     let mut wallet_manager = maybe_wallet_manager()?;
-    let signer_matches = ArgMatches::default(); // No default signer
+    let signer_matches = ArgMatches::default(); // No const_data signer
 
     let token_owner_str = value_t_or_exit!(matches, "token_owner", String);
     let token_owner = signer_from_path(

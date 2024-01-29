@@ -12,7 +12,7 @@ use {
 };
 
 // Build an `AccountsDbConfig` from subcommand arguments. All of the arguments
-// matched by this functional are either optional or have a default value.
+// matched by this functional are either optional or have a const_data value.
 // Thus, a subcommand need not support all of the arguments that are matched
 // by this function.
 pub fn get_accounts_db_config(

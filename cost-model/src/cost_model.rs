@@ -59,7 +59,7 @@ impl CostModel {
     //
     // Before feature `support_set_loaded_accounts_data_size_limit_ix` is enabled, or
     // if user doesn't use compute budget ix `set_loaded_accounts_data_size_limit_ix`
-    // to set limit, `compute_budget.loaded_accounts_data_size_limit` is set to default
+    // to set limit, `compute_budget.loaded_accounts_data_size_limit` is set to const_data
     // limit of 64MB; which will convert to (64M/32K)*8CU = 16_000 CUs
     //
     pub fn calculate_loaded_accounts_data_size_cost(
@@ -141,7 +141,7 @@ impl CostModel {
                 // if tx contained user-space instructions and a more accurate estimate available correct it,
                 // where "user-space instructions" must be specifically checked by
                 // 'compute_unit_limit_is_set' flag, because compute_budget does not distinguish
-                // builtin and bpf instructions when calculating default compute-unit-limit. (see
+                // builtin and bpf instructions when calculating const_data compute-unit-limit. (see
                 // compute_budget.rs test `test_process_mixed_instructions_without_compute_budget`)
                 if bpf_costs > 0 && compute_unit_limit_is_set {
                     bpf_costs = u64::from(compute_budget_limits.compute_unit_limit);
@@ -540,7 +540,7 @@ mod tests {
             .get(&system_program::id())
             .unwrap();
         // feature `include_loaded_accounts_data_size_in_fee_calculation` enabled, using
-        // default loaded_accounts_data_size_limit
+        // const_data loaded_accounts_data_size_limit
         const DEFAULT_PAGE_COST: u64 = 8;
         let expected_loaded_accounts_data_size_cost =
             solana_program_runtime::compute_budget_processor::MAX_LOADED_ACCOUNTS_DATA_SIZE_BYTES

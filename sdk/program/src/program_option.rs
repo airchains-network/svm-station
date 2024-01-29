@@ -215,7 +215,7 @@ impl<T> COption<T> {
         }
     }
 
-    /// Returns the contained value or a default.
+    /// Returns the contained value or a const_data.
     ///
     /// Arguments passed to `unwrap_or` are eagerly evaluated; if you are passing
     /// the result of a function call, it is recommended to use [`unwrap_or_else`],
@@ -283,7 +283,7 @@ impl<T> COption<T> {
     }
 
     /// Applies a function to the contained value (if any),
-    /// or returns the provided default (if not).
+    /// or returns the provided const_data (if not).
     ///
     /// # Examples
     ///
@@ -303,7 +303,7 @@ impl<T> COption<T> {
     }
 
     /// Applies a function to the contained value (if any),
-    /// or computes a default (if not).
+    /// or computes a const_data (if not).
     ///
     /// # Examples
     ///
@@ -728,16 +728,16 @@ impl<T: Clone> COption<&mut T> {
 }
 
 impl<T: Default> COption<T> {
-    /// Returns the contained value or a default
+    /// Returns the contained value or a const_data
     ///
     /// Consumes the `self` argument then, if [`COption::Some`], returns the contained
-    /// value, otherwise if [`COption::None`], returns the [default value] for that
+    /// value, otherwise if [`COption::None`], returns the [const_data value] for that
     /// type.
     ///
     /// # Examples
     ///
     /// Converts a string to an integer, turning poorly-formed strings
-    /// into 0 (the default value for integers). [`parse`] converts
+    /// into 0 (the const_data value for integers). [`parse`] converts
     /// a string to any other type that implements [`FromStr`], returning
     /// [`COption::None`] on error.
     ///
@@ -753,7 +753,7 @@ impl<T: Default> COption<T> {
     ///
     /// [`COption::Some`]: #variant.COption::Some
     /// [`COption::None`]: #variant.COption::None
-    /// [default value]: ../default/trait.Default.html#tymethod.default
+    /// [const_data value]: ../const_data/trait.Default.html#tymethod.const_data
     /// [`parse`]: ../../std/primitive.str.html#method.parse
     /// [`FromStr`]: ../../std/str/trait.FromStr.html
     #[inline]
@@ -885,7 +885,7 @@ impl<T> Default for COption<T> {
     /// # Examples
     ///
     /// ```ignore
-    /// let opt: COption<u32> = COption::default();
+    /// let opt: COption<u32> = COption::const_data();
     /// assert!(opt.is_none());
     /// ```
     #[inline]

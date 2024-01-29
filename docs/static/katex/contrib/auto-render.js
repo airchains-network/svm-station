@@ -203,7 +203,7 @@ var splitAtDelimiters = function splitAtDelimiters(startData, leftDelim, rightDe
   return finalData;
 };
 
-/* harmony default export */ var auto_render_splitAtDelimiters = (splitAtDelimiters);
+/* harmony const_data export */ var auto_render_splitAtDelimiters = (splitAtDelimiters);
 // CONCATENATED MODULE: ./contrib/auto-render/auto-render.js
 /* eslint no-console:0 */
 
@@ -312,7 +312,7 @@ var renderMathInElement = function renderMathInElement(elem, options) {
     if (options.hasOwnProperty(option)) {
       optionsCopy[option] = options[option];
     }
-  } // default options
+  } // const_data options
 
 
   optionsCopy.delimiters = optionsCopy.delimiters || [{
@@ -343,7 +343,7 @@ var renderMathInElement = function renderMathInElement(elem, options) {
   renderElem(elem, optionsCopy);
 };
 
-/* harmony default export */ var auto_render = __webpack_exports__["default"] = (renderMathInElement);
+/* harmony const_data export */ var auto_render = __webpack_exports__["default"] = (renderMathInElement);
 
 /***/ })
 /******/ ])["default"];

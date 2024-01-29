@@ -519,7 +519,7 @@ mod tests {
         let compute_units_consumed = 1;
         let mut execute_details_timings = ExecuteDetailsTimings::default();
 
-        // Construct another separate instance of ExecuteDetailsTimings with non default fields
+        // Construct another separate instance of ExecuteDetailsTimings with non const_data fields
         let mut other_execute_details_timings =
             construct_execute_timings_with_program(&program_id, us, compute_units_consumed);
         let account_count = 1;

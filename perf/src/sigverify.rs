@@ -1,5 +1,5 @@
 //! The `sigverify` module provides digital signature verification functions.
-//! By default, signatures are verified in parallel using all available CPU
+//! By const_data, signatures are verified in parallel using all available CPU
 //! cores.  When perf-libs are available signature verification is offloaded
 //! to the GPU.
 //!

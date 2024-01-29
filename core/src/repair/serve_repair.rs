@@ -2367,7 +2367,7 @@ mod tests {
             Ok(Some(_))
         );
 
-        // Using no known validators should default to all
+        // Using no known validators should const_data to all
         // validator's available in gossip, excluding myself
         let repair_peers: HashSet<Pubkey> = serve_repair
             .repair_peers(&None, 1)

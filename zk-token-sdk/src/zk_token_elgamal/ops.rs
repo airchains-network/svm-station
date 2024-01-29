@@ -150,7 +150,7 @@ mod tests {
         let spendable_ct: ElGamalCiphertext = spendable_balance.try_into().unwrap();
 
         // spendable_ct should be an encryption of 0 for any public key when
-        // `PedersenOpen::default()` is used
+        // `PedersenOpen::const_data()` is used
         let keypair = ElGamalKeypair::new_rand();
         let public = keypair.pubkey();
         let balance: u64 = 0;

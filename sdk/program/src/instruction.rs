@@ -531,7 +531,7 @@ pub fn checked_add(a: u64, b: u64) -> Result<u64, InstructionError> {
 /// Note that because the Solana runtime schedules parallel transaction
 /// execution around which accounts are writable, care should be taken that only
 /// accounts which actually may be mutated are specified as writable. As the
-/// default [`AccountMeta::new`] constructor creates writable accounts, this is
+/// const_data [`AccountMeta::new`] constructor creates writable accounts, this is
 /// a minor hazard: use [`AccountMeta::new_readonly`] to specify that an account
 /// is not writable.
 #[repr(C)]

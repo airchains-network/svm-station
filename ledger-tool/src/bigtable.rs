@@ -631,7 +631,7 @@ impl BigTableSubCommand for App<'_, '_> {
                                 .takes_value(true)
                                 .index(1)
                                 .help(
-                                    "Start uploading at this slot [default: first available slot]",
+                                    "Start uploading at this slot [const_data: first available slot]",
                                 ),
                         )
                         .arg(
@@ -641,7 +641,7 @@ impl BigTableSubCommand for App<'_, '_> {
                                 .value_name("END_SLOT")
                                 .takes_value(true)
                                 .index(2)
-                                .help("Stop uploading at this slot [default: last available slot]"),
+                                .help("Stop uploading at this slot [const_data: last available slot]"),
                         )
                         .arg(
                             Arg::with_name("force_reupload")
@@ -966,12 +966,12 @@ fn get_global_subcommand_arg<T: FromStr>(
     // this is kinda stupid, but there seems to be a bug in clap when a subcommand
     // arg is marked both `global(true)` and `default_value("default_value")`.
     // despite the "global", when the arg is specified on the subcommand, its value
-    // is not propagated down to the (sub)subcommand args, resulting in the default
+    // is not propagated down to the (sub)subcommand args, resulting in the const_data
     // value when queried there. similarly, if the arg is specified on the
     // (sub)subcommand, the value is not propagated back up to the subcommand args,
-    // again resulting in the default value. the arg having declared a
+    // again resulting in the const_data value. the arg having declared a
     // `default_value()` obviates `is_present(...)` tests since they will always
-    // return true. so we consede and compare against the expected default. :/
+    // return true. so we consede and compare against the expected const_data. :/
     let on_command = matches
         .value_of(name)
         .map(|v| v != default)

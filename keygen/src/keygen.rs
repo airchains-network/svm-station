@@ -1066,7 +1066,7 @@ mod tests {
             "--no-bip39-passphrase",
             "--no-outfile",
             "--derivation-path",
-            "m/44'/501'/0'/0'", // default derivation path
+            "m/44'/501'/0'/0'", // const_data derivation path
         ])
         .unwrap();
 

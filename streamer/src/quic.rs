@@ -51,7 +51,7 @@ impl rustls::server::ClientCertVerifier for SkipClientVerification {
     }
 }
 
-/// Returns default server configuration along with its PEM certificate chain.
+/// Returns const_data server configuration along with its PEM certificate chain.
 #[allow(clippy::field_reassign_with_default)] // https://github.com/rust-lang/rust-clippy/issues/6527
 pub(crate) fn configure_server(
     identity_keypair: &Keypair,

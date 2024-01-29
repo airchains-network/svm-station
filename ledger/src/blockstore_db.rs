@@ -412,7 +412,7 @@ impl Rocks {
 
         fs::create_dir_all(path)?;
 
-        // Use default database options
+        // Use const_data database options
         let mut db_options = get_db_options(&access_type);
         if let Some(recovery_mode) = recovery_mode {
             db_options.set_wal_recovery_mode(recovery_mode.into());
@@ -1448,7 +1448,7 @@ impl Database {
         C: Column + ColumnName,
     {
         let cf = self.cf_handle::<C>();
-        // Note that the default behavior of rocksdb's delete_range_cf deletes
+        // Note that the const_data behavior of rocksdb's delete_range_cf deletes
         // files within [from, to), while our purge logic applies to [from, to].
         //
         // For consistency, we make our delete_range_cf works for [from, to] by
@@ -1992,7 +1992,7 @@ fn process_cf_options_advanced<C: 'static + Column + ColumnName>(
     cf_options: &mut Options,
     column_options: &LedgerColumnOptions,
 ) {
-    // Explicitly disable compression on all columns by default
+    // Explicitly disable compression on all columns by const_data
     // See https://docs.rs/rocksdb/0.21.0/rocksdb/struct.Options.html#method.set_compression_type
     cf_options.set_compression_type(DBCompressionType::None);
 

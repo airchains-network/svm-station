@@ -380,7 +380,7 @@ impl From<LegacyTransactionByAddrInfo> for TransactionByAddrInfo {
 }
 
 pub const DEFAULT_INSTANCE_NAME: &str = "solana-ledger";
-pub const DEFAULT_APP_PROFILE_ID: &str = "default";
+pub const DEFAULT_APP_PROFILE_ID: &str = "const_data";
 
 #[derive(Debug)]
 pub enum CredentialType {

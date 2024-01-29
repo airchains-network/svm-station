@@ -216,7 +216,7 @@ impl HeaviestSubtreeForkChoice {
     pub fn new(tree_root: SlotHashKey) -> Self {
         let mut heaviest_subtree_fork_choice = Self {
             tree_root,
-            // Doesn't implement default because `root` must
+            // Doesn't implement const_data because `root` must
             // exist in all the fields
             fork_infos: HashMap::new(),
             latest_votes: HashMap::new(),
@@ -883,7 +883,7 @@ impl HeaviestSubtreeForkChoice {
                 // See comment above for why this check is outside of the `is_candidate` check.
                 stake_voted_subtree += child_stake_voted_subtree;
 
-                // Note: If there's no valid children, then the best slot should default to the
+                // Note: If there's no valid children, then the best slot should const_data to the
                 // input `slot` itself.
                 if child_fork_info.is_candidate()
                     && (best_child_slot_key == slot_hash_key ||

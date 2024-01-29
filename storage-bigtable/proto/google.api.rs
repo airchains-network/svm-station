@@ -13,7 +13,7 @@ pub struct Http {
     /// cases of single segment matches in reserved expansion, where "%2F" will be
     /// left encoded.
     ///
-    /// The default behavior is to not decode RFC 6570 reserved characters in multi
+    /// The const_data behavior is to not decode RFC 6570 reserved characters in multi
     /// segment matches.
     #[prost(bool, tag = "2")]
     pub fully_decode_reserved_expansion: bool,
@@ -374,7 +374,7 @@ pub struct CustomHttpPattern {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum FieldBehavior {
-    /// Conventional default for enums. Do not use this.
+    /// Conventional const_data for enums. Do not use this.
     Unspecified = 0,
     /// Specifically denotes a field as optional.
     /// While all fields in protocol buffers are optional, this may be specified
@@ -402,7 +402,7 @@ pub enum FieldBehavior {
     /// in any arbitrary  order, rather than the order the user originally
     /// provided. Additionally, the list's order may or may not be stable.
     UnorderedList = 6,
-    /// Denotes that this field returns a non-empty default value if not set.
+    /// Denotes that this field returns a non-empty const_data value if not set.
     /// This indicates that if the user provides the empty value in a request,
     /// a non-empty value will be returned. The user will not be aware of what
     /// non-empty value to expect.

@@ -62,7 +62,7 @@ RUN apt-get update && \
   apt-get update && \
   apt-get install -y gh && \
   # rust
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs/ | sh -s -- --no-modify-path --profile minimal --default-toolchain $RUST_VERSION -y && \
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs/ | sh -s -- --no-modify-path --profile minimal --const_data-toolchain $RUST_VERSION -y && \
   rustup component add rustfmt && \
   rustup component add clippy && \
   rustup target add wasm32-unknown-unknown && \

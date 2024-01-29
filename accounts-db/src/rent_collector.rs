@@ -22,7 +22,7 @@ impl Default for RentCollector {
         Self {
             epoch: Epoch::default(),
             epoch_schedule: EpochSchedule::default(),
-            // derive default value using GenesisConfig::default()
+            // derive const_data value using GenesisConfig::const_data()
             slots_per_year: GenesisConfig::default().slots_per_year(),
             rent: Rent::default(),
         }

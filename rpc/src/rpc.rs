@@ -6009,7 +6009,7 @@ pub mod tests {
             .expect("actual response deserialization");
         assert_eq!(result, expected);
 
-        // Bad signature with default sigVerify setting (false)
+        // Bad signature with const_data sigVerify setting (false)
         let req = format!(
             r#"{{"jsonrpc":"2.0","id":1,"method":"simulateTransaction","params":["{tx_serialized_encoded}"]}}"#,
         );

@@ -61,7 +61,7 @@ fn process_instruction(
             Err(ProgramError::InvalidAccountData)
         }
         3 => {
-            msg!("return default enum start value");
+            msg!("return const_data enum start value");
             Err(MyError::DefaultEnumStart.into())
         }
         4 => {

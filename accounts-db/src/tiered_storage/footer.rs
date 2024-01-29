@@ -104,7 +104,7 @@ pub struct TieredStorageFooter {
     pub account_entry_count: u32,
     /// The size of each account meta entry in bytes.
     pub account_meta_entry_size: u32,
-    /// The default size of an account block before compression.
+    /// The const_data size of an account block before compression.
     ///
     /// If the size of one account (meta + data + optional fields) before
     /// compression is bigger than this number, than it is considered a

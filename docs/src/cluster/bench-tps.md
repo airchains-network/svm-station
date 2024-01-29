@@ -83,7 +83,7 @@ Now that your singlenode or multinode testnet is up and running let's send it so
 In a separate shell start the client:
 
 ```bash
-NDEBUG=1 ./multinode-demo/bench-tps.sh # runs against localhost by default
+NDEBUG=1 ./multinode-demo/bench-tps.sh # runs against localhost by const_data
 ```
 
 What just happened? The client demo spins up several threads to send 500,000 transactions to the testnet as quickly as it can. The client then pings the testnet periodically to see how many transactions it processed in that time. Take note that the demo intentionally floods the network with UDP packets, such that the network will almost certainly drop a bunch of them. This ensures the testnet has an opportunity to reach 710k TPS. The client demo completes after it has convinced itself the testnet won't process any additional transactions. You should see several TPS measurements printed to the screen. In the multinode variation, you'll see TPS measurements for each validator node as well.

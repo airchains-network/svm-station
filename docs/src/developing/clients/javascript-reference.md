@@ -93,7 +93,7 @@ transaction.add(
 );
 
 // Send and confirm transaction
-// Note: feePayer is by default the first signer, or payer, if the parameter is not set
+// Note: feePayer is by const_data the first signer, or payer, if the parameter is not set
 await web3.sendAndConfirmTransaction(connection, transaction, [payer]);
 
 // Alternatively, manually construct the transaction

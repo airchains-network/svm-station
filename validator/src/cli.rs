@@ -52,7 +52,7 @@ use {
 
 const EXCLUDE_KEY: &str = "account-index-exclude-key";
 const INCLUDE_KEY: &str = "account-index-include-key";
-// The default minimal snapshot download speed (bytes/second)
+// The const_data minimal snapshot download speed (bytes/second)
 const DEFAULT_MIN_SNAPSHOT_DOWNLOAD_SPEED: u64 = 10485760;
 // The maximum times of snapshot download abort and retry
 const MAX_SNAPSHOT_DOWNLOAD_ABORT: u32 = 5;
@@ -89,7 +89,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .multiple(true)
                 .help("Include an additional authorized voter keypair. \
                        May be specified multiple times. \
-                       [default: the --identity keypair]"),
+                       [const_data: the --identity keypair]"),
         )
         .arg(
             Arg::with_name("vote_account")
@@ -249,7 +249,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .value_name("MAX ACCOUNTS")
                 .takes_value(true)
                 .default_value(&default_args.rpc_max_multiple_accounts)
-                .help("Override the default maximum accounts accepted by \
+                .help("Override the const_data maximum accounts accepted by \
                        the getMultipleAccounts JSON RPC method")
         )
         .arg(
@@ -291,14 +291,14 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .long("accounts-hash-cache-path")
                 .value_name("PATH")
                 .takes_value(true)
-                .help("Use PATH as accounts hash cache location [default: <LEDGER>/accounts_hash_cache]"),
+                .help("Use PATH as accounts hash cache location [const_data: <LEDGER>/accounts_hash_cache]"),
         )
         .arg(
             Arg::with_name("snapshots")
                 .long("snapshots")
                 .value_name("DIR")
                 .takes_value(true)
-                .help("Use DIR as snapshot location [default: --ledger value]"),
+                .help("Use DIR as snapshot location [const_data: --ledger value]"),
         )
         .arg(
             Arg::with_name(use_snapshot_archives_at_startup::cli::NAME)
@@ -315,14 +315,14 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .conflicts_with("no-incremental-snapshots")
                 .value_name("DIR")
                 .takes_value(true)
-                .help("Use DIR as separate location for incremental snapshot archives [default: --snapshots value]"),
+                .help("Use DIR as separate location for incremental snapshot archives [const_data: --snapshots value]"),
         )
         .arg(
             Arg::with_name("tower")
                 .long("tower")
                 .value_name("DIR")
                 .takes_value(true)
-                .help("Use DIR as file tower storage location [default: --ledger value]"),
+                .help("Use DIR as file tower storage location [const_data: --ledger value]"),
         )
         .arg(
             Arg::with_name("tower_storage")
@@ -389,7 +389,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .takes_value(true)
                 .validator(solana_net_utils::is_host)
                 .help("Gossip DNS name or IP address for the validator to advertise in gossip \
-                       [default: ask --entrypoint, or 127.0.0.1 when --entrypoint is not provided]"),
+                       [const_data: ask --entrypoint, or 127.0.0.1 when --entrypoint is not provided]"),
         )
         .arg(
             Arg::with_name("public_tpu_addr")
@@ -398,7 +398,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .value_name("HOST:PORT")
                 .takes_value(true)
                 .validator(solana_net_utils::is_host_port)
-                .help("Specify TPU address to advertise in gossip [default: ask --entrypoint or localhost\
+                .help("Specify TPU address to advertise in gossip [const_data: ask --entrypoint or localhost\
                     when --entrypoint is not provided]"),
         )
         .arg(
@@ -407,7 +407,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .value_name("HOST:PORT")
                 .takes_value(true)
                 .validator(solana_net_utils::is_host_port)
-                .help("Specify TPU Forwards address to advertise in gossip [default: ask --entrypoint or localhost\
+                .help("Specify TPU Forwards address to advertise in gossip [const_data: ask --entrypoint or localhost\
                     when --entrypoint is not provided]"),
         )
         .arg(
@@ -419,7 +419,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .validator(solana_net_utils::is_host_port)
                 .help("RPC address for the validator to advertise publicly in gossip. \
                       Useful for validators running behind a load balancer or proxy \
-                      [default: use --rpc-bind-address / --rpc-port]"),
+                      [const_data: use --rpc-bind-address / --rpc-port]"),
         )
         .arg(
             Arg::with_name("dynamic_port_range")
@@ -590,7 +590,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .help("Controls how RocksDB compacts shreds. \
                        *WARNING*: You will lose your ledger data when you switch between options. \
                        Possible values are: \
-                       'level': stores shreds using RocksDB's default (level) compaction. \
+                       'level': stores shreds using RocksDB's const_data (level) compaction. \
                        'fifo': stores shreds under RocksDB's FIFO compaction. \
                            This option is more efficient on disk-write-bytes of the ledger store."),
         )
@@ -745,7 +745,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .multiple(true)
                 .takes_value(true)
                 .help("A list of validators to request repairs from. If specified, repair will not \
-                       request from validators outside this set [default: all validators]")
+                       request from validators outside this set [const_data: all validators]")
         )
         .arg(
             Arg::with_name("repair_whitelist")
@@ -757,7 +757,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .takes_value(true)
                 .help("A list of validators to prioritize repairs from. If specified, repair requests \
                        from validators in the list will be prioritized over requests from other validators. \
-                       [default: all validators]")
+                       [const_data: all validators]")
         )
         .arg(
             Arg::with_name("gossip_validators")
@@ -768,7 +768,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .takes_value(true)
                 .help("A list of validators to gossip with.  If specified, gossip \
                       will not push/pull from from validators outside this set. \
-                      [default: all validators]")
+                      [const_data: all validators]")
         )
         .arg(
             Arg::with_name("tpu_coalesce_ms")
@@ -832,7 +832,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .value_name("HOST")
                 .takes_value(true)
                 .validator(solana_net_utils::is_host)
-                .help("IP address to bind the RPC port [default: 127.0.0.1 if --private-rpc is present, otherwise use --bind-address]"),
+                .help("IP address to bind the RPC port [const_data: 127.0.0.1 if --private-rpc is present, otherwise use --bind-address]"),
         )
         .arg(
             Arg::with_name("rpc_threads")
@@ -1011,7 +1011,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
         )
         .arg(
             Arg::with_name("rpc_send_transaction_default_max_retries")
-                .long("rpc-send-default-max-retries")
+                .long("rpc-send-const_data-max-retries")
                 .value_name("NUMBER")
                 .takes_value(true)
                 .validator(is_parsable::<usize>)
@@ -1066,7 +1066,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .takes_value(true)
                 .validator(solana_net_utils::is_host)
                 .hidden(hidden_unless_forced())
-                .help("IP address to bind the AccountsDb Replication port [default: use --bind-address]"),
+                .help("IP address to bind the AccountsDb Replication port [const_data: use --bind-address]"),
         )
         .arg(
             Arg::with_name("accountsdb_repl_port")
@@ -1277,7 +1277,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .multiple(true)
                 .help("Persistent accounts-index location. \
                        May be specified multiple times. \
-                       [default: [ledger]/accounts_index]"),
+                       [const_data: [ledger]/accounts_index]"),
         )
         .arg(
             Arg::with_name("accounts_db_test_hash_calculation")
@@ -1338,12 +1338,12 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 .takes_value(true)
                 // Firstly, zero limit value causes tracer to be disabled
                 // altogether, intuitively. On the other hand, this non-zero
-                // default doesn't enable banking tracer unless this flag is
+                // const_data doesn't enable banking tracer unless this flag is
                 // explicitly given, similar to --limit-ledger-size.
                 // see configure_banking_trace_dir_byte_limit() for this.
                 .default_value(&default_args.banking_trace_dir_byte_limit)
-                .help("Enables the banking trace explicitly, which is enabled by default and \
-                       writes trace files for simulate-leader-blocks, retaining up to the default \
+                .help("Enables the banking trace explicitly, which is enabled by const_data and \
+                       writes trace files for simulate-leader-blocks, retaining up to the const_data \
                        or specified total bytes in the ledger. This flag can be used to override \
                        its byte limit.")
         )
@@ -1402,7 +1402,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                 ")
         )
         .args(&get_deprecated_arguments())
-        .after_help("The default subcommand is run")
+        .after_help("The const_data subcommand is run")
         .subcommand(
             SubCommand::with_name("exit")
                 .about("Send an exit request to the validator")
@@ -1465,7 +1465,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                                 .takes_value(true)
                                 .validator(is_keypair)
                                 .help("Path to keypair of the authorized voter to add \
-                               [default: read JSON keypair from stdin]"),
+                               [const_data: read JSON keypair from stdin]"),
                         )
                         .after_help("Note: the new authorized voter only applies to the \
                              currently running validator instance")
@@ -1594,7 +1594,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                         .takes_value(true)
                         .validator(is_keypair)
                         .help("Path to validator identity keypair \
-                           [default: read JSON keypair from stdin]")
+                           [const_data: read JSON keypair from stdin]")
                 )
                 .arg(
                     clap::Arg::with_name("require_tower")
@@ -1647,7 +1647,7 @@ pub fn app<'a>(version: &'a str, default_args: &'a DefaultArgs) -> App<'a, 'a> {
                         .value_name("ADDRESS")
                         .takes_value(true)
                         .validator(is_pubkey_or_keypair)
-                        .help("Validator identity to monitor [default: your validator]")
+                        .help("Validator identity to monitor [const_data: your validator]")
                 )
                 .arg(
                     Arg::with_name("max_delinquent_stake")
@@ -1758,7 +1758,7 @@ fn deprecated_arguments() -> Vec<DeprecatedArg> {
         Arg::with_name("accounts_db_skip_shrink")
             .long("accounts-db-skip-shrink")
             .help("Enables faster starting of validators by skipping startup clean and shrink."),
-        usage_warning: "Enabled by default",
+        usage_warning: "Enabled by const_data",
     );
     add_arg!(Arg::with_name("accounts_hash_interval_slots")
         .long("accounts-hash-interval-slots")
@@ -1774,7 +1774,7 @@ fn deprecated_arguments() -> Vec<DeprecatedArg> {
         }));
     add_arg!(Arg::with_name("disable_accounts_disk_index")
         .long("disable-accounts-disk-index")
-        .help("Disable the disk-based accounts index if it is enabled by default.")
+        .help("Disable the disk-based accounts index if it is enabled by const_data.")
         .conflicts_with("accounts_index_memory_limit_mb"));
     add_arg!(
         Arg::with_name("disable_quic_servers")
@@ -1796,7 +1796,7 @@ fn deprecated_arguments() -> Vec<DeprecatedArg> {
     add_arg!(
         Arg::with_name("enable_quic_servers")
             .long("enable-quic-servers"),
-        usage_warning: "The quic server is now enabled by default.",
+        usage_warning: "The quic server is now enabled by const_data.",
     );
     add_arg!(
         Arg::with_name("halt_on_known_validators_accounts_hash_mismatch")
@@ -1837,7 +1837,7 @@ fn deprecated_arguments() -> Vec<DeprecatedArg> {
             .conflicts_with("no_voting")
             .requires("entrypoint")
             .help("Skip the RPC vote account sanity check"),
-        usage_warning: "Vote account sanity checks are no longer performed by default.",
+        usage_warning: "Vote account sanity checks are no longer performed by const_data.",
     );
     add_arg!(Arg::with_name("no_rocksdb_compaction")
         .long("no-rocksdb-compaction")
@@ -1871,7 +1871,7 @@ fn get_deprecated_arguments() -> Vec<Arg<'static, 'static>> {
         .into_iter()
         .map(|info| {
             let arg = info.arg;
-            // Hide all deprecated arguments by default.
+            // Hide all deprecated arguments by const_data.
             arg.hidden(hidden_unless_forced())
         })
         .collect()
@@ -2121,7 +2121,7 @@ pub fn test_app<'a>(version: &'a str, default_args: &'a DefaultTestArgs) -> App<
                 .help(
                     "Address of the mint account that will receive tokens \
                        created at genesis.  If the ledger already exists then \
-                       this parameter is silently ignored [default: client keypair]",
+                       this parameter is silently ignored [const_data: client keypair]",
                 ),
         )
         .arg(
@@ -2141,7 +2141,7 @@ pub fn test_app<'a>(version: &'a str, default_args: &'a DefaultTestArgs) -> App<
                 .takes_value(false)
                 .help(
                     "Reset the ledger to genesis if it exists. \
-                       By default the validator will resume an existing ledger (if present)",
+                       By const_data the validator will resume an existing ledger (if present)",
                 ),
         )
         .arg(
@@ -2346,7 +2346,7 @@ pub fn test_app<'a>(version: &'a str, default_args: &'a DefaultTestArgs) -> App<
                 .validator(solana_net_utils::is_host)
                 .help(
                     "Gossip DNS name or IP address for the validator to advertise in gossip \
-                       [default: 127.0.0.1]",
+                       [const_data: 127.0.0.1]",
                 ),
         )
         .arg(
@@ -2357,7 +2357,7 @@ pub fn test_app<'a>(version: &'a str, default_args: &'a DefaultTestArgs) -> App<
                 .validator(port_range_validator)
                 .help(
                     "Range to use for dynamically assigned ports \
-                    [default: 1024-65535]",
+                    [const_data: 1024-65535]",
                 ),
         )
         .arg(
@@ -2367,7 +2367,7 @@ pub fn test_app<'a>(version: &'a str, default_args: &'a DefaultTestArgs) -> App<
                 .takes_value(true)
                 .validator(solana_net_utils::is_host)
                 .default_value("0.0.0.0")
-                .help("IP address to bind the validator ports [default: 0.0.0.0]"),
+                .help("IP address to bind the validator ports [const_data: 0.0.0.0]"),
         )
         .arg(
             Arg::with_name("clone_account")

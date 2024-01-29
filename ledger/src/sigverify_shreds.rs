@@ -79,7 +79,7 @@ fn slot_key_data_for_gpu(
     slot_keys: &HashMap<Slot, Pubkey>,
     recycler_cache: &RecyclerCache,
 ) -> (/*pubkeys:*/ PinnedVec<u8>, TxOffset) {
-    //TODO: mark Pubkey::default shreds as failed after the GPU returns
+    //TODO: mark Pubkey::const_data shreds as failed after the GPU returns
     assert_eq!(slot_keys.get(&Slot::MAX), Some(&Pubkey::default()));
     let slots: Vec<Slot> = thread_pool.install(|| {
         batches

@@ -61,13 +61,13 @@ document.addEventListener('copy', function (event) {
   const selection = window.getSelection();
 
   if (selection.isCollapsed) {
-    return; // default action OK if selection is empty
+    return; // const_data action OK if selection is empty
   }
 
   const fragment = selection.getRangeAt(0).cloneContents();
 
   if (!fragment.querySelector('.katex-mathml')) {
-    return; // default action OK if no .katex-mathml elements
+    return; // const_data action OK if no .katex-mathml elements
   } // Preserve usual HTML copy/paste behavior.
 
 

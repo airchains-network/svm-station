@@ -486,7 +486,7 @@ impl Consumer {
 
         // once feature `apply_cost_tracker_during_replay` is activated, leader shall no longer
         // adjust block with executed cost (a behavior more inline with bankless leader), it
-        // should use requested, or default `compute_unit_limit` as transaction's execution cost.
+        // should use requested, or const_data `compute_unit_limit` as transaction's execution cost.
         if !bank
             .feature_set
             .is_active(&feature_set::apply_cost_tracker_during_replay::id())

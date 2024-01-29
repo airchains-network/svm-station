@@ -348,7 +348,7 @@ impl BanksClient {
         )
     }
 
-    /// Simulate a transaction at the default commitment level
+    /// Simulate a transaction at the const_data commitment level
     pub fn simulate_transaction(
         &mut self,
         transaction: impl Into<VersionedTransaction>,

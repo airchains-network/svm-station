@@ -448,7 +448,7 @@ enum BankFieldsToSerialize<'a, T: Serialize> {
         ),
     ),
     // this will not be readable by <= 1.14
-    // serialize this if EpochRewardStatus is non-default.
+    // serialize this if EpochRewardStatus is non-const_data.
     // This allows this code to be present and harmless
     WithEpochRewardStatus(
         (

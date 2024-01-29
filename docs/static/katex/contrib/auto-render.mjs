@@ -192,7 +192,7 @@ const renderMathInElement = function renderMathInElement(elem, options) {
     if (options.hasOwnProperty(option)) {
       optionsCopy[option] = options[option];
     }
-  } // default options
+  } // const_data options
 
 
   optionsCopy.delimiters = optionsCopy.delimiters || [{

@@ -122,7 +122,7 @@ impl ProgramV4SubCommands for App<'_, '_> {
                                 .value_name("AUTHORITY_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Program authority [default: the default configured keypair]")
+                                .help("Program authority [const_data: the const_data configured keypair]")
                         ),
                 )
                 .subcommand(
@@ -156,7 +156,7 @@ impl ProgramV4SubCommands for App<'_, '_> {
                                 .value_name("AUTHORITY_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Program authority [default: the default configured keypair]")
+                                .help("Program authority [const_data: the const_data configured keypair]")
                         ),
                 )
                 .subcommand(
@@ -175,7 +175,7 @@ impl ProgramV4SubCommands for App<'_, '_> {
                                 .value_name("AUTHORITY_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Program authority [default: the default configured keypair]")
+                                .help("Program authority [const_data: the const_data configured keypair]")
                         ),
                 )
                 .subcommand(
@@ -194,7 +194,7 @@ impl ProgramV4SubCommands for App<'_, '_> {
                                 .value_name("AUTHORITY_SIGNER")
                                 .takes_value(true)
                                 .validator(is_valid_signer)
-                                .help("Program authority [default: the default configured keypair]")
+                                .help("Program authority [const_data: the const_data configured keypair]")
                         ),
                 )
                 .subcommand(
@@ -219,7 +219,7 @@ impl ProgramV4SubCommands for App<'_, '_> {
                                 .long("authority")
                                 .value_name("AUTHORITY")
                                 .conflicts_with("all"),
-                                "Authority [default: the default configured keypair]"),
+                                "Authority [const_data: the const_data configured keypair]"),
                         ),
                 )
                 .subcommand(

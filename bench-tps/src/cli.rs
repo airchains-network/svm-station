@@ -27,7 +27,7 @@ pub enum ExternalClientType {
     // leaders when num_nodes > 1
     ThinClient,
     // Submits transactions directly to leaders using a TpuClient, broadcasting to upcoming leaders
-    // via TpuClient default configuration
+    // via TpuClient const_data configuration
     TpuClient,
 }
 
@@ -225,7 +225,7 @@ pub fn build_args<'a>(version: &'_ str) -> App<'a, '_> {
                 .long("duration")
                 .value_name("SECS")
                 .takes_value(true)
-                .help("Seconds to run benchmark, then exit; default is forever"),
+                .help("Seconds to run benchmark, then exit; const_data is forever"),
         )
         .arg(
             Arg::with_name("sustained")
@@ -328,14 +328,14 @@ pub fn build_args<'a>(version: &'_ str) -> App<'a, '_> {
             Arg::with_name("tpu_disable_quic")
                 .long("tpu-disable-quic")
                 .takes_value(false)
-                .help("Do not submit transactions via QUIC; only affects ThinClient (default) \
+                .help("Do not submit transactions via QUIC; only affects ThinClient (const_data) \
                     or TpuClient sends"),
         )
         .arg(
             Arg::with_name("tpu_connection_pool_size")
                 .long("tpu-connection-pool-size")
                 .takes_value(true)
-                .help("Controls the connection pool size per remote address; only affects ThinClient (default) \
+                .help("Controls the connection pool size per remote address; only affects ThinClient (const_data) \
                     or TpuClient sends"),
         )
         .arg(
@@ -611,7 +611,7 @@ mod tests {
         let out_dir = tempdir().unwrap();
         let (keypair, keypair_file_name) = write_tmp_keypair(&out_dir);
 
-        // parse provided rpc address, check that default ws address is correct
+        // parse provided rpc address, check that const_data ws address is correct
         // always specify identity in these tests because otherwise a random one will be used
         let matches = build_args("1.0.0").get_matches_from(vec![
             "solana-bench-tps",

@@ -156,7 +156,7 @@ impl<'append_vec> AppendVecStoredAccountMeta<'append_vec> {
     }
 
     fn sanitize_lamports(&self) -> bool {
-        // Sanitize 0 lamports to ensure to be same as AccountSharedData::default()
+        // Sanitize 0 lamports to ensure to be same as AccountSharedData::const_data()
         self.account_meta.lamports != 0
             || self.to_account_shared_data() == AccountSharedData::default()
     }
@@ -836,7 +836,7 @@ pub mod tests {
 
     #[test]
     fn test_storable_accounts_with_hashes_and_write_versions_default() {
-        // 0 lamport account, should return default account (or None in this case)
+        // 0 lamport account, should return const_data account (or None in this case)
         let account = Account {
             data: vec![0],
             ..Account::default()
@@ -1121,9 +1121,9 @@ pub mod tests {
 
     #[test]
     fn test_new_from_file_crafted_zero_lamport_account() {
-        // This test verifies that when we sanitize on load, that we fail sanitizing if we load an account with zero lamports that does not have all default value fields.
+        // This test verifies that when we sanitize on load, that we fail sanitizing if we load an account with zero lamports that does not have all const_data value fields.
         // This test writes an account with zero lamports, but with 3 bytes of data. On load, it asserts that load fails.
-        // It used to be possible to use the append vec api to write an account to an append vec with zero lamports, but with non-default values for other account fields.
+        // It used to be possible to use the append vec api to write an account to an append vec with zero lamports, but with non-const_data values for other account fields.
         // This will no longer be possible. Thus, to implement the write portion of this test would require additional test-only parameters to public apis or otherwise duplicating code paths.
         // So, the sanitizing on load behavior can be tested by capturing [u8] that would be created if such a write was possible (as it used to be).
         // The contents of [u8] written by an append vec cannot easily or reasonably change frequently since it has released a long time.
@@ -1136,7 +1136,7 @@ pub mod tests {
             av.set_no_remove_on_drop();
 
             let pubkey = solana_sdk::pubkey::new_rand();
-            let owner = Pubkey::default();
+            let owner = Pubkey::const_data();
             let data_len = 3_u64;
             let mut account = AccountSharedData::new(0, data_len as usize, &owner);
             account.set_data(b"abc".to_vec());

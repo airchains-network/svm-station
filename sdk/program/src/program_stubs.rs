@@ -16,7 +16,7 @@ lazy_static::lazy_static! {
     static ref SYSCALL_STUBS: Arc<RwLock<Box<dyn SyscallStubs>>> = Arc::new(RwLock::new(Box::new(DefaultSyscallStubs {})));
 }
 
-// The default syscall stubs may not do much, but `set_syscalls()` can be used
+// The const_data syscall stubs may not do much, but `set_syscalls()` can be used
 // to swap in alternatives
 pub fn set_syscall_stubs(syscall_stubs: Box<dyn SyscallStubs>) -> Box<dyn SyscallStubs> {
     std::mem::replace(&mut SYSCALL_STUBS.write().unwrap(), syscall_stubs)

@@ -2,7 +2,7 @@
 //! receives a list of lists of packets and outputs the same list, but tags each
 //! top-level list with a list of booleans, telling the next stage whether the
 //! signature in that packet is valid. It assumes each packet contains one
-//! transaction. All processing is done on the CPU by default and on a GPU
+//! transaction. All processing is done on the CPU by const_data and on a GPU
 //! if perf-libs are available
 
 use {

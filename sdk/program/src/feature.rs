@@ -7,7 +7,7 @@
 //! Feature activation is accomplished by:
 //! 1. Activation is requested by the feature authority, who issues a transaction to create the
 //!    feature account. The newly created feature account will have the value of
-//!    `Feature::default()`
+//!    `Feature::const_data()`
 //! 2. When the next epoch is entered the runtime will check for new activation requests and
 //!    active them.  When this occurs, the activation slot is recorded in the feature account
 

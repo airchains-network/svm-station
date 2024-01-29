@@ -1846,7 +1846,7 @@ mod tests {
             CreateVoteAccountConfig::default(),
         );
         // this case fails regardless of CreateVoteAccountConfig::space, because
-        // process_instruction_as_one_arg passes a default (empty) account
+        // process_instruction_as_one_arg passes a const_data (empty) account
         process_instruction_as_one_arg(&instructions[1], Err(InstructionError::InvalidAccountData));
         process_instruction_as_one_arg(
             &vote(

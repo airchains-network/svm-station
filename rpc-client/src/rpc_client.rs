@@ -139,8 +139,8 @@ pub struct GetConfirmedSignaturesForAddress2Config {
 /// [commitment level][cl], which determines how committed or finalized a slot
 /// must be to be considered for the query. Unless specified otherwise, the
 /// commitment level is [`Finalized`], meaning the slot is definitely
-/// permanently committed. The default commitment level can be configured by
-/// creating `RpcClient` with an explicit [`CommitmentConfig`], and that default
+/// permanently committed. The const_data commitment level can be configured by
+/// creating `RpcClient` with an explicit [`CommitmentConfig`], and that const_data
 /// configured commitment level can be overridden by calling the various
 /// `_with_commitment` methods, like
 /// [`RpcClient::confirm_transaction_with_commitment`]. In some cases the
@@ -178,7 +178,7 @@ pub struct GetConfirmedSignaturesForAddress2Config {
 /// # let key = Keypair::new();
 /// # let to = solana_sdk::pubkey::new_rand();
 /// # let lamports = 50;
-/// # let latest_blockhash = Hash::default();
+/// # let latest_blockhash = Hash::const_data();
 /// # let tx = system_transaction::transfer(&key, &to, lamports, latest_blockhash);
 /// let signature = rpc_client.send_transaction(&tx)?;
 /// let statuses = rpc_client.get_signature_statuses(&[signature])?.value;
@@ -189,7 +189,7 @@ pub struct GetConfirmedSignaturesForAddress2Config {
 /// [`ClientErrorKind`] is [`ClientErrorKind::Reqwest`], and where the interior
 /// [`reqwest::Error`](solana_rpc_client_api::client_error::reqwest::Error)s
 /// [`is_timeout`](solana_rpc_client_api::client_error::reqwest::Error::is_timeout) method
-/// returns `true`. The default timeout is 30 seconds, and may be changed by
+/// returns `true`. The const_data timeout is 30 seconds, and may be changed by
 /// calling an appropriate constructor with a `timeout` parameter.
 ///
 /// [`ClientError`]: solana_rpc_client_api::client_error::Error
@@ -237,7 +237,7 @@ impl RpcClient {
     /// The URL is an HTTP URL, usually for port 8899, as in
     /// "http://localhost:8899".
     ///
-    /// The client has a default timeout of 30 seconds, and a default [commitment
+    /// The client has a const_data timeout of 30 seconds, and a const_data [commitment
     /// level][cl] of [`Finalized`].
     ///
     /// [cl]: https://docs.solana.com/developing/clients/jsonrpc-api#configuring-state-commitment
@@ -261,7 +261,7 @@ impl RpcClient {
     /// The URL is an HTTP URL, usually for port 8899, as in
     /// "http://localhost:8899".
     ///
-    /// The client has a default timeout of 30 seconds, and a user-specified
+    /// The client has a const_data timeout of 30 seconds, and a user-specified
     /// [`CommitmentLevel`] via [`CommitmentConfig`].
     ///
     /// [`CommitmentLevel`]: solana_sdk::commitment_config::CommitmentLevel
@@ -287,7 +287,7 @@ impl RpcClient {
     /// The URL is an HTTP URL, usually for port 8899, as in
     /// "http://localhost:8899".
     ///
-    /// The client has and a default [commitment level][cl] of
+    /// The client has and a const_data [commitment level][cl] of
     /// [`Finalized`].
     ///
     /// [cl]: https://docs.solana.com/developing/clients/jsonrpc-api#configuring-state-commitment
@@ -401,7 +401,7 @@ impl RpcClient {
     /// `RpcClient` with [`RpcClient::new_sender`] to get mock behavior.
     ///
     /// Unless directed otherwise, a mock `RpcClient` will generally return a
-    /// reasonable default response to any request, at least for [`RpcRequest`]
+    /// reasonable const_data response to any request, at least for [`RpcRequest`]
     /// values for which responses have been implemented.
     ///
     /// This mock can be customized by changing the `url` argument, which is not
@@ -454,7 +454,7 @@ impl RpcClient {
     /// `RpcClient` with [`RpcClient::new_sender`] to get mock behavior.
     ///
     /// Unless directed otherwise, a mock `RpcClient` will generally return a
-    /// reasonable default response to any request, at least for [`RpcRequest`]
+    /// reasonable const_data response to any request, at least for [`RpcRequest`]
     /// values for which responses have been implemented.
     ///
     /// This mock can be customized in two ways:
@@ -474,7 +474,7 @@ impl RpcClient {
     ///
     /// 2) Custom responses can be configured by providing [`Mocks`]. This type
     ///    is a [`HashMap`] from [`RpcRequest`] to a JSON [`Value`] response,
-    ///    Any entries in this map override the default behavior for the given
+    ///    Any entries in this map override the const_data behavior for the given
     ///    request.
     ///
     /// The [`RpcClient::new_mock_with_mocks`] function offers further
@@ -513,7 +513,7 @@ impl RpcClient {
 
     /// Create an HTTP `RpcClient` from a [`SocketAddr`].
     ///
-    /// The client has a default timeout of 30 seconds, and a default [commitment
+    /// The client has a const_data timeout of 30 seconds, and a const_data [commitment
     /// level][cl] of [`Finalized`].
     ///
     /// [cl]: https://docs.solana.com/developing/clients/jsonrpc-api#configuring-state-commitment
@@ -535,7 +535,7 @@ impl RpcClient {
     ///
     /// [cl]: https://docs.solana.com/developing/clients/jsonrpc-api#configuring-state-commitment
     ///
-    /// The client has a default timeout of 30 seconds, and a user-specified
+    /// The client has a const_data timeout of 30 seconds, and a user-specified
     /// [`CommitmentLevel`] via [`CommitmentConfig`].
     ///
     /// [`CommitmentLevel`]: solana_sdk::commitment_config::CommitmentLevel
@@ -562,7 +562,7 @@ impl RpcClient {
 
     /// Create an HTTP `RpcClient` from a [`SocketAddr`] with specified timeout.
     ///
-    /// The client has a default [commitment level][cl] of [`Finalized`].
+    /// The client has a const_data [commitment level][cl] of [`Finalized`].
     ///
     /// [cl]: https://docs.solana.com/developing/clients/jsonrpc-api#configuring-state-commitment
     /// [`Finalized`]: solana_sdk::commitment_config::CommitmentLevel::Finalized
@@ -587,19 +587,19 @@ impl RpcClient {
         (self.rpc_client.as_ref()).url()
     }
 
-    /// Get the configured default [commitment level][cl].
+    /// Get the configured const_data [commitment level][cl].
     ///
     /// [cl]: https://docs.solana.com/developing/clients/jsonrpc-api#configuring-state-commitment
     ///
     /// The commitment config may be specified during construction, and
     /// determines how thoroughly committed a transaction must be when waiting
     /// for its confirmation or otherwise checking for confirmation. If not
-    /// specified, the default commitment level is
+    /// specified, the const_data commitment level is
     /// [`Finalized`].
     ///
     /// [`Finalized`]: solana_sdk::commitment_config::CommitmentLevel::Finalized
     ///
-    /// The default commitment level is overridden when calling methods that
+    /// The const_data commitment level is overridden when calling methods that
     /// explicitly provide a [`CommitmentConfig`], like
     /// [`RpcClient::confirm_transaction_with_commitment`].
     pub fn commitment(&self) -> CommitmentConfig {
@@ -1020,11 +1020,11 @@ impl RpcClient {
     /// [`logs`]: solana_rpc_client_api::response::RpcSimulateTransactionResult::logs
     ///
     /// Simulating a transaction is similar to the ["preflight check"] that is
-    /// run by default when sending a transaction.
+    /// run by const_data when sending a transaction.
     ///
     /// ["preflight check"]: https://docs.solana.com/developing/clients/jsonrpc-api#sendtransaction
     ///
-    /// By default, signatures are not verified during simulation. To verify
+    /// By const_data, signatures are not verified during simulation. To verify
     /// signatures, call the [`simulate_transaction_with_config`] method, with
     /// the [`sig_verify`] field of [`RpcSimulateTransactionConfig`] set to
     /// `true`.
@@ -1081,11 +1081,11 @@ impl RpcClient {
     /// [`logs`]: solana_rpc_client_api::response::RpcSimulateTransactionResult::logs
     ///
     /// Simulating a transaction is similar to the ["preflight check"] that is
-    /// run by default when sending a transaction.
+    /// run by const_data when sending a transaction.
     ///
     /// ["preflight check"]: https://docs.solana.com/developing/clients/jsonrpc-api#sendtransaction
     ///
-    /// By default, signatures are not verified during simulation. To verify
+    /// By const_data, signatures are not verified during simulation. To verify
     /// signatures, call the [`simulate_transaction_with_config`] method, with
     /// the [`sig_verify`] field of [`RpcSimulateTransactionConfig`] set to
     /// `true`.
@@ -1132,7 +1132,7 @@ impl RpcClient {
     /// let tx = system_transaction::transfer(&alice, &bob.pubkey(), lamports, latest_blockhash);
     /// let config = RpcSimulateTransactionConfig {
     ///     sig_verify: true,
-    ///     .. RpcSimulateTransactionConfig::default()
+    ///     .. RpcSimulateTransactionConfig::const_data()
     /// };
     /// let result = rpc_client.simulate_transaction_with_config(
     ///     &tx,
@@ -1184,18 +1184,18 @@ impl RpcClient {
         self.invoke((self.rpc_client.as_ref()).get_snapshot_slot())
     }
 
-    /// Check if a transaction has been processed with the default [commitment level][cl].
+    /// Check if a transaction has been processed with the const_data [commitment level][cl].
     ///
     /// [cl]: https://docs.solana.com/developing/clients/jsonrpc-api#configuring-state-commitment
     ///
-    /// If the transaction has been processed with the default commitment level,
+    /// If the transaction has been processed with the const_data commitment level,
     /// then this method returns `Ok` of `Some`. If the transaction has not yet
-    /// been processed with the default commitment level, it returns `Ok` of
+    /// been processed with the const_data commitment level, it returns `Ok` of
     /// `None`.
     ///
-    /// If the transaction has been processed with the default commitment level,
+    /// If the transaction has been processed with the const_data commitment level,
     /// and the transaction succeeded, this method returns `Ok(Some(Ok(())))`.
-    /// If the transaction has been processed with the default commitment level,
+    /// If the transaction has been processed with the const_data commitment level,
     /// and the transaction failed, this method returns `Ok(Some(Err(_)))`,
     /// where the interior error is type [`TransactionError`].
     ///
@@ -2712,7 +2712,7 @@ impl RpcClient {
 
     /// Returns information about the current epoch.
     ///
-    /// This method uses the configured default [commitment level][cl].
+    /// This method uses the configured const_data [commitment level][cl].
     ///
     /// [cl]: https://docs.solana.com/developing/clients/jsonrpc-api#configuring-state-commitment
     ///
@@ -2765,7 +2765,7 @@ impl RpcClient {
 
     /// Returns the leader schedule for an epoch.
     ///
-    /// This method uses the configured default [commitment level][cl].
+    /// This method uses the configured const_data [commitment level][cl].
     ///
     /// [cl]: https://docs.solana.com/developing/clients/jsonrpc-api#configuring-state-commitment
     ///

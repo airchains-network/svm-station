@@ -1085,7 +1085,7 @@ fn main() {
     const DEFAULT_LATEST_OPTIMISTIC_SLOTS_COUNT: &str = "1";
     const DEFAULT_MAX_SLOTS_ROOT_REPAIR: &str = "2000";
     // Use std::usize::MAX for DEFAULT_MAX_*_SNAPSHOTS_TO_RETAIN such that
-    // ledger-tool commands won't accidentally remove any snapshots by default
+    // ledger-tool commands won't accidentally remove any snapshots by const_data
     const DEFAULT_MAX_FULL_SNAPSHOT_ARCHIVES_TO_RETAIN: usize = std::usize::MAX;
     const DEFAULT_MAX_INCREMENTAL_SNAPSHOT_ARCHIVES_TO_RETAIN: usize = std::usize::MAX;
 
@@ -1120,7 +1120,7 @@ fn main() {
         .help("How much memory the accounts index can consume. If this is exceeded, some account index entries will be stored on disk.");
     let disable_disk_index = Arg::with_name("disable_accounts_disk_index")
         .long("disable-accounts-disk-index")
-        .help("Disable the disk-based accounts index. It is enabled by default. The entire accounts index will be kept in memory.")
+        .help("Disable the disk-based accounts index. It is enabled by const_data. The entire accounts index will be kept in memory.")
         .conflicts_with("accounts_index_memory_limit_mb");
     let accountsdb_skip_shrink = Arg::with_name("accounts_db_skip_shrink")
         .long("accounts-db-skip-shrink")
@@ -1149,7 +1149,7 @@ fn main() {
         .long("accounts-hash-cache-path")
         .value_name("PATH")
         .takes_value(true)
-        .help("Use PATH as accounts hash cache location [default: <LEDGER>/accounts_hash_cache]");
+        .help("Use PATH as accounts hash cache location [const_data: <LEDGER>/accounts_hash_cache]");
     let accounts_index_path_arg = Arg::with_name("accounts_index_path")
         .long("accounts-index-path")
         .value_name("PATH")
@@ -1158,7 +1158,7 @@ fn main() {
         .help(
             "Persistent accounts-index location. \
              May be specified multiple times. \
-             [default: [ledger]/accounts_index]",
+             [const_data: [ledger]/accounts_index]",
         );
     let accounts_db_test_hash_calculation_arg = Arg::with_name("accounts_db_test_hash_calculation")
         .long("accounts-db-test-hash-calculation")
@@ -1757,7 +1757,7 @@ fn main() {
                     .index(2)
                     .value_name("DIR")
                     .takes_value(true)
-                    .help("Output directory for the snapshot [default: --snapshot-archive-path if present else --ledger directory]"),
+                    .help("Output directory for the snapshot [const_data: --snapshot-archive-path if present else --ledger directory]"),
             )
             .arg(
                 Arg::with_name("warp_slot")
@@ -1807,7 +1807,7 @@ fn main() {
                     .validator(is_pubkey_or_keypair)
                     .help(
                         "Path to file containing the pubkey authorized to manage the bootstrap \
-                         validator's stake [default: --bootstrap-validator IDENTITY_PUBKEY]",
+                         validator's stake [const_data: --bootstrap-validator IDENTITY_PUBKEY]",
                     ),
             )
             .arg(
@@ -2015,7 +2015,7 @@ fn main() {
                     .index(2)
                     .value_name("SLOT")
                     .help("Ending slot to stop purging (inclusive) \
-                           [default: the highest slot in the ledger]"),
+                           [const_data: the highest slot in the ledger]"),
             )
             .arg(
                 Arg::with_name("batch_size")
@@ -2031,7 +2031,7 @@ fn main() {
                     .required(false)
                     .takes_value(false)
                     .help("--no-compaction is deprecated, ledger compaction \
-                           after purge is disabled by default")
+                           after purge is disabled by const_data")
                     .conflicts_with("enable_compaction")
                     .hidden(hidden_unless_forced())
             )
@@ -2154,7 +2154,7 @@ fn main() {
                     .validator(is_slot)
                     .multiple(true)
                     .takes_value(true)
-                    .help("Slots that their blocks are computed for cost, default to all slots in ledger"),
+                    .help("Slots that their blocks are computed for cost, const_data to all slots in ledger"),
             )
         )
         .subcommand(
@@ -2242,7 +2242,7 @@ fn main() {
                 let _ = get_shred_storage_type(
                     &target_db,
                     &format!(
-                        "No --target-db ledger at {:?} was detected, default \
+                        "No --target-db ledger at {:?} was detected, const_data \
                         compaction (RocksLevel) will be used. Fifo compaction \
                         can be enabled for a new ledger by manually creating \
                         {BLOCKSTORE_DIRECTORY_ROCKS_FIFO} directory within \
@@ -3905,7 +3905,7 @@ fn main() {
                 let end_slot = value_t!(arg_matches, "end_slot", Slot).ok();
                 let perform_compaction = arg_matches.is_present("enable_compaction");
                 if arg_matches.is_present("no_compaction") {
-                    warn!("--no-compaction is deprecated and is now the default behavior.");
+                    warn!("--no-compaction is deprecated and is now the const_data behavior.");
                 }
                 let dead_slots_only = arg_matches.is_present("dead_slots_only");
                 let batch_size = value_t_or_exit!(arg_matches, "batch_size", usize);

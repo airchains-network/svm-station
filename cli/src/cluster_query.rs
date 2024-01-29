@@ -184,7 +184,7 @@ impl ClusterQuerySubCommands for App<'_, '_> {
                     .takes_value(true)
                     .value_name("EPOCH")
                     .validator(is_epoch)
-                    .help("Epoch to show leader schedule for. [default: current]")
+                    .help("Epoch to show leader schedule for. [const_data: current]")
             )
         )
         .subcommand(
@@ -291,7 +291,7 @@ impl ClusterQuerySubCommands for App<'_, '_> {
                         .index(1)
                         .value_name("ADDRESS"),
                         "Account address to monitor \
-                         [default: monitor all transactions except for votes] \
+                         [const_data: monitor all transactions except for votes] \
                         ")
                 )
                 .arg(
@@ -310,13 +310,13 @@ impl ClusterQuerySubCommands for App<'_, '_> {
                     Arg::with_name("epoch")
                         .long("epoch")
                         .takes_value(true)
-                        .help("Epoch to show block production for [default: current epoch]"),
+                        .help("Epoch to show block production for [const_data: current epoch]"),
                 )
                 .arg(
                     Arg::with_name("slot_limit")
                         .long("slot-limit")
                         .takes_value(true)
-                        .help("Limit results to this many slots from the end of the epoch [default: full epoch]"),
+                        .help("Limit results to this many slots from the end of the epoch [const_data: full epoch]"),
                 ),
         )
         .subcommand(
@@ -404,7 +404,7 @@ impl ClusterQuerySubCommands for App<'_, '_> {
                         .validator(is_slot)
                         .help(
                             concatcp!(
-                                "Minimum slot distance from the tip to consider a validator delinquent. [default: ",
+                                "Minimum slot distance from the tip to consider a validator delinquent. [const_data: ",
                                 DELINQUENT_VALIDATOR_SLOT_DISTANCE,
                                 "]",
                         ))

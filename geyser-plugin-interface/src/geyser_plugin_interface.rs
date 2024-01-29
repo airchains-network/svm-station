@@ -287,6 +287,14 @@ pub enum GeyserPluginError {
     /// Error when updating the transaction.
     #[error("Error updating transaction. Error message: ({msg})")]
     TransactionUpdateError { msg: String },
+
+    /// Error when updating the entry.
+    #[error("Error updating entry. Error message: ({msg})")]
+    EntryUpdateError { msg: String },
+
+    /// Error when updating the merkle tree root.
+    #[error("Error updating smt root. Error message: ({msg})")]
+    SMTUpdateError { msg: String },
 }
 
 /// The current status of a slot
@@ -335,7 +343,7 @@ pub trait GeyserPlugin: Any + Send + Sync + std::fmt::Debug {
 
     /// The callback called right before a plugin is unloaded by the system
     /// Used for doing cleanup before unload.
-    fn on_unload(&mut self) {}
+    fn on_unload(&self) {}
 
     /// Called when an account is updated at a slot.
     /// When `is_startup` is true, it indicates the account is loaded from
@@ -408,5 +416,9 @@ pub trait GeyserPlugin: Any + Send + Sync + std::fmt::Debug {
     /// entry data, return true.
     fn entry_notifications_enabled(&self) -> bool {
         false
+    }
+
+    fn last_insert_entry(&self) -> u64 {
+        0
     }
 }

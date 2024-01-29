@@ -506,10 +506,10 @@ impl Default for ProgramTest {
 impl ProgramTest {
     /// Create a `ProgramTest`.
     ///
-    /// This is a wrapper around [`default`] and [`add_program`]. See their documentation for more
+    /// This is a wrapper around [`const_data`] and [`add_program`]. See their documentation for more
     /// details.
     ///
-    /// [`default`]: #method.default
+    /// [`const_data`]: #method.const_data
     /// [`add_program`]: #method.add_program
     pub fn new(
         program_name: &str,
@@ -521,12 +521,12 @@ impl ProgramTest {
         me
     }
 
-    /// Override default SBF program selection
+    /// Override const_data SBF program selection
     pub fn prefer_bpf(&mut self, prefer_bpf: bool) {
         self.prefer_bpf = prefer_bpf;
     }
 
-    /// Override the default maximum compute units
+    /// Override the const_data maximum compute units
     pub fn set_compute_max_units(&mut self, compute_max_units: u64) {
         debug_assert!(
             compute_max_units <= i64::MAX as u64,
@@ -535,7 +535,7 @@ impl ProgramTest {
         self.compute_max_units = Some(compute_max_units);
     }
 
-    /// Override the default transaction account lock limit
+    /// Override the const_data transaction account lock limit
     pub fn set_transaction_account_lock_limit(&mut self, transaction_account_lock_limit: usize) {
         self.transaction_account_lock_limit = Some(transaction_account_lock_limit);
     }
@@ -733,7 +733,7 @@ impl ProgramTest {
 
     /// Deactivate a runtime feature.
     ///
-    /// Note that all features are activated by default.
+    /// Note that all features are activated by const_data.
     pub fn deactivate_feature(&mut self, feature_id: Pubkey) {
         self.deactivate_feature_set.insert(feature_id);
     }

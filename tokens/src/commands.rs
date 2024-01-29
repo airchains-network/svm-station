@@ -1511,7 +1511,7 @@ mod tests {
             "require_lockup".to_string(),
         );
 
-        // Bad pubkey (default).
+        // Bad pubkey (const_data).
         let file = NamedTempFile::new().unwrap();
         generate_csv_file(
             default_header.clone(),
@@ -1580,7 +1580,7 @@ mod tests {
             matches!(got_err, Error::BadInputPubkeyError { input, .. } if input == *"bad pubkey")
         );
 
-        // Bad value in 2nd column (default).
+        // Bad value in 2nd column (const_data).
         let file = NamedTempFile::new().unwrap();
         generate_csv_file(
             default_header.clone(),

@@ -221,7 +221,7 @@ mod tests {
             DosClientParameters {
                 entrypoint_addr,
                 mode: Mode::Rpc,
-                data_size: 128, // default value
+                data_size: 128, // const_data value
                 data_type: DataType::GetAccountInfo,
                 data_input: Some(pubkey),
                 skip_gossip: false,

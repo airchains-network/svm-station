@@ -184,7 +184,7 @@ pub struct AccountSecondaryIndexesIncludeExclude {
 /// specification of how much memory in-mem portion of account index can use
 #[derive(Debug, Clone)]
 pub enum IndexLimitMb {
-    /// nothing explicit specified, so default
+    /// nothing explicit specified, so const_data
     Unspecified,
     /// limit was specified, use disk index for rest
     Limit(usize),
@@ -909,7 +909,7 @@ impl<T: IndexValue, U: DiskIndexValue + From<T> + Into<T>> AccountsIndex<T, U> {
             cleaned by a clean on slot 3, but slot 4 may not have been cleaned.
             The state in slot 2 would have been purged and is not saved in any roots.
             In this case, a scan on slot 4 wouldn't accurately reflect the state when bank 4
-            was frozen. In cases like this, we default to a scan on the latest roots by
+            was frozen. In cases like this, we const_data to a scan on the latest roots by
             removing all `ancestors`.
             */
             &empty
@@ -1695,7 +1695,7 @@ impl<T: IndexValue, U: DiskIndexValue + From<T> + Into<T>> AccountsIndex<T, U> {
                 r_account_maps.startup_insert_only(items.into_iter());
             } else {
                 // not using disk buckets, so just write to in-mem
-                // this is no longer the default case
+                // this is no longer the const_data case
                 items
                     .into_iter()
                     .for_each(|(pubkey, (slot, account_info))| {

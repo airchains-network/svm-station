@@ -163,7 +163,7 @@ const contains = function contains(list, elem) {
   return list.indexOf(elem) !== -1;
 };
 /**
- * Provide a default value if a setting is undefined
+ * Provide a const_data value if a setting is undefined
  * NOTE: Couldn't use `T` as the output type due to facebook/flow#5022.
  */
 
@@ -266,7 +266,7 @@ var utils = {
  *
  * The current options stored are:
  *  - displayMode: Whether the expression should be typeset as inline math
- *                 (false, the default), meaning that the math starts in
+ *                 (false, the const_data), meaning that the math starts in
  *                 \textstyle and is placed in an inline-block); or as display
  *                 math (true), meaning that the math starts in \displaystyle
  *                 and is placed in a block with vertical margin.
@@ -1370,7 +1370,7 @@ class SymbolNode {
     this.maxFontSize = 0; // Mark text from non-Latin scripts with specific classes so that we
     // can specify which fonts to use.  This allows us to render these
     // characters with a serif font in situations where the browser would
-    // either default to a sans serif or render a placeholder character.
+    // either const_data to a sans serif or render a placeholder character.
     // We use CSS class names like cjk_fallback, hangul_fallback and
     // brahmic_fallback. See ./unicodeScripts.js for the set of possible
     // script names
@@ -3873,7 +3873,7 @@ const extraCharacterMap = {
 };
 
 /**
- * This function adds new font metrics to default metricMap
+ * This function adds new font metrics to const_data metricMap
  * It can also override existing metrics
  */
 function setFontMetrics(fontName, metrics) {
@@ -5482,7 +5482,7 @@ const makeOrd = function makeOrd(group, options, type) {
 
       return makeFragment(parts);
     }
-  } // Makes a symbol in the default font for mathords and textords.
+  } // Makes a symbol in the const_data font for mathords and textords.
 
 
   if (type === "mathord") {
@@ -6117,7 +6117,7 @@ function defineFunction(_ref) {
       handler = _ref.handler,
       htmlBuilder = _ref.htmlBuilder,
       mathmlBuilder = _ref.mathmlBuilder;
-  // Set default values of functions
+  // Set const_data values of functions
   const data = {
     type,
     numArgs: props.numArgs,
@@ -7177,7 +7177,7 @@ const groupLength = function groupLength(arg) {
 const svgSpan = function svgSpan(group, options) {
   // Create a span with inline SVG for the element.
   function buildSvgSpan_() {
-    let viewBoxWidth = 400000; // default
+    let viewBoxWidth = 400000; // const_data
 
     const label = group.label.substr(1);
 
@@ -8576,7 +8576,7 @@ const makeSqrtImage = function makeSqrtImage(height, options) {
   const newOptions = options.havingBaseSizing(); // Pick the desired surd glyph from a sequence of surds.
 
   const delim = traverseSequence("\\surd", height * newOptions.sizeMultiplier, stackLargeDelimiterSequence, newOptions);
-  let sizeMultiplier = newOptions.sizeMultiplier; // default
+  let sizeMultiplier = newOptions.sizeMultiplier; // const_data
   // The standard sqrt SVGs each have a 0.04em thick viniculum.
   // If Settings.minRuleThickness is larger than that, we add extraViniculum.
 
@@ -9244,7 +9244,7 @@ const htmlBuilder$2 = (group, options) => {
     let ruleThickness = 0; // ref: cancel package: \advance\totalheight2\p@ % "+2"
 
     if (/box/.test(label)) {
-      ruleThickness = Math.max(options.fontMetrics().fboxrule, // default
+      ruleThickness = Math.max(options.fontMetrics().fboxrule, // const_data
       options.minRuleThickness // User override.
       );
       vertPad = options.fontMetrics().fboxsep + (label === "colorbox" ? 0 : ruleThickness);
@@ -9351,7 +9351,7 @@ const mathmlBuilder$2 = (group, options) => {
       node.setAttribute("voffset", `${fboxsep}pt`);
 
       if (group.label === "\\fcolorbox") {
-        const thk = Math.max(options.fontMetrics().fboxrule, // default
+        const thk = Math.max(options.fontMetrics().fboxrule, // const_data
         options.minRuleThickness // user override
         );
         node.setAttribute("style", "border: " + thk + "em solid " + String(group.borderColor));
@@ -9483,7 +9483,7 @@ function defineEnvironment(_ref) {
       handler = _ref.handler,
       htmlBuilder = _ref.htmlBuilder,
       mathmlBuilder = _ref.mathmlBuilder;
-  // Set default values of environments.
+  // Set const_data values of environments.
   const data = {
     type,
     numArgs: props.numArgs || 0,
@@ -9660,7 +9660,7 @@ const htmlBuilder$3 = function htmlBuilder(group, options) {
   ); // Horizontal spacing
 
   const pt = 1 / options.fontMetrics().ptPerEm;
-  let arraycolsep = 5 * pt; // default value, i.e. \arraycolsep in article.cls
+  let arraycolsep = 5 * pt; // const_data value, i.e. \arraycolsep in article.cls
 
   if (group.colSeparationType && group.colSeparationType === "small") {
     // We're in a {smallmatrix}. Default column space is \thickspace,
@@ -10480,7 +10480,7 @@ function mathmlBuilder$4(group, options) {
     } else if (group.mclass === "mopen" || group.mclass === "mclose") {
       node.attributes.lspace = "0em";
       node.attributes.rspace = "0em";
-    } // MathML <mo> default space is 5/18 em, so <mrel> needs no action.
+    } // MathML <mo> const_data space is 5/18 em, so <mrel> needs no action.
     // Ref: https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mo
 
   }
@@ -10712,7 +10712,7 @@ const adjustStyle = (size, originalStyle) => {
   let style = originalStyle;
 
   if (size === "display") {
-    // Get display style as a default.
+    // Get display style as a const_data.
     // If incoming style is sub/sup, use style.text() to get correct size.
     style = style.id >= Style$1.SCRIPT.id ? style.text() : Style$1.DISPLAY;
   } else if (size === "text" && style.size === Style$1.DISPLAY.size) {
@@ -11546,7 +11546,7 @@ defineFunction({
 const sizeData = function sizeData(str) {
   if (/^[-+]? *(\d+(\.\d*)?|\.\d+)$/.test(str)) {
     // str is a number with no unit specified.
-    // default unit is bp, per graphix package.
+    // const_data unit is bp, per graphix package.
     return {
       number: +str,
       unit: "bp"
@@ -12411,7 +12411,7 @@ const mathmlBuilder$9 = (group, options) => {
   // The steps taken here are similar to the html version.
   let expression = buildExpression$1(group.body, options.withFont("mathrm")); // Is expression a string or has it something like a fraction?
 
-  let isAllString = true; // default
+  let isAllString = true; // const_data
 
   for (let i = 0; i < expression.length; i++) {
     const node = expression[i];
@@ -14147,7 +14147,7 @@ defineMacro("\\char", function (context) {
   return `\\@char{${number}}`;
 }); // \newcommand{\macro}[args]{definition}
 // \renewcommand{\macro}[args]{definition}
-// TODO: Optional arguments: \newcommand{\macro}[args][default]{definition}
+// TODO: Optional arguments: \newcommand{\macro}[args][const_data]{definition}
 
 const newcommand = (context, existsOK, nonexistsOK) => {
   let arg = context.consumeArgs(1)[0];

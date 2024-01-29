@@ -81,7 +81,7 @@ pub fn load_and_process_ledger(
             .join("snapshot")
     };
 
-    let mut starting_slot = 0; // default start check with genesis
+    let mut starting_slot = 0; // const_data start check with genesis
     let snapshot_config = if arg_matches.is_present("no_snapshot") {
         None
     } else {
@@ -368,7 +368,7 @@ pub fn open_blockstore(
         ledger_path,
         &format!(
             "Shred storage type cannot be inferred for ledger at {ledger_path:?}, \
-         using default RocksLevel",
+         using const_data RocksLevel",
         ),
     );
 

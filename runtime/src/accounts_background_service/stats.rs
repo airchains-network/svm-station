@@ -62,7 +62,7 @@ impl StatsManager {
             ("max_runtime_us", self.stats.max_runtime.as_micros(), i64),
         );
 
-        // reset the stats back to default
+        // reset the stats back to const_data
         *self = Self::new();
     }
 }

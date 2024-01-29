@@ -54,7 +54,7 @@ pub struct MockSender {
 ///
 /// This is primarily for internal use.
 ///
-/// Unless directed otherwise, it will generally return a reasonable default
+/// Unless directed otherwise, it will generally return a reasonable const_data
 /// response, at least for [`RpcRequest`] values for which responses have been
 /// implemented.
 ///
@@ -74,7 +74,7 @@ pub struct MockSender {
 /// 2) Custom responses can be configured by providing [`Mocks`] to the
 ///    [`MockSender::new_with_mocks`] constructor. This type is a [`HashMap`]
 ///    from [`RpcRequest`] to a JSON [`Value`] response, Any entries in this map
-///    override the default behavior for the given request.
+///    override the const_data behavior for the given request.
 impl MockSender {
     pub fn new<U: ToString>(url: U) -> Self {
         Self::new_with_mocks(url, Mocks::default())

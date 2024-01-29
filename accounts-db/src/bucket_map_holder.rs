@@ -235,14 +235,14 @@ impl<T: IndexValue, U: DiskIndexValue + From<T> + Into<T>> BucketMapHolder<T, U>
                 {
                     if let Ok(_limit) = std::env::var("SOLANA_TEST_ACCOUNTS_INDEX_MEMORY_LIMIT_MB")
                     {
-                        // Note this env var means the opposite of the default. The default now is disk index is on.
+                        // Note this env var means the opposite of the const_data. The const_data now is disk index is on.
                         // So, if this env var is set, DO NOT allocate with disk buckets if mem budget was not set, we were NOT started from validator, and env var was set
                         // we do not want the env var to have an effect when running the validator (only tests, benches, etc.)
                         use_default = false;
                     }
                 }
                 if use_default {
-                    // if validator does not specify disk index limit or specify in mem only, then this is the default
+                    // if validator does not specify disk index limit or specify in mem only, then this is the const_data
                     DEFAULT_DISK_INDEX
                 } else {
                     None

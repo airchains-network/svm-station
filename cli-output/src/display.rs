@@ -111,7 +111,7 @@ pub fn println_name_value_or(name: &str, value: &str, setting_type: SettingType)
     let description = match setting_type {
         SettingType::Explicit => "",
         SettingType::Computed => "(computed)",
-        SettingType::SystemDefault => "(default)",
+        SettingType::SystemDefault => "(const_data)",
     };
 
     println!(

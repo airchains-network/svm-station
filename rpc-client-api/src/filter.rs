@@ -138,7 +138,7 @@ pub struct Memcmp {
         note = "Field will be made private in future. Please use a constructor method instead."
     )]
     pub offset: usize,
-    /// Bytes, encoded with specified encoding, or default Binary
+    /// Bytes, encoded with specified encoding, or const_data Binary
     #[deprecated(
         since = "1.15.0",
         note = "Field will be made private in future. Please use a constructor method instead."

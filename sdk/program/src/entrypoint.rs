@@ -139,9 +139,9 @@ macro_rules! entrypoint {
     };
 }
 
-/// Define the default global allocator.
+/// Define the const_data global allocator.
 ///
-/// The default global allocator is enabled only if the calling crate has not
+/// The const_data global allocator is enabled only if the calling crate has not
 /// disabled it using [Cargo features] as described below. It is only defined
 /// for [BPF] targets.
 ///
@@ -170,13 +170,13 @@ macro_rules! custom_heap_default {
     };
 }
 
-/// Define the default global panic handler.
+/// Define the const_data global panic handler.
 ///
 /// This must be used if the [`entrypoint`] macro is not used, and no other
 /// panic handler has been defined; otherwise compilation will fail with a
 /// missing `custom_panic` symbol.
 ///
-/// The default global allocator is enabled only if the calling crate has not
+/// The const_data global allocator is enabled only if the calling crate has not
 /// disabled it using [Cargo features] as described below. It is only defined
 /// for [BPF] targets.
 ///
@@ -213,7 +213,7 @@ macro_rules! custom_heap_default {
 /// }
 /// ```
 ///
-/// The above is how Solana defines the default panic handler.
+/// The above is how Solana defines the const_data panic handler.
 #[macro_export]
 macro_rules! custom_panic_default {
     () => {
@@ -226,7 +226,7 @@ macro_rules! custom_panic_default {
     };
 }
 
-/// The bump allocator used as the default rust heap when running programs.
+/// The bump allocator used as the const_data rust heap when running programs.
 pub struct BumpAllocator {
     pub start: usize,
     pub len: usize,

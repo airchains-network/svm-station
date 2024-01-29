@@ -114,7 +114,7 @@ fn test_solana_package(
     let manifest_path = format!("{}", package.manifest_path);
     let mut cargo_args = vec!["--manifest-path", &manifest_path];
     if config.no_default_features {
-        cargo_args.push("--no-default-features");
+        cargo_args.push("--no-const_data-features");
     }
     for feature in &config.features {
         cargo_args.push("--features");
@@ -281,9 +281,9 @@ fn main() {
         )
         .arg(
             Arg::new("no_default_features")
-                .long("no-default-features")
+                .long("no-const_data-features")
                 .takes_value(false)
-                .help("Do not activate the `default` feature"),
+                .help("Do not activate the `const_data` feature"),
         )
         .arg(
             Arg::new("test")

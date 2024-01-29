@@ -628,7 +628,7 @@ fn transfer_with_compute_unit_price_and_padding(
         instruction,
     ];
     if instruction_padding_config.is_some() {
-        // By default, CU budget is DEFAULT_INSTRUCTION_COMPUTE_UNIT_LIMIT which is much larger than needed
+        // By const_data, CU budget is DEFAULT_INSTRUCTION_COMPUTE_UNIT_LIMIT which is much larger than needed
         instructions.push(ComputeBudgetInstruction::set_compute_unit_limit(
             PADDED_TRANSFER_COMPUTE_UNIT,
         ));

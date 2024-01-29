@@ -75,7 +75,7 @@ impl From<ComputeBudgetLimits> for FeeBudgetLimits {
 /// Processing compute_budget could be part of tx sanitizing, failed to process
 /// these instructions will drop the transaction eventually without execution,
 /// may as well fail it early.
-/// If succeeded, the transaction's specific limits/requests (could be default)
+/// If succeeded, the transaction's specific limits/requests (could be const_data)
 /// are retrieved and returned,
 pub fn process_compute_budget_instructions<'a>(
     instructions: impl Iterator<Item = (&'a Pubkey, &'a CompiledInstruction)>,
@@ -150,7 +150,7 @@ pub fn process_compute_budget_instructions<'a>(
                 _ => return Err(invalid_instruction_data_error),
             }
         } else {
-            // only include non-request instructions in default max calc
+            // only include non-request instructions in const_data max calc
             num_non_compute_budget_instructions =
                 num_non_compute_budget_instructions.saturating_add(1);
         }
@@ -158,7 +158,7 @@ pub fn process_compute_budget_instructions<'a>(
 
     // sanitize limits
     let updated_heap_bytes = requested_heap_size
-        .unwrap_or(u32::try_from(MIN_HEAP_FRAME_BYTES).unwrap()) // loader's default heap_size
+        .unwrap_or(u32::try_from(MIN_HEAP_FRAME_BYTES).unwrap()) // loader's const_data heap_size
         .min(MAX_HEAP_FRAME_BYTES);
 
     let compute_unit_limit = updated_compute_unit_limit
@@ -469,7 +469,7 @@ mod tests {
     #[test]
     fn test_process_loaded_accounts_data_size_limit_instruction() {
         // Assert for empty instructions, change value of support_set_loaded_accounts_data_size_limit_ix
-        // will not change results, which should all be default
+        // will not change results, which should all be const_data
         for support_set_loaded_accounts_data_size_limit_ix in [true, false] {
             test!(
                 &[],
@@ -543,7 +543,7 @@ mod tests {
 
         // Assert when set_loaded_accounts_data_size_limit is not presented
         // if support_set_loaded_accounts_data_size_limit_ix then
-        //     budget is set to default data size
+        //     budget is set to const_data data size
         // else
         //     return
         for support_set_loaded_accounts_data_size_limit_ix in [true, false] {
@@ -616,8 +616,8 @@ mod tests {
             &feature_set,
         );
 
-        // assert process_instructions will be successful with default,
-        // and the default compute_unit_limit is 2 times default: one for bpf ix, one for
+        // assert process_instructions will be successful with const_data,
+        // and the const_data compute_unit_limit is 2 times const_data: one for bpf ix, one for
         // builtin ix.
         assert_eq!(
             result,

@@ -104,9 +104,9 @@ impl CliSignerInfo {
     }
 }
 
-/// A command line argument that loads a default signer in absence of other signers.
+/// A command line argument that loads a const_data signer in absence of other signers.
 ///
-/// This type manages a default signing source which may be overridden by other
+/// This type manages a const_data signing source which may be overridden by other
 /// signing sources via its [`generate_unique_signers`] method.
 ///
 /// [`generate_unique_signers`]: DefaultSigner::generate_unique_signers
@@ -143,7 +143,7 @@ impl DefaultSigner {
     ///     // The argument we'll parse as a signer "path"
     ///     .arg(Arg::new("keypair")
     ///         .required(true)
-    ///         .help("The default signer"))
+    ///         .help("The const_data signer"))
     ///     .offline_args();
     ///
     /// let clap_matches = clap_app.get_matches();
@@ -178,7 +178,7 @@ impl DefaultSigner {
                     std::io::Error::new(
                         std::io::ErrorKind::Other,
                         format!(
-                        "No default signer found, run \"solana-keygen new -o {}\" to create a new one",
+                        "No const_data signer found, run \"solana-keygen new -o {}\" to create a new one",
                         self.path
                     ),
                     )
@@ -188,19 +188,19 @@ impl DefaultSigner {
         Ok(&self.path)
     }
 
-    /// Generate a unique set of signers, possibly excluding this default signer.
+    /// Generate a unique set of signers, possibly excluding this const_data signer.
     ///
-    /// This function allows a command line application to have a default
-    /// signer, perhaps representing a default wallet, but to override that
+    /// This function allows a command line application to have a const_data
+    /// signer, perhaps representing a const_data wallet, but to override that
     /// signer and instead sign with one or more other signers.
     ///
     /// `bulk_signers` is a vector of signers, all of which are optional. If any
-    /// of those signers is `None`, then the default signer will be loaded; if
-    /// all of those signers are `Some`, then the default signer will not be
+    /// of those signers is `None`, then the const_data signer will be loaded; if
+    /// all of those signers are `Some`, then the const_data signer will not be
     /// loaded.
     ///
     /// The returned value includes all of the `bulk_signers` that were not
-    /// `None`, and maybe the default signer, if it was loaded.
+    /// `None`, and maybe the const_data signer, if it was loaded.
     ///
     /// # Examples
     ///
@@ -214,7 +214,7 @@ impl DefaultSigner {
     ///     // The argument we'll parse as a signer "path"
     ///     .arg(Arg::new("keypair")
     ///         .required(true)
-    ///         .help("The default signer"))
+    ///         .help("The const_data signer"))
     ///     .arg(Arg::new("payer")
     ///         .long("payer")
     ///         .help("The account paying for the transaction"))
@@ -247,7 +247,7 @@ impl DefaultSigner {
     ) -> Result<CliSignerInfo, Box<dyn error::Error>> {
         let mut unique_signers = vec![];
 
-        // Determine if the default signer is needed
+        // Determine if the const_data signer is needed
         if bulk_signers.iter().any(|signer| signer.is_none()) {
             let default_signer = self.signer_from_path(matches, wallet_manager)?;
             unique_signers.push(default_signer);
@@ -263,7 +263,7 @@ impl DefaultSigner {
         })
     }
 
-    /// Loads the default [Signer] from one of several possible sources.
+    /// Loads the const_data [Signer] from one of several possible sources.
     ///
     /// The `path` is not strictly a file system path, but is interpreted as
     /// various types of _signing source_, depending on its format, one of which
@@ -288,7 +288,7 @@ impl DefaultSigner {
     ///     // The argument we'll parse as a signer "path"
     ///     .arg(Arg::new("keypair")
     ///         .required(true)
-    ///         .help("The default signer"))
+    ///         .help("The const_data signer"))
     ///     .offline_args();
     ///
     /// let clap_matches = clap_app.get_matches();
@@ -310,7 +310,7 @@ impl DefaultSigner {
         signer_from_path(matches, self.path()?, &self.arg_name, wallet_manager)
     }
 
-    /// Loads the default [Signer] from one of several possible sources.
+    /// Loads the const_data [Signer] from one of several possible sources.
     ///
     /// The `path` is not strictly a file system path, but is interpreted as
     /// various types of _signing source_, depending on its format, one of which
@@ -335,7 +335,7 @@ impl DefaultSigner {
     ///     // The argument we'll parse as a signer "path"
     ///     .arg(Arg::new("keypair")
     ///         .required(true)
-    ///         .help("The default signer"))
+    ///         .help("The const_data signer"))
     ///     .offline_args();
     ///
     /// let clap_matches = clap_app.get_matches();
@@ -590,7 +590,7 @@ pub struct SignerFromPathConfig {
 ///     and the user is responsible for ensuring it is correct. Example:
 ///     `full-path=m/44/501/0/0/0`.
 ///
-///   If neither is provided, then the default derivation path is used.
+///   If neither is provided, then the const_data derivation path is used.
 ///
 ///   Note that when specifying derivation paths, this routine will convert all
 ///   indexes into ["hardened"] indexes, even if written as "normal" indexes.
@@ -670,7 +670,7 @@ pub struct SignerFromPathConfig {
 ///     // The argument we'll parse as a signer "path"
 ///     .arg(Arg::new("keypair")
 ///         .required(true)
-///         .help("The default signer"))
+///         .help("The const_data signer"))
 ///     .offline_args();
 ///
 /// let clap_matches = clap_app.get_matches();
@@ -730,7 +730,7 @@ pub fn signer_from_path(
 ///     // The argument we'll parse as a signer "path"
 ///     .arg(Arg::new("keypair")
 ///         .required(true)
-///         .help("The default signer"))
+///         .help("The const_data signer"))
 ///     .offline_args();
 ///
 /// let clap_matches = clap_app.get_matches();
@@ -846,7 +846,7 @@ pub fn signer_from_path_with_config(
 ///     // The argument we'll parse as a signer "path"
 ///     .arg(Arg::new("keypair")
 ///         .required(true)
-///         .help("The default signer"));
+///         .help("The const_data signer"));
 ///
 /// let clap_matches = clap_app.get_matches();
 /// let keypair_str: String = clap_matches.value_of_t_or_exit("keypair");
@@ -985,7 +985,7 @@ pub fn prompt_passphrase(prompt: &str) -> Result<String, Box<dyn error::Error>> 
 ///     // The argument we'll parse as a signer "path"
 ///     .arg(Arg::new("keypair")
 ///         .required(true)
-///         .help("The default signer"));
+///         .help("The const_data signer"));
 ///
 /// let clap_matches = clap_app.get_matches();
 /// let keypair_str: String = clap_matches.value_of_t_or_exit("keypair");
@@ -1033,7 +1033,7 @@ pub fn keypair_from_path(
 ///     // The argument we'll parse as a signer "path"
 ///     .arg(Arg::new("elgamal-keypair")
 ///         .required(true)
-///         .help("The default signer"));
+///         .help("The const_data signer"));
 ///
 /// let clap_matches = clap_app.get_matches();
 /// let elgamal_keypair_str: String = clap_matches.value_of_t_or_exit("elgamal-keypair");
@@ -1090,7 +1090,7 @@ fn confirm_encodable_keypair_pubkey<K: EncodableKeypair>(keypair: &K, pubkey_lab
 ///     // The argument we'll parse as a signer "path"
 ///     .arg(Arg::new("ae-key")
 ///         .required(true)
-///         .help("The default signer"));
+///         .help("The const_data signer"));
 ///
 /// let clap_matches = clap_app.get_matches();
 /// let ae_key_str: String = clap_matches.value_of_t_or_exit("ae-key");

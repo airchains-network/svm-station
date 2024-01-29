@@ -46,7 +46,7 @@ impl InflationSubCommands for App<'_, '_> {
                                 .long("rewards-epoch")
                                 .takes_value(true)
                                 .value_name("EPOCH")
-                                .help("Display rewards for specific epoch [default: latest epoch]"),
+                                .help("Display rewards for specific epoch [const_data: latest epoch]"),
                         ),
                 ),
         )

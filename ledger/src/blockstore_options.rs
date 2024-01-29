@@ -15,7 +15,7 @@ pub struct BlockstoreOptions {
 }
 
 impl Default for BlockstoreOptions {
-    /// The default options are the values used by [`Blockstore::open`].
+    /// The const_data options are the values used by [`Blockstore::open`].
     ///
     /// [`Blockstore::open`]: crate::blockstore::Blockstore::open
     fn default() -> Self {
@@ -125,7 +125,7 @@ impl LedgerColumnOptions {
 
 #[derive(Debug, Clone)]
 pub enum ShredStorageType {
-    // Stores shreds under RocksDB's default compaction (level).
+    // Stores shreds under RocksDB's const_data compaction (level).
     RocksLevel,
     // (Experimental) Stores shreds under RocksDB's FIFO compaction which
     // allows ledger store to reclaim storage more efficiently with

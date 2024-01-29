@@ -116,6 +116,8 @@ members = [
     "wen-restart",
     "zk-keygen",
     "zk-token-sdk",
+#    "solana-accountsdb-plugin-db_client"
+    "svm-seq"
 ]
 
 exclude = ["programs/sbf"]

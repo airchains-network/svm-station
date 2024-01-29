@@ -600,7 +600,7 @@ mod tests {
         // Defaults to 0
         assert_eq!(0, dbank.fee_rate_governor.lamports_per_signature);
 
-        // epoch_reward status should default to `Inactive`
+        // epoch_reward status should const_data to `Inactive`
         let epoch_reward_status = bank
             .get_epoch_reward_status_to_serialize()
             .unwrap_or(&EpochRewardStatus::Inactive);

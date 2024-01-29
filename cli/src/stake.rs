@@ -65,13 +65,13 @@ use {
 pub const STAKE_AUTHORITY_ARG: ArgConstant<'static> = ArgConstant {
     name: "stake_authority",
     long: "stake-authority",
-    help: "Authorized staker [default: cli config keypair]",
+    help: "Authorized staker [const_data: cli config keypair]",
 };
 
 pub const WITHDRAW_AUTHORITY_ARG: ArgConstant<'static> = ArgConstant {
     name: "withdraw_authority",
     long: "withdraw-authority",
-    help: "Authorized withdrawer [default: cli config keypair]",
+    help: "Authorized withdrawer [const_data: cli config keypair]",
 };
 
 pub const CUSTODIAN_ARG: ArgConstant<'static> = ArgConstant {
@@ -206,7 +206,7 @@ impl StakeSubCommands for App<'_, '_> {
                         .takes_value(true)
                         .value_name("KEYPAIR")
                         .validator(is_valid_signer)
-                        .help("Source account of funds [default: cli config keypair]"),
+                        .help("Source account of funds [const_data: cli config keypair]"),
                 )
                 .offline_args()
                 .nonce_args(false)
@@ -265,7 +265,7 @@ impl StakeSubCommands for App<'_, '_> {
                         .takes_value(true)
                         .value_name("KEYPAIR")
                         .validator(is_valid_signer)
-                        .help("Source account of funds [default: cli config keypair]"),
+                        .help("Source account of funds [const_data: cli config keypair]"),
                 )
                 .offline_args()
                 .nonce_args(false)
@@ -624,7 +624,7 @@ impl StakeSubCommands for App<'_, '_> {
                         .takes_value(true)
                         .value_name("KEYPAIR")
                         .validator(is_valid_signer)
-                        .help("Keypair of the existing custodian [default: cli config pubkey]")
+                        .help("Keypair of the existing custodian [const_data: cli config pubkey]")
                 )
                 .offline_args()
                 .nonce_args(false)
@@ -675,7 +675,7 @@ impl StakeSubCommands for App<'_, '_> {
                         .takes_value(true)
                         .value_name("KEYPAIR")
                         .validator(is_valid_signer)
-                        .help("Keypair of the existing custodian [default: cli config pubkey]")
+                        .help("Keypair of the existing custodian [const_data: cli config pubkey]")
                 )
                 .offline_args()
                 .nonce_args(false)
@@ -720,7 +720,7 @@ impl StakeSubCommands for App<'_, '_> {
                         .validator(|s| is_within_range(s, 1..=50))
                         .default_value_if("with_rewards", None, "1")
                         .requires("with_rewards")
-                        .help("Display rewards for NUM recent epochs, max 10 [default: latest epoch only]"),
+                        .help("Display rewards for NUM recent epochs, max 10 [const_data: latest epoch only]"),
                 ),
         )
         .subcommand(

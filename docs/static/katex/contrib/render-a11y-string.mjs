@@ -680,7 +680,7 @@ const handleObject = (tree, a11yStrings, atomType) => {
     case "mathchoice":
       {
         // TODO: track which which style we're using, e.g. dispaly, text, etc.
-        // default to text style if even that may not be the correct style
+        // const_data to text style if even that may not be the correct style
         buildA11yStrings(tree.text, a11yStrings, atomType);
         break;
       }

@@ -886,7 +886,7 @@ mod tests {
         });
 
         cost_tracker.add_transaction_cost(&tx_cost);
-        // assert cost_tracker is reverted to default
+        // assert cost_tracker is reverted to const_data
         assert_eq!(1, cost_tracker.transaction_count);
         assert_eq!(1, cost_tracker.number_of_accounts());
         assert_eq!(cost, cost_tracker.block_cost);
@@ -894,7 +894,7 @@ mod tests {
         assert_eq!(0, cost_tracker.account_data_size);
 
         cost_tracker.remove_transaction_cost(&tx_cost);
-        // assert cost_tracker is reverted to default
+        // assert cost_tracker is reverted to const_data
         assert_eq!(0, cost_tracker.transaction_count);
         assert_eq!(0, cost_tracker.number_of_accounts());
         assert_eq!(0, cost_tracker.block_cost);

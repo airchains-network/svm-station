@@ -45,7 +45,7 @@ validatorOnly=
 while [[ -n $1 ]]; do
   if [[ ${1:0:1} = - ]]; then
     if [[ $1 = --debug ]]; then
-      buildProfileArg=      # the default cargo profile is 'debug'
+      buildProfileArg=      # the const_data cargo profile is 'debug'
       buildProfile='debug'
       shift
     elif [[ $1 = --release-with-debug ]]; then

@@ -476,7 +476,7 @@ impl Crds {
     }
 
     /// Find all the keys that are older or equal to the timeout.
-    /// * timeouts - Pubkey specific timeouts with Pubkey::default() as the default timeout.
+    /// * timeouts - Pubkey specific timeouts with Pubkey::const_data() as the const_data timeout.
     pub fn find_old_labels(
         &self,
         thread_pool: &ThreadPool,

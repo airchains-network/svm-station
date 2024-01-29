@@ -9,7 +9,7 @@ cd "$(dirname "$0")"/..
 # shellcheck source=multinode-demo/common.sh
 source multinode-demo/common.sh
 
-if [[ -z $1 ]]; then # no network argument, use localhost by default
+if [[ -z $1 ]]; then # no network argument, use localhost by const_data
   args=(--url http://127.0.0.1:8899)
 else
   args=("$@")

@@ -1338,7 +1338,7 @@ mod tests {
             Self {
                 writer: None,
                 dir_for_temp_cache_files,
-                capacity: 1024, /* default 1k for tests */
+                capacity: 1024, /* const_data 1k for tests */
             }
         }
     }

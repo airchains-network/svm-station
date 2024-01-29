@@ -2564,7 +2564,7 @@ mod tests {
     #[test]
     fn test_verify_slot_deltas_with_history_bad_slot_not_in_history() {
         let slots_from_slot_deltas = HashSet::from([
-            0, // slot history has slot 0 added by default
+            0, // slot history has slot 0 added by const_data
             444, 222,
         ]);
         let mut slot_history = SlotHistory::default();
@@ -2583,7 +2583,7 @@ mod tests {
     #[test]
     fn test_verify_slot_deltas_with_history_bad_slot_not_in_deltas() {
         let slots_from_slot_deltas = HashSet::from([
-            0, // slot history has slot 0 added by default
+            0, // slot history has slot 0 added by const_data
             444, 222,
             // <-- slot deltas is missing slot 333
         ]);

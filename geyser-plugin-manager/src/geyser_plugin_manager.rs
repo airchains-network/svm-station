@@ -24,7 +24,7 @@ impl GeyserPluginManager {
     /// Unload all plugins and loaded plugin libraries, making sure to fire
     /// their `on_plugin_unload()` methods so they can do any necessary cleanup.
     pub fn unload(&mut self) {
-        for mut plugin in self.plugins.drain(..) {
+        for plugin in self.plugins.drain(..) {
             info!("Unloading plugin for {:?}", plugin.name());
             plugin.on_unload();
         }
@@ -218,7 +218,7 @@ impl GeyserPluginManager {
 
     fn _drop_plugin(&mut self, idx: usize) {
         let current_lib = self.libs.remove(idx);
-        let mut current_plugin = self.plugins.remove(idx);
+        let current_plugin = self.plugins.remove(idx);
         let name = current_plugin.name().to_string();
         current_plugin.on_unload();
         // The plugin must be dropped before the library to avoid a crash.

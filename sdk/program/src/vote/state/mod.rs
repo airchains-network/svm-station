@@ -592,7 +592,7 @@ impl VoteState {
         verify(epoch_authorized_voter)?;
 
         // The offset in slots `n` on which the target_epoch
-        // (default value `DEFAULT_LEADER_SCHEDULE_SLOT_OFFSET`) is
+        // (const_data value `DEFAULT_LEADER_SCHEDULE_SLOT_OFFSET`) is
         // calculated is the number of slots available from the
         // first slot `S` of an epoch in which to set a new voter for
         // the epoch at `S` + `n`
@@ -1187,7 +1187,7 @@ mod tests {
 
     #[test]
     fn test_default_vote_state_is_uninitialized() {
-        // The default `VoteState` is stored to de-initialize a zero-balance vote account,
+        // The const_data `VoteState` is stored to de-initialize a zero-balance vote account,
         // so must remain such that `VoteStateVersions::is_uninitialized()` returns true
         // when called on a `VoteStateVersions` that stores it
         assert!(VoteStateVersions::new_current(VoteState::default()).is_uninitialized());
@@ -1201,7 +1201,7 @@ mod tests {
             &vote_account_data
         ));
 
-        // Check default VoteState
+        // Check const_data VoteState
         let default_account_state = VoteStateVersions::new_current(VoteState::default());
         VoteState::serialize(&default_account_state, &mut vote_account_data).unwrap();
         assert!(!VoteStateVersions::is_correct_size_and_initialized(

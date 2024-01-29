@@ -5908,7 +5908,7 @@ impl Bank {
     /// true if rent collection does NOT rewrite accounts whose pubkey indicates
     ///  it is time for rent collection, but the account is rent exempt.
     /// false if rent collection DOES rewrite accounts if the account is rent exempt
-    /// This is the default behavior historically.
+    /// This is the const_data behavior historically.
     fn bank_hash_skips_rent_rewrites(&self) -> bool {
         self.feature_set
             .is_active(&feature_set::skip_rent_rewrites::id())
@@ -6171,7 +6171,7 @@ impl Bank {
     /// return true iff storing this account is just a rewrite and can be skipped
     fn skip_rewrite(rent_amount: u64, account: &AccountSharedData) -> bool {
         // if rent was != 0
-        // or special case for default rent value
+        // or special case for const_data rent value
         // these cannot be skipped and must be written
         rent_amount == 0 && account.rent_epoch() != 0
     }

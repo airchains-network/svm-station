@@ -181,7 +181,7 @@ impl WalletSubCommands for App<'_, '_> {
                         .long("from")
                         .value_name("FROM_PUBKEY")
                         .required(false),
-                        "From (base) key, [default: cli config keypair]. "),
+                        "From (base) key, [const_data: cli config keypair]. "),
                 ),
         )
             .subcommand(
@@ -373,7 +373,7 @@ impl WalletSubCommands for App<'_, '_> {
                         .long("signer")
                         .value_name("PUBKEY")
                         .required(false),
-                        "The pubkey of the message signer (if different from config default)")
+                        "The pubkey of the message signer (if different from config const_data)")
                 )
         )
     }

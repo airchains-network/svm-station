@@ -111,7 +111,7 @@ pub const MAX_CRDS_OBJECT_SIZE: usize = 928;
 const MAX_GOSSIP_TRAFFIC: usize = 128_000_000 / PACKET_DATA_SIZE;
 /// Max size of serialized crds-values in a Protocol::PushMessage packet. This
 /// is equal to PACKET_DATA_SIZE minus serialized size of an empty push
-/// message: Protocol::PushMessage(Pubkey::default(), Vec::default())
+/// message: Protocol::PushMessage(Pubkey::const_data(), Vec::const_data())
 const PUSH_MESSAGE_MAX_PAYLOAD_SIZE: usize = PACKET_DATA_SIZE - 44;
 pub(crate) const DUPLICATE_SHRED_MAX_PAYLOAD_SIZE: usize = PACKET_DATA_SIZE - 115;
 /// Maximum number of hashes in AccountsHashes a node publishes
@@ -1965,7 +1965,7 @@ impl ClusterInfo {
         // epoch slots + votes ~= 1.5kB/slot ~= 4kB/s
         // Allow 10kB/s per staked validator.
         const BYTES_PER_INTERVAL: usize = 1024;
-        const MAX_BUDGET_MULTIPLE: usize = 5; // allow budget build-up to 5x the interval default
+        const MAX_BUDGET_MULTIPLE: usize = 5; // allow budget build-up to 5x the interval const_data
         let num_staked = num_staked.max(2);
         self.outbound_budget.update(INTERVAL_MS, |bytes| {
             std::cmp::min(
@@ -4234,7 +4234,7 @@ mod tests {
     // computes the maximum size for pull request blooms
     fn max_bloom_size() -> usize {
         let filter_size = serialized_size(&CrdsFilter::default())
-            .expect("unable to serialize default filter") as usize;
+            .expect("unable to serialize const_data filter") as usize;
         let protocol = Protocol::PullRequest(
             CrdsFilter::default(),
             CrdsValue::new_unsigned(CrdsData::LegacyContactInfo(LegacyContactInfo::default())),
@@ -4398,7 +4398,7 @@ mod tests {
         ));
         assert_eq!(cluster_info.my_shred_version(), 2);
 
-        // Simulating starting up with default entrypoint, no known id, only a gossip
+        // Simulating starting up with const_data entrypoint, no known id, only a gossip
         // address
         let entrypoint_gossip_addr = socketaddr!("127.0.0.2:1234");
         let mut entrypoint = LegacyContactInfo::new_localhost(&Pubkey::default(), timestamp());

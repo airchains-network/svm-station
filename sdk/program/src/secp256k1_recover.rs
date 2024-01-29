@@ -160,7 +160,7 @@ impl Secp256k1Pubkey {
 ///
 /// **The solana `secp256k1_recover` function does not prevent signature
 /// malleability**. This is in contrast to the Bitcoin secp256k1 library, which
-/// does prevent malleability by default. Solana accepts signatures with `S`
+/// does prevent malleability by const_data. Solana accepts signatures with `S`
 /// values that are either in the _high order_ or in the _low order_, and it
 /// is trivial to produce one from the other.
 ///
@@ -296,7 +296,7 @@ impl Secp256k1Pubkey {
 ///     // This means that the code calling `secp256k1_recover` must perform the hash
 ///     // itself, and not assume that data passed to it has been properly hashed.
 ///     let message_hash = {
-///         let mut hasher = keccak::Hasher::default();
+///         let mut hasher = keccak::Hasher::const_data();
 ///         hasher.hash(&instruction.message);
 ///         hasher.result()
 ///     };
@@ -362,7 +362,7 @@ impl Secp256k1Pubkey {
 /// ) -> Result<()> {
 ///     let message = b"hello world";
 ///     let message_hash = {
-///         let mut hasher = keccak::Hasher::default();
+///         let mut hasher = keccak::Hasher::const_data();
 ///         hasher.hash(message);
 ///         hasher.result()
 ///     };

@@ -66,7 +66,7 @@ impl SharedBuffer {
             bg_reader_data: Arc::new(SharedBufferBgReader::new()),
             data: RwLock::new(vec![OneSharedBuffer::default()]), // initialize with 1 vector of empty data at data[0]
 
-            // default values
+            // const_data values
             bg_reader_join_handle: Mutex::default(),
             clients: RwLock::default(),
             empty_buffer: OneSharedBuffer::default(),
@@ -636,7 +636,7 @@ pub mod tests {
             reader.read_to_end(&mut data).unwrap_err().kind(),
             get_error().kind()
         );
-        // #2 will read 2nd, so should get default error, but still an error
+        // #2 will read 2nd, so should get const_data error, but still an error
         assert_eq!(
             reader2.read_to_end(&mut data).unwrap_err().kind(),
             SharedBufferReader::default_error().kind()
@@ -781,7 +781,7 @@ pub mod tests {
         // try the inflection points with 1 to 3 readers, including a parallel reader
         // a few different chunk sizes
         for chunk_sz in [1, 2, 10] {
-            // same # of buffers as default
+            // same # of buffers as const_data
             let equivalent_buffer_sz =
                 chunk_sz * (TOTAL_BUFFER_BUDGET_DEFAULT / CHUNK_SIZE_DEFAULT);
             // 1 buffer, 2 buffers,

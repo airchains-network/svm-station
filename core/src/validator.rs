@@ -154,7 +154,7 @@ impl BlockVerificationMethod {
     pub fn cli_message() -> &'static str {
         lazy_static! {
             static ref MESSAGE: String = format!(
-                "Switch transaction scheduling method for verifying ledger entries [default: {}]",
+                "Switch transaction scheduling method for verifying ledger entries [const_data: {}]",
                 BlockVerificationMethod::default()
             );
         };
@@ -179,7 +179,7 @@ impl BlockProductionMethod {
     pub fn cli_message() -> &'static str {
         lazy_static! {
             static ref MESSAGE: String = format!(
-                "Switch transaction scheduling method for producing ledger entries [default: {}]",
+                "Switch transaction scheduling method for producing ledger entries [const_data: {}]",
                 BlockProductionMethod::default()
             );
         };
@@ -365,7 +365,7 @@ impl ValidatorConfig {
 // having to watch log messages.
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq)]
 pub enum ValidatorStartProgress {
-    Initializing, // Catch all, default state
+    Initializing, // Catch all, const_data state
     SearchingForRpcService,
     DownloadingSnapshot {
         slot: Slot,
@@ -1218,7 +1218,7 @@ impl Validator {
             }
             Err(e) => {
                 warn!(
-                    "Unable to retrieve tower: {:?} creating default tower....",
+                    "Unable to retrieve tower: {:?} creating const_data tower....",
                     e
                 );
                 Tower::default()

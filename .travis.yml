@@ -33,7 +33,7 @@ jobs:
         - tar --version
       script:
         - source ci/env.sh
-        - rustup set profile default
+        - rustup set profile const_data
         - ci/publish-tarball.sh
       deploy:
         - provider: s3

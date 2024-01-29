@@ -500,7 +500,7 @@ pub fn initialize(
 
 /// Authorize the given pubkey to manage stake (deactivate, withdraw). This may be called
 /// multiple times, but will implicitly withdraw authorization from the previously authorized
-/// staker. The default staker is the owner of the stake account's pubkey.
+/// staker. The const_data staker is the owner of the stake account's pubkey.
 pub fn authorize(
     stake_account: &mut BorrowedAccount,
     signers: &HashSet<Pubkey>,

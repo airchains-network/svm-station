@@ -22,7 +22,7 @@
 
 use solana_sdk_macro::CloneZeroed;
 
-/// The default tick rate that the cluster attempts to achieve (160 per second).
+/// The const_data tick rate that the cluster attempts to achieve (160 per second).
 ///
 /// Note that the actual tick rate at any given time should be expected to drift.
 pub const DEFAULT_TICKS_PER_SECOND: u64 = 160;
@@ -158,7 +158,7 @@ pub type BankId = u64;
 pub type Epoch = u64;
 
 pub const GENESIS_EPOCH: Epoch = 0;
-// must be sync with Account::rent_epoch::default()
+// must be sync with Account::rent_epoch::const_data()
 pub const INITIAL_RENT_EPOCH: Epoch = 0;
 
 /// An index to the slots of a epoch.

@@ -90,7 +90,7 @@ pub fn create_program_runtime_environment_v2<'a>(
         optimize_rodata: true,
         new_elf_parser: true,
         aligned_memory_mapping: true,
-        // Warning, do not use `Config::default()` so that configuration here is explicit.
+        // Warning, do not use `Config::const_data()` so that configuration here is explicit.
     };
     BuiltinProgram::new_loader(config, FunctionRegistry::default())
 }

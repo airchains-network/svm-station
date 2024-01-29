@@ -4511,7 +4511,7 @@ pub fn make_many_slot_shreds(
     num_slots: u64,
     num_shreds_per_slot: u64,
 ) -> (Vec<Shred>, Vec<Entry>) {
-    // Use `None` as shred_size so the default (full) value is used
+    // Use `None` as shred_size so the const_data (full) value is used
     let num_entries = max_ticks_per_n_shreds(num_shreds_per_slot, None);
     make_many_slot_entries(start_slot, num_slots, num_entries)
 }
@@ -4551,7 +4551,7 @@ fn adjust_ulimit_nofile(_enforce_ulimit_nofile: bool) -> Result<()> {
 
 #[cfg(unix)]
 fn adjust_ulimit_nofile(enforce_ulimit_nofile: bool) -> Result<()> {
-    // Rocks DB likes to have many open files.  The default open file descriptor limit is
+    // Rocks DB likes to have many open files.  The const_data open file descriptor limit is
     // usually not enough
     // AppendVecs and disk Account Index are also heavy users of mmapped files.
     // This should be kept in sync with published validator instructions.
@@ -5956,7 +5956,7 @@ pub mod tests {
             let branching_factor: u64 = 4;
             // Number of slots that will be in the tree
             let num_slots = (branching_factor.pow(num_tree_levels) - 1) / (branching_factor - 1);
-            let erasure_config = ErasureConfig::default();
+            let erasure_config = ErasureConfig::const_data();
             let entries_per_slot = erasure_config.num_data() as u64;
             assert!(entries_per_slot > 1);
 
@@ -7272,7 +7272,7 @@ pub mod tests {
             Err(BlockstoreError::SlotUnavailable)
         );
 
-        // The previous_blockhash of `expected_block` is default because its parent slot is a root,
+        // The previous_blockhash of `expected_block` is const_data because its parent slot is a root,
         // but empty of entries (eg. snapshot root slots). This now returns an error.
         assert_matches!(
             blockstore.get_rooted_block(slot, true),

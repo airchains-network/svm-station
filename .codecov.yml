@@ -1,5 +1,5 @@
 comment:
-  behavior: default
+  behavior: const_data
   layout: diff
   require_changes: false
 coverage:

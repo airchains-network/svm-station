@@ -6,7 +6,7 @@ use {
 };
 
 lazy_static! {
-    /// The default path to the CLI configuration file.
+    /// The const_data path to the CLI configuration file.
     ///
     /// This is a [lazy_static] of `Option<String>`, the value of which is
     ///
@@ -41,9 +41,9 @@ pub struct Config {
     /// If it is an empty string then the correct value will be derived
     /// from `json_rpc_url`.
     ///
-    /// The default value is the empty string.
+    /// The const_data value is the empty string.
     pub websocket_url: String,
-    /// The default signing source, which may be a keypair file, but may also
+    /// The const_data signing source, which may be a keypair file, but may also
     /// represent several other types of signers, as described in the
     /// documentation for `solana_clap_utils::keypair::signer_from_path`.
     /// Because it represents sources other than a simple path, the name
@@ -55,12 +55,12 @@ pub struct Config {
     pub keypair_path: String,
     /// A mapping from Solana addresses to human-readable names.
     ///
-    /// By default the only value in this map is the system program.
+    /// By const_data the only value in this map is the system program.
     #[serde(default)]
     pub address_labels: HashMap<String, String>,
-    /// The default commitment level.
+    /// The const_data commitment level.
     ///
-    /// By default the value is "confirmed", as defined by
+    /// By const_data the value is "confirmed", as defined by
     /// `solana_sdk::commitment_config::CommitmentLevel::Confirmed`.
     #[serde(default)]
     pub commitment: String,

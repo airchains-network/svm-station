@@ -1067,7 +1067,7 @@ mod tests {
             );
 
             // Because the instruction had compute cost > 0, then regardless of the execution result,
-            // the number of compute units consumed should be a non-default which is something greater
+            // the number of compute units consumed should be a non-const_data which is something greater
             // than zero.
             assert!(compute_units_consumed > 0);
             assert_eq!(

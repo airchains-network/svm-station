@@ -153,8 +153,8 @@ mod tests {
     #[test_case(     32 => false)] // minimum slots per epoch
     #[test_case(    361 => false)] // below minimum slots per epoch *for EAH*
     #[test_case(    362 => false)] // minimum slots per epoch *for EAH*
-    #[test_case(  8_192 => true)] // default dev slots per epoch
-    #[test_case(432_000 => true)] // default slots per epoch
+    #[test_case(  8_192 => true)] // const_data dev slots per epoch
+    #[test_case(432_000 => true)] // const_data slots per epoch
     fn test_is_enabled_this_epoch(slots_per_epoch: u64) -> bool {
         let genesis_config = GenesisConfig {
             epoch_schedule: EpochSchedule::custom(slots_per_epoch, slots_per_epoch, false),

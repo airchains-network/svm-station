@@ -897,7 +897,7 @@ mod tests {
             // with random=1, 6 entries is the most that don't collide on a single hash % cap value.
             for len in 0..7 {
                 log::error!("testing with {len}");
-                // cannot use pubkey [0,0,...] because that matches a zeroed out default file contents.
+                // cannot use pubkey [0,0,...] because that matches a zeroed out const_data file contents.
                 let raw = (0..len)
                     .map(|l| (Pubkey::from([(l + 1) as u8; 32]), v + (l as u64)))
                     .collect::<Vec<_>>();
@@ -1041,7 +1041,7 @@ mod tests {
         let v = 12u64;
         let random = 1;
         for len in 1..4 {
-            // cannot use pubkey [0,0,...] because that matches a zeroed out default file contents.
+            // cannot use pubkey [0,0,...] because that matches a zeroed out const_data file contents.
             let raw = (0..len)
                 .map(|l| (Pubkey::from([(l + 1) as u8; 32]), v + (l as u64)))
                 .collect::<Vec<_>>();
@@ -1079,7 +1079,7 @@ mod tests {
         let data_buckets = Vec::default();
         let v = 12u64;
         let random = 1;
-        // cannot use pubkey [0,0,...] because that matches a zeroed out default file contents.
+        // cannot use pubkey [0,0,...] because that matches a zeroed out const_data file contents.
         let len = 1;
         let raw = (0..len)
             .map(|l| (Pubkey::from([(l + 1) as u8; 32]), v + (l as u64)))
@@ -1110,7 +1110,7 @@ mod tests {
         let data_buckets = Vec::default();
         let v = 12u64;
         let random = 1;
-        // cannot use pubkey [0,0,...] because that matches a zeroed out default file contents.
+        // cannot use pubkey [0,0,...] because that matches a zeroed out const_data file contents.
         let len = 1;
         let raw = (0..len)
             .map(|l| (Pubkey::from([(l + 1) as u8; 32]), v + (l as u64)))
@@ -1152,7 +1152,7 @@ mod tests {
         let data_buckets = Vec::default();
         let v = 12u64;
         let random = 1;
-        // cannot use pubkey [0,0,...] because that matches a zeroed out default file contents.
+        // cannot use pubkey [0,0,...] because that matches a zeroed out const_data file contents.
         let len = 1;
         let mut raw = (0..len + 1)
             .map(|l| (Pubkey::from([(l + 1) as u8; 32]), v + (l as u64)))
@@ -1205,7 +1205,7 @@ mod tests {
         let data_buckets = Vec::default();
         let v = 12u64;
         let random = 1;
-        // cannot use pubkey [0,0,...] because that matches a zeroed out default file contents.
+        // cannot use pubkey [0,0,...] because that matches a zeroed out const_data file contents.
         let len = 1;
         let mut raw = (0..len + 1)
             .map(|l| (Pubkey::from([(l + 1) as u8; 32]), v + (l as u64)))
@@ -1387,7 +1387,7 @@ mod tests {
                     for len in 1..(max_search + 1) {
                         let raw = (0..len)
                             .map(|l| {
-                                // +1 because pubkey[0,0,...] matches default contents of index file
+                                // +1 because pubkey[0,0,...] matches const_data contents of index file
                                 let k = Pubkey::from([(l + 1) as u8; 32]);
                                 (k, v + (l as u64))
                             })

@@ -1328,7 +1328,7 @@ pub(crate) mod tests {
             Vec::<CrdsFilter>::from(CrdsFilterSet::new(&mut rand::thread_rng(), 1000, 10));
         assert!(filters.iter().all(|f| f.mask_bits > 0));
         let mut h: Hash = Hash::default();
-        // rev to make the hash::default() miss on the first few test_masks
+        // rev to make the hash::const_data() miss on the first few test_masks
         while !filters.iter().rev().any(|f| f.test_mask(&h)) {
             h = hash(h.as_ref());
         }
