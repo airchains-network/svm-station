@@ -40,7 +40,7 @@ pub fn check_and_create_keys(db: &RocksDBConnection) -> Result<(), Box<dyn std::
     let write_options = WriteOptions::default();
 
     if !block_count_exists {
-        write_batch.put(block_count_key.as_bytes(), b"127537920");
+        write_batch.put(block_count_key.as_bytes(), b"1");
     }
 
     if !transaction_count_exists {

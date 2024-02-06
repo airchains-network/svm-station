@@ -1,3 +1,10 @@
+#[path = "local_cluster"]
+mod local_cluster {
+    #[path = "air_solana.rs"]
+    pub mod air_solana;
+}
+
+
 #[path = "batch_client"]
 mod batch_client {
     #[path = "txn_settle/txn_settle.rs"]
@@ -5,53 +12,55 @@ mod batch_client {
 
     #[path = "batch_settle/batch_settle.rs"]
     pub mod batch_settle;
+
+    #[path = "da_settle"]
+    pub mod da_settle {
+        #[path = "da_start.rs"]
+        pub mod da_start;
+
+        #[path = "da_exec.rs"]
+        pub mod da_exec;
+    }
 }
 
 #[path = "store/store_data.rs"]
 mod store_data;
 
-#[path = "db_client/connection.rs"]
-mod connection;
-
 #[path = "const_data/constant.rs"]
-mod constant;
+pub(crate) mod constant;
 
 use {
     std::{
         error::Error,
-        thread::sleep,
+        thread::{sleep, spawn},
+        sync::{Arc, Mutex},
         time::Duration,
+    },
+    local_cluster::{
+        air_solana::air_solana,
     },
     batch_client::{
         txn_settle::txn_settle,
         batch_settle::batch_settle,
+        da_settle::{
+            da_start::da_start,
+            da_exec::da_exec,
+        },
     },
     // txn_settle::txn_settle,
     store_data::{RocksDBConnection, check_and_create_keys},
-    connection::{PostgresConnection, create_table},
     constant::{
         Meta,
         Transaction,
         RootTxn,
         BatchStruct,
+        NewRoot
     },
+    rayon::join,
 };
 
-pub async fn perform_postgres_conn() -> Result<PostgresConnection, Box<dyn Error>> {
-    let db_url = "postgres://postgres:857634@localhost:5432/postgres";
-
-    let postgres_connection = match PostgresConnection::connect(db_url).await {
-        Ok(connection) => connection,
-        Err(err) => {
-            return Err(Box::new(err));
-        }
-    };
-
-    Ok(postgres_connection)
-}
-
-pub async fn perform_create_table(postgres_connection: &PostgresConnection) {
-    create_table(&postgres_connection).await;
+pub fn perform_node_run() {
+    air_solana()
 }
 
 
@@ -76,5 +85,52 @@ pub fn perform_check_and_create_keys(rocksdb_connection: &RocksDBConnection) -> 
 
 pub fn perform_batch_settle(rocksdb_connection: &RocksDBConnection) {
     sleep(Duration::from_secs(5));
+    println!("Performing batch settle");
     batch_settle(&rocksdb_connection);
+}
+
+pub fn perform_da_settle() {
+    da_start();
+}
+
+pub fn perform_da_exec(data_value: &str) -> Result<(bool, String), String> {
+    let da_exec_data = match da_exec(data_value) {
+        Ok(da_exec_data) => da_exec_data,
+        Err(err) => {
+            return Err(err);
+        }
+    };
+
+    Ok(da_exec_data)
+}
+
+pub fn perform_batch_seq() {
+    let store_perform = match perform_store_data() {
+        Ok(store) => store,
+        Err(err) => {
+            eprintln!("Error creating store: {}", err);
+            return;
+        }
+    };
+
+    perform_check_and_create_keys(&store_perform).unwrap();
+
+    let settle_handle = spawn(|| {
+        perform_da_settle();
+    });
+
+    let submit_handle = spawn(move || {
+        sleep(Duration::from_secs(15));
+        perform_store_txn(&store_perform);
+    });
+
+    settle_handle.join().expect("Error joining settle thread");
+    submit_handle.join().expect("Error joining submit thread");
+}
+
+pub fn perform_store_txn(rocksdb_connection: &RocksDBConnection) {
+    join(
+        || perform_txn_settle(&rocksdb_connection),
+        || perform_batch_settle(&rocksdb_connection),
+    );
 }

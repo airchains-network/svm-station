@@ -6,7 +6,6 @@
 /solana-metrics.tar.bz2
 /target/
 /test-ledger/
-/svm-seq/
 
 **/*.rs.bk
 .cargo

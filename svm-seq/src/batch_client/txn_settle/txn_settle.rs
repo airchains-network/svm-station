@@ -7,12 +7,16 @@ use {
         rpc_client::RpcClient,
     },
     serde::{Deserialize, Serialize},
-    tokio::time::{sleep, Duration},
+    std::{
+        error::Error,
+        thread::sleep,
+        time::Duration,
+    },
     solana_transaction_status::EncodedTransactionWithStatusMeta,
 };
 
 pub fn txn_settle(rocksdb_client: &RocksDBConnection) {
-    let node_client = RpcClient::new("https://api.testnet.solana.com");
+    let node_client = RpcClient::new("http://localhost:8899");
 
     loop {
         let block_count = match rocksdb_client.db.get(b"block_count") {

@@ -134,13 +134,13 @@ impl Dashboard {
 
                 match get_validator_stats(&rpc_client, &identity) {
                     Ok((
-                        processed_slot,
-                        confirmed_slot,
-                        finalized_slot,
-                        transaction_count,
-                        identity_balance,
-                        health,
-                    )) => {
+                           processed_slot,
+                           confirmed_slot,
+                           finalized_slot,
+                           transaction_count,
+                           identity_balance,
+                           health,
+                       )) => {
                         let uptime = {
                             let uptime =
                                 chrono::Duration::from_std(start_time.elapsed().unwrap()).unwrap();
@@ -225,7 +225,7 @@ async fn wait_for_validator_startup(
                         let start_time = admin_client.start_time().await?;
                         Ok::<_, jsonrpc_core_client::RpcError>((rpc_addr, start_time))
                     }
-                    .await
+                        .await
                     {
                         Ok((None, _)) => progress_bar.set_message("RPC service not available"),
                         Ok((Some(rpc_addr), start_time)) => return Some((rpc_addr, start_time)),
@@ -273,13 +273,13 @@ fn get_validator_stats(
         Ok(()) => "ok".to_string(),
         Err(err) => {
             if let client_error::ErrorKind::RpcError(request::RpcError::RpcResponseError {
-                code: _,
-                message: _,
-                data:
-                    request::RpcResponseErrorData::NodeUnhealthy {
-                        num_slots_behind: Some(num_slots_behind),
-                    },
-            }) = &err.kind
+                                                         code: _,
+                                                         message: _,
+                                                         data:
+                                                         request::RpcResponseErrorData::NodeUnhealthy {
+                                                             num_slots_behind: Some(num_slots_behind),
+                                                         },
+                                                     }) = &err.kind
             {
                 format!("{num_slots_behind} slots behind")
             } else {
