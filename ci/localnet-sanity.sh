@@ -316,7 +316,7 @@ while [[ $iteration -le $iterations ]]; do
   (
     set -x
     client_keypair=/tmp/client-id.json-$$
-    $solana_keygen new --no-passphrase -fso $client_keypair || exit $?
+    $stationsvm_keygen new --no-passphrase -fso $client_keypair || exit $?
     $solana_gossip --allow-private-addr spy -n 127.0.0.1:8001 --num-nodes-exactly $numNodes || exit $?
     rm -rf $client_keypair
   ) || flag_error

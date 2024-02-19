@@ -1,7 +1,7 @@
 use {
-    crate::lib_store::{
-        store_data::RocksDBConnection,
-        constant::RootTxn,
+    crate::perform_module::{
+        store::store_data::RocksDBConnection,
+        const_data::constant::RootTxn,
     },
     solana_client::{
         rpc_client::RpcClient,

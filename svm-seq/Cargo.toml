@@ -49,8 +49,10 @@ symlink = { workspace = true }
 crossbeam-channel = { workspace = true }
 itertools = { workspace = true }
 solana-rpc-client = { workspace = true }
+ed25519-dalek = "1.0.1"
 
 solana-validator = { workspace = true }
+hex = "0.4.3"
 #[services]
 #solana-validator = { version = "*", package = "solana-validator" }
 #

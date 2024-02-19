@@ -1,33 +1,32 @@
-#[path = "local_cluster"]
 mod local_cluster {
-    #[path = "air_solana.rs"]
     pub mod air_solana;
 }
 
 
-#[path = "batch_client"]
 mod batch_client {
-    #[path = "txn_settle/txn_settle.rs"]
-    pub mod txn_settle;
+    pub mod txn_settle {
+        pub mod txn_settle;
+    }
 
-    #[path = "batch_settle/batch_settle.rs"]
-    pub mod batch_settle;
+    pub mod batch_settle {
+        pub mod batch_settle;
+    }
 
-    #[path = "da_settle"]
     pub mod da_settle {
-        #[path = "da_start.rs"]
         pub mod da_start;
-
-        #[path = "da_exec.rs"]
         pub mod da_exec;
     }
 }
 
-#[path = "store/store_data.rs"]
-mod store_data;
+mod store {
+    pub mod store_data;
+}
 
-#[path = "const_data/constant.rs"]
-pub(crate) mod constant;
+mod const_data {
+    pub(crate) mod constant;
+}
+// pub(crate) mod constant;
+
 
 use {
     std::{
@@ -40,7 +39,7 @@ use {
         air_solana::air_solana,
     },
     batch_client::{
-        txn_settle::txn_settle,
+        txn_settle::txn_settle::txn_settle,
         batch_settle::batch_settle,
         da_settle::{
             da_start::da_start,
@@ -48,13 +47,13 @@ use {
         },
     },
     // txn_settle::txn_settle,
-    store_data::{RocksDBConnection, check_and_create_keys},
-    constant::{
+    store::store_data::{RocksDBConnection, check_and_create_keys},
+    const_data::constant::{
         Meta,
         Transaction,
         RootTxn,
         BatchStruct,
-        NewRoot
+        NewRoot,
     },
     rayon::join,
 };
@@ -65,6 +64,7 @@ pub fn perform_node_run() {
 
 
 pub fn perform_txn_settle(rocksdb_connection: &RocksDBConnection) {
+    // txn_settle(&rocksdb_connection);
     txn_settle(&rocksdb_connection);
 }
 
@@ -86,7 +86,7 @@ pub fn perform_check_and_create_keys(rocksdb_connection: &RocksDBConnection) -> 
 pub fn perform_batch_settle(rocksdb_connection: &RocksDBConnection) {
     sleep(Duration::from_secs(5));
     println!("Performing batch settle");
-    batch_settle(&rocksdb_connection);
+    batch_settle::batch_settle(&rocksdb_connection);
 }
 
 pub fn perform_da_settle() {

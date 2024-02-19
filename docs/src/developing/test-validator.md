@@ -85,7 +85,7 @@ solana balance
 ```
 
 - **NOTE:** `Error: No such file or directory (os error 2)` means that the default
-  wallet does not yet exist. Create it with `solana-keygen new`.
+  wallet does not yet exist. Create it with `stationsvm-keygen new`.
 - **NOTE:** If the wallet has a zero SOL balance, airdrop some localnet SOL with
   `solana airdrop 10`
 

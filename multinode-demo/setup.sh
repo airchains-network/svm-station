@@ -13,23 +13,23 @@ mkdir -p "$SOLANA_CONFIG_DIR"/bootstrap-validator
 if [[ -r $FAUCET_KEYPAIR ]]; then
   cp -f "$FAUCET_KEYPAIR" "$SOLANA_CONFIG_DIR"/faucet.json
 else
-  $solana_keygen new --no-passphrase -fso "$SOLANA_CONFIG_DIR"/faucet.json
+  $stationsvm_keygen new --no-passphrase -fso "$SOLANA_CONFIG_DIR"/faucet.json
 fi
 
 if [[ -f $BOOTSTRAP_VALIDATOR_IDENTITY_KEYPAIR ]]; then
   cp -f "$BOOTSTRAP_VALIDATOR_IDENTITY_KEYPAIR" "$SOLANA_CONFIG_DIR"/bootstrap-validator/identity.json
 else
-  $solana_keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/bootstrap-validator/identity.json
+  $stationsvm_keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/bootstrap-validator/identity.json
 fi
 if [[ -f $BOOTSTRAP_VALIDATOR_STAKE_KEYPAIR ]]; then
   cp -f "$BOOTSTRAP_VALIDATOR_STAKE_KEYPAIR" "$SOLANA_CONFIG_DIR"/bootstrap-validator/stake-account.json
 else
-  $solana_keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/bootstrap-validator/stake-account.json
+  $stationsvm_keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/bootstrap-validator/stake-account.json
 fi
 if [[ -f $BOOTSTRAP_VALIDATOR_VOTE_KEYPAIR ]]; then
   cp -f "$BOOTSTRAP_VALIDATOR_VOTE_KEYPAIR" "$SOLANA_CONFIG_DIR"/bootstrap-validator/vote-account.json
 else
-  $solana_keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/bootstrap-validator/vote-account.json
+  $stationsvm_keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/bootstrap-validator/vote-account.json
 fi
 
 args=(

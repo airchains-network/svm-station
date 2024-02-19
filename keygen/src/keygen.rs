@@ -803,7 +803,7 @@ mod tests {
 
         // success case using a keypair file
         process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "verify",
             &correct_pubkey.to_string(),
             &keypair_path,
@@ -812,7 +812,7 @@ mod tests {
 
         // success case using a config file
         process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "verify",
             &correct_pubkey.to_string(),
             "--config",
@@ -823,7 +823,7 @@ mod tests {
         // fail case using a keypair file
         let incorrect_pubkey = Pubkey::new_unique();
         let result = process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "verify",
             &incorrect_pubkey.to_string(),
             &keypair_path,
@@ -836,7 +836,7 @@ mod tests {
 
         // fail case using a config file
         process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "verify",
             &incorrect_pubkey.to_string(),
             "--config",
@@ -855,7 +855,7 @@ mod tests {
             create_tmp_keypair_and_config_file(&alt_keypair_out_dir, &alt_config_out_dir);
 
         process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "verify",
             &correct_pubkey.to_string(),
             &keypair_path,
@@ -865,7 +865,7 @@ mod tests {
         .unwrap();
 
         process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "verify",
             &correct_pubkey.to_string(),
             &alt_keypair_path,
@@ -892,7 +892,7 @@ mod tests {
             let outfile_path = tmp_outfile_path(&outfile_dir, &expected_pubkey.to_string());
 
             process_test_command(&[
-                "solana-keygen",
+                "stationsvm-keygen",
                 "pubkey",
                 &keypair_path,
                 "--outfile",
@@ -910,7 +910,7 @@ mod tests {
             let outfile_path = tmp_outfile_path(&outfile_dir, &expected_pubkey.to_string());
 
             process_test_command(&[
-                "solana-keygen",
+                "stationsvm-keygen",
                 "pubkey",
                 "--config",
                 &config_path,
@@ -933,7 +933,7 @@ mod tests {
             let outfile_path = tmp_outfile_path(&outfile_dir, &expected_pubkey.to_string());
 
             process_test_command(&[
-                "solana-keygen",
+                "stationsvm-keygen",
                 "pubkey",
                 &keypair_path,
                 "--config",
@@ -953,7 +953,7 @@ mod tests {
             let outfile_path = tmp_outfile_path(&outfile_dir, &expected_pubkey.to_string());
 
             process_test_command(&[
-                "solana-keygen",
+                "stationsvm-keygen",
                 "pubkey",
                 &keypair_path,
                 "--outfile",
@@ -962,7 +962,7 @@ mod tests {
             .unwrap();
 
             let result = process_test_command(&[
-                "solana-keygen",
+                "stationsvm-keygen",
                 "pubkey",
                 "--config",
                 &config_path,
@@ -989,7 +989,7 @@ mod tests {
 
         // general success case
         process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "new",
             "--outfile",
             &outfile_path,
@@ -999,7 +999,7 @@ mod tests {
 
         // refuse to overwrite file
         let result = process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "new",
             "--outfile",
             &outfile_path,
@@ -1013,7 +1013,7 @@ mod tests {
 
         // no outfile
         process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "new",
             "--no-bip39-passphrase",
             "--no-outfile",
@@ -1036,7 +1036,7 @@ mod tests {
         for language in languages {
             for word_count in word_counts {
                 process_test_command(&[
-                    "solana-keygen",
+                    "stationsvm-keygen",
                     "new",
                     "--no-outfile",
                     "--no-bip39-passphrase",
@@ -1051,7 +1051,7 @@ mod tests {
 
         // sanity check derivation path
         process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "new",
             "--no-bip39-passphrase",
             "--no-outfile",
@@ -1061,7 +1061,7 @@ mod tests {
         .unwrap();
 
         process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "new",
             "--no-bip39-passphrase",
             "--no-outfile",
@@ -1071,7 +1071,7 @@ mod tests {
         .unwrap();
 
         let result = process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "new",
             "--no-bip39-passphrase",
             "--no-outfile",
@@ -1089,7 +1089,7 @@ mod tests {
     fn test_grind() {
         // simple sanity checks
         process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "grind",
             "--no-outfile",
             "--no-bip39-passphrase",
@@ -1100,7 +1100,7 @@ mod tests {
         .unwrap();
 
         process_test_command(&[
-            "solana-keygen",
+            "stationsvm-keygen",
             "grind",
             "--no-outfile",
             "--no-bip39-passphrase",

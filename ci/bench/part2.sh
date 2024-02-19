@@ -15,7 +15,7 @@ _ cargo +"$rust_nightly" bench --manifest-path runtime/Cargo.toml ${V:+--verbose
   -- -Z unstable-options --format=json | tee -a "$BENCH_FILE"
 
 (
-  # solana-keygen required when building C programs
+  # stationsvm-keygen required when building C programs
   _ cargo build --manifest-path=keygen/Cargo.toml
   export PATH="$PWD/target/debug":$PATH
 

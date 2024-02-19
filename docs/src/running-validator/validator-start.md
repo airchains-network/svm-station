@@ -110,13 +110,13 @@ Operators commonly use an ntp server to maintain an accurate system clock.
 Create an identity keypair for your validator by running:
 
 ```bash
-solana-keygen new -o ~/validator-keypair.json
+stationsvm-keygen new -o ~/validator-keypair.json
 ```
 
 The identity public key can now be viewed by running:
 
 ```bash
-solana-keygen pubkey ~/validator-keypair.json
+stationsvm-keygen pubkey ~/validator-keypair.json
 ```
 
 > Note: The "validator-keypair.json” file is also your \(ed25519\) private key.
@@ -127,13 +127,13 @@ You can create a paper wallet for your identity file instead of writing the
 keypair file to disk with:
 
 ```bash
-solana-keygen new --no-outfile
+stationsvm-keygen new --no-outfile
 ```
 
 The corresponding identity public key can now be viewed by running:
 
 ```bash
-solana-keygen pubkey ASK
+stationsvm-keygen pubkey ASK
 ```
 
 and then entering your seed phrase.
@@ -144,10 +144,10 @@ See [Paper Wallet Usage](../wallet-guide/paper-wallet.md) for more info.
 
 ### Vanity Keypair
 
-You can generate a custom vanity keypair using solana-keygen. For instance:
+You can generate a custom vanity keypair using stationsvm-keygen. For instance:
 
 ```bash
-solana-keygen grind --starts-with e1v1s:1
+stationsvm-keygen grind --starts-with e1v1s:1
 ```
 
 You may request that the generated vanity keypair be expressed as a seed phrase
@@ -156,7 +156,7 @@ supplied passphrase (note that this is significantly slower than grinding withou
 a mnemonic):
 
 ```bash
-solana-keygen grind --use-mnemonic --starts-with e1v1s:1
+stationsvm-keygen grind --use-mnemonic --starts-with e1v1s:1
 ```
 
 Depending on the string requested, it may take days to find a match...
@@ -231,7 +231,7 @@ stored anywhere from where it could be accessed by unauthorized parties. To
 create your authorized-withdrawer keypair:
 
 ```bash
-solana-keygen new -o ~/authorized-withdrawer-keypair.json
+stationsvm-keygen new -o ~/authorized-withdrawer-keypair.json
 ```
 
 ## Create Vote Account
@@ -241,7 +241,7 @@ vote account on the network. If you have completed this step, you should see the
 “vote-account-keypair.json” in your Solana runtime directory:
 
 ```bash
-solana-keygen new -o ~/vote-account-keypair.json
+stationsvm-keygen new -o ~/vote-account-keypair.json
 ```
 
 The following command can be used to create your vote account on the blockchain
