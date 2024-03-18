@@ -2987,7 +2987,7 @@ impl fmt::Display for CliPingData {
                 (
                     CHECK_MARK,
                     format!(
-                        "{} lamport(s) transferred: seq={:<3} time={:>4}ms signature={}",
+                        "{} lamport(s) transferred: seq_client={:<3} time={:>4}ms signature={}",
                         self.lamports.unwrap(),
                         self.sequence,
                         self.ms.unwrap(),
@@ -2998,7 +2998,7 @@ impl fmt::Display for CliPingData {
                 (
                     CROSS_MARK,
                     format!(
-                        "Transaction failed:    seq={:<3} error={:?} signature={}",
+                        "Transaction failed:    seq_client={:<3} error={:?} signature={}",
                         self.sequence, error, signature
                     ),
                 )
@@ -3006,7 +3006,7 @@ impl fmt::Display for CliPingData {
                 (
                     CROSS_MARK,
                     format!(
-                        "Confirmation timeout:  seq={:<3}             signature={}",
+                        "Confirmation timeout:  seq_client={:<3}             signature={}",
                         self.sequence, signature
                     ),
                 )
@@ -3015,7 +3015,7 @@ impl fmt::Display for CliPingData {
             (
                 CROSS_MARK,
                 format!(
-                    "Submit failed:         seq={:<3} error={:?}",
+                    "Submit failed:         seq_client={:<3} error={:?}",
                     self.sequence,
                     self.error.as_ref().unwrap(),
                 ),

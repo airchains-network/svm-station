@@ -1,0 +1,13 @@
+{
+  "libpath": "../../target/release/libstation_svm_geyser.dylib",
+  "path": "rocksdb_seq",
+  "threads": 20,
+  "batch_size": 20,
+  "transaction_selector": {
+    "mentions": [
+      "*"
+    ]
+  },
+  "entry_selector": true
+}
+

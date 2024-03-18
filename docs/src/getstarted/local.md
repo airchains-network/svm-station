@@ -125,10 +125,10 @@ To deploy a program with Solana CLI, you will need a Solana wallet with SOL toke
 Let's create a simple file system wallet for testing:
 
 ```bash
-stationsvm-keygen new
+station-svm-keygen new
 ```
 
-By default, the `stationsvm-keygen` command will create a new file system wallet located at `~/.config/solana/id.json`. You can manually specify the output file location using the `--outfile /path` option.
+By default, the `station-svm-keygen` command will create a new file system wallet located at `~/.config/solana/id.json`. You can manually specify the output file location using the `--outfile /path` option.
 
 > **NOTE:**
 > If you already have a file system wallet saved at the default location, this command will **NOT** override it (unless you explicitly force override using the `--force` flag).

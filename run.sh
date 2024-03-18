@@ -34,25 +34,25 @@
     --max-genesis-archive-unpacked-size 10485760 \
     --rent-burn-percentage 50 \
     --rent-exemption-threshold 2 \
-    --slots-per-epoch 141444 \
+    --slots-per-epoch 10 \
     --target-lamports-per-signature 10000 \
     --target-signatures-per-slot 20000 \
     --vote-commission-percentage 100
 
-# ./target/release/solana-validator \
-#     --full-rpc-api \
-#     --tpu-enable-udp \
-#     --identity test-ledger/validator-keypair.json \
-#     --ledger test-ledger \
-#     --log test-ledger/log.log \
-#     --no-incremental-snapshots \
-#     --allow-private-addr \
-#     --dynamic-port-range 8000-8020 \
-#     --rpc-port 8899 \
-#     --rpc-faucet-address 127.0.0.1:9900 \
-#     --no-poh-speed-test \
-#     --tower test-ledger \
-#     --tower-storage file
+ ./target/release/solana-validator \
+     --full-rpc-api \
+     --tpu-enable-udp \
+     --identity test-ledger/validator-keypair.json \
+     --ledger test-ledger \
+     --log test-ledger/log.log \
+     --no-incremental-snapshots \
+     --allow-private-addr \
+     --dynamic-port-range 8000-8020 \
+     --rpc-port 8899 \
+     --rpc-faucet-address 127.0.0.1:9900 \
+     --no-poh-speed-test \
+     --tower test-ledger \
+     --tower-storage file
 
 
 

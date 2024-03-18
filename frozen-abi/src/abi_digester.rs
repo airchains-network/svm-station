@@ -379,7 +379,7 @@ impl Serializer for AbiDigester {
             len, 1,
             "Exactly 1 seq element is needed to generate the ABI digest precisely"
         );
-        self.update_with_string(format!("seq (elements = {len})"));
+        self.update_with_string(format!("seq_client (elements = {len})"));
         self.create_child()
     }
 

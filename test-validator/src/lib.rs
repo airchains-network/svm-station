@@ -709,7 +709,7 @@ impl TestValidator {
         let validator_identity = Keypair::new();
         let validator_vote_account = Keypair::new();
         let validator_stake_account = Keypair::new();
-        let validator_identity_lamports = sol_to_lamports(500.);
+        let validator_identity_lamports = sol_to_lamports(69.);
         let validator_stake_lamports = sol_to_lamports(1_000_000.);
         let mint_lamports = sol_to_lamports(500_000_000.);
 

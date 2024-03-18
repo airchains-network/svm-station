@@ -112,7 +112,7 @@ if [[ -n $keypair ]]; then
 fi
 
 if ! [[ -f "$stake_account" ]]; then
-  $stationsvm_keygen new --no-passphrase -so "$stake_account"
+  $station_svm_keygen new --no-passphrase -so "$stake_account"
 else
   echo "$stake_account already exists! Using it"
 fi

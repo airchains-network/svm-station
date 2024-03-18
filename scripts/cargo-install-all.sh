@@ -92,7 +92,7 @@ if [[ $CI_OS_NAME = windows ]]; then
     solana
     solana-install
     solana-install-init
-    stationsvm-keygen
+    station-svm-keygen
     solana-stake-accounts
     air-solana
     solana-tokens
@@ -106,7 +106,7 @@ else
     solana-faucet
     solana-gossip
     solana-install
-    stationsvm-keygen
+    station-svm-keygen
     solana-ledger-tool
     solana-log-analyzer
     solana-net-shaper

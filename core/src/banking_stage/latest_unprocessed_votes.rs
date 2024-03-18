@@ -112,7 +112,7 @@ impl LatestValidatorVotePacket {
     }
 }
 
-// TODO: replace this with rand::seq::index::sample_weighted once we can update rand to 0.8+
+// TODO: replace this with rand::seq_client::index::sample_weighted once we can update rand to 0.8+
 // This requires updating dependencies of ed25519-dalek as rand_core is not compatible cross
 // version https://github.com/dalek-cryptography/ed25519-dalek/pull/214
 pub(crate) fn weighted_random_order_by_stake<'a>(

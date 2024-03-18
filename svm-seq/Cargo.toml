@@ -50,16 +50,12 @@ crossbeam-channel = { workspace = true }
 itertools = { workspace = true }
 solana-rpc-client = { workspace = true }
 ed25519-dalek = "1.0.1"
-
+solana-geyser-plugin-interface = { path = "../geyser-plugin-interface" }
 solana-validator = { workspace = true }
 hex = "0.4.3"
-#[services]
-#solana-validator = { version = "*", package = "solana-validator" }
-#
-#[dependencies.solana-validator]
-#version = "*"
-#workspace = true
+tokio = "1.29.1"
+cbindgen = "0.26.0"
+thiserror = "1.0.50"
 
-
-
-
+[target."cfg(unix)".dependencies]
+libc = { workspace = true }

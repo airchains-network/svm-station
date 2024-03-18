@@ -26,7 +26,7 @@ fi
 BENCH_FILE=bench_output.log
 BENCH_ARTIFACT=current_bench_results.log
 
-# stationsvm-keygen required when building C programs
+# station-svm-keygen required when building C programs
 _ cargo build --manifest-path=keygen/Cargo.toml
 export PATH="$PWD/target/debug":$PATH
 

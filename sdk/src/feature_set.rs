@@ -7,7 +7,7 @@
 //!   information on the additional steps to follow can be found at:
 //!   <https://spl.solana.com/feature-proposal#feature-proposal-life-cycle>
 //!
-//! 1. Generate a new keypair with `stationsvm-keygen new --outfile feature.json --no-passphrase`
+//! 1. Generate a new keypair with `station-svm-keygen new --outfile feature.json --no-passphrase`
 //!    - Keypairs should be held by core contributors only. If you're a non-core contributor going
 //!      through these steps, the PR process will facilitate a keypair holder being picked. That
 //!      person will generate the keypair, provide pubkey for PR, and ultimately enable the feature.

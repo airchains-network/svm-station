@@ -5,7 +5,7 @@ use serde::{
 #[cfg(all(test, RUSTC_WITH_SPECIALIZATION))]
 use solana_frozen_abi::abi_example::IgnoreAsHelper;
 
-// consumes an iterator and returns an object that will serialize as a serde seq
+// consumes an iterator and returns an object that will serialize as a serde seq_client
 #[allow(dead_code)]
 pub fn serialize_iter_as_seq<I>(iter: I) -> impl Serialize
 where

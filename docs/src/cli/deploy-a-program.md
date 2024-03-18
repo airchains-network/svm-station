@@ -127,7 +127,7 @@ needed to recover the generated intermediate buffer's keypair:
 ```
 ==================================================================================
 Recover the intermediate account's ephemeral keypair file with
-`stationsvm-keygen recover` and the following 12-word seed phrase:
+`station-svm-keygen recover` and the following 12-word seed phrase:
 ==================================================================================
 valley flat great hockey share token excess clever benefit traffic avocado athlete
 ==================================================================================
@@ -141,7 +141,7 @@ Or to recover the account's lamports, pass it as the
 To recover the keypair:
 
 ```bash
-stationsvm-keygen recover -o <KEYPAIR_PATH>
+station-svm-keygen recover -o <KEYPAIR_PATH>
 ```
 
 When asked, enter the 12-word seed phrase.

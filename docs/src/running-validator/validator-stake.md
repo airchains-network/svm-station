@@ -29,7 +29,7 @@ this step, you should see the “validator-stake-keypair.json” in your Solana
 runtime directory.
 
 ```bash
-stationsvm-keygen new -o ~/validator-stake-keypair.json
+station-svm-keygen new -o ~/validator-stake-keypair.json
 ```
 
 ## Delegate Stake

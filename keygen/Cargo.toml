@@ -1,7 +1,7 @@
 [package]
-name = "stationsvm-keygen"
+name = "station-svm-keygen"
 description = "Solana key generation utility"
-documentation = "https://docs.rs/stationsvm-keygen"
+documentation = "https://docs.rs/station-svm-keygen"
 version = { workspace = true }
 authors = { workspace = true }
 repository = { workspace = true }
@@ -25,7 +25,7 @@ tiny-bip39 = { workspace = true }
 tempfile = { workspace = true }
 
 [[bin]]
-name = "stationsvm-keygen"
+name = "station-svm-keygen"
 path = "src/keygen.rs"
 
 [package.metadata.docs.rs]

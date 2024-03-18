@@ -150,17 +150,17 @@ EOF
             cp net/keypairs/"$name".json config/"$name".json
           fi
         else
-          stationsvm-keygen new --no-passphrase -so config/"$name".json
+          station-svm-keygen new --no-passphrase -so config/"$name".json
           if [[ "$name" =~ ^validator-identity- ]]; then
             name="${name//-identity-/-vote-}"
-            stationsvm-keygen new --no-passphrase -so config/"$name".json
+            station-svm-keygen new --no-passphrase -so config/"$name".json
             name="${name//-vote-/-stake-}"
-            stationsvm-keygen new --no-passphrase -so config/"$name".json
+            station-svm-keygen new --no-passphrase -so config/"$name".json
           fi
         fi
         if [[ -n $internalNodesLamports ]]; then
           declare pubkey
-          pubkey="$(stationsvm-keygen pubkey config/"$name".json)"
+          pubkey="$(station-svm-keygen pubkey config/"$name".json)"
           cat >> config/validator-balances.yml <<EOF
 $pubkey:
   balance: $internalNodesLamports
@@ -231,9 +231,9 @@ EOF
           extraPrimordialStakes=$numNodes
         fi
         for i in $(seq "$extraPrimordialStakes"); do
-          args+=(--bootstrap-validator "$(stationsvm-keygen pubkey "config/validator-identity-$i.json")"
-                                       "$(stationsvm-keygen pubkey "config/validator-vote-$i.json")"
-                                       "$(stationsvm-keygen pubkey "config/validator-stake-$i.json")"
+          args+=(--bootstrap-validator "$(station-svm-keygen pubkey "config/validator-identity-$i.json")"
+                                       "$(station-svm-keygen pubkey "config/validator-vote-$i.json")"
+                                       "$(station-svm-keygen pubkey "config/validator-stake-$i.json")"
           )
         done
       fi
@@ -362,11 +362,11 @@ EOF
     fi
 
     if [[ ! -f "$SOLANA_CONFIG_DIR"/validator-identity.json ]]; then
-      stationsvm-keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/validator-identity.json
+      station-svm-keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/validator-identity.json
     fi
     args+=(--identity "$SOLANA_CONFIG_DIR"/validator-identity.json)
     if [[ ! -f "$SOLANA_CONFIG_DIR"/vote-account.json ]]; then
-      stationsvm-keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/vote-account.json
+      station-svm-keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/vote-account.json
     fi
     args+=(--vote-account "$SOLANA_CONFIG_DIR"/vote-account.json)
 

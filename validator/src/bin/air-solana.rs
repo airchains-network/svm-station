@@ -221,7 +221,7 @@ fn main() {
 
     if let Some(values) = matches.values_of("upgradeable_program") {
         for (address, program, upgrade_authority) in
-            values.into_iter().tuples::<(&str, &str, &str)>()
+        values.into_iter().tuples::<(&str, &str, &str)>()
         {
             let address = parse_address(address, "address");
             let program_path = parse_program_path(program);
@@ -287,9 +287,8 @@ fn main() {
             Some(_) => value_t_or_exit!(matches, "warp_slot", Slot),
             None => {
                 cluster_rpc_client.as_ref().unwrap_or_else(|_| {
-                        println!("The --url argument must be provided if --warp-slot/-w is used without an explicit slot");
-                        exit(1);
-
+                    println!("The --url argument must be provided if --warp-slot/-w is used without an explicit slot");
+                    exit(1);
                 }).get_slot()
                     .unwrap_or_else(|err| {
                         println!("Unable to get current cluster slot: {err}");
@@ -415,7 +414,7 @@ fn main() {
                 Some(&validator_log_symlink),
                 Some(&mut genesis.validator_exit.write().unwrap()),
             )
-            .unwrap(),
+                .unwrap(),
         )
     } else {
         None

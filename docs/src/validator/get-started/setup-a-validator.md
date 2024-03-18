@@ -58,15 +58,15 @@ On your local computer, create the 3 keypairs that you will need to run your val
 > **NOTE** Some operators choose to make vanity keypairs for their identity and vote account using the `grind` sub command ([docs for reference](../../running-validator/validator-start#vanity-keypair)).
 
 ```
-stationsvm-keygen new -o validator-keypair.json
+station-svm-keygen new -o validator-keypair.json
 ```
 
 ```
-stationsvm-keygen new -o vote-account-keypair.json
+station-svm-keygen new -o vote-account-keypair.json
 ```
 
 ```
-stationsvm-keygen new -o authorized-withdrawer-keypair.json
+station-svm-keygen new -o authorized-withdrawer-keypair.json
 ```
 
 > **IMPORTANT** the `authorized-withdrawer-keypair.json` should be considered very sensitive information.  Many operators choose to use a multisig, hardware wallet, or paper wallet for the authorized withdrawer keypair.  A keypair is created on disk in this example for simplicity. Additionally, the withdrawer keypair should always be stored safely. The authorized withdrawer keypair should **never** be stored on the remote machine that the validator software runs on.  For more information, see [validator security best practices](../best-practices/security.md#do-not-store-your-withdrawer-key-on-your-validator)
@@ -400,7 +400,7 @@ Gossip is a protocol used in the Solana clusters to communicate between validato
 In a new terminal window, connect to your server via ssh. Identify your validator's pubkey:
 
 ```
-stationsvm-keygen pubkey ~/validator-keypair.json
+station-svm-keygen pubkey ~/validator-keypair.json
 ```
 
 The command `solana gossip` lists all validators that have registered with the protocol. To check that the newly setup validator is in gossip, we will `grep` for our pubkey in the output:

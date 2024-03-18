@@ -337,9 +337,9 @@ setup_validator_accounts() {
 # shellcheck disable=SC2086
 rpc_url=$($solana_gossip --allow-private-addr rpc-url --timeout 180 --entrypoint "$gossip_entrypoint")
 
-[[ -r "$identity" ]] || $stationsvm_keygen new --no-passphrase -so "$identity"
-[[ -r "$vote_account" ]] || $stationsvm_keygen new --no-passphrase -so "$vote_account"
-[[ -r "$authorized_withdrawer" ]] || $stationsvm_keygen new --no-passphrase -so "$authorized_withdrawer"
+[[ -r "$identity" ]] || $station_svm_keygen new --no-passphrase -so "$identity"
+[[ -r "$vote_account" ]] || $station_svm_keygen new --no-passphrase -so "$vote_account"
+[[ -r "$authorized_withdrawer" ]] || $station_svm_keygen new --no-passphrase -so "$authorized_withdrawer"
 
 setup_validator_accounts "$node_sol"
 
