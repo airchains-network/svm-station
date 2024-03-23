@@ -38,32 +38,32 @@ $ok || {
 export RUST_LOG=${RUST_LOG:-solana=info,solana_runtime::message_processor=debug} # if RUST_LOG is unset, default to info
 export RUST_BACKTRACE=1
 dataDir=$PWD/config/"$(basename "$0" .sh)"
-ledgerDir=$PWD/config/ledger
+ledgerDir=$PWD/config/test-ledger
 
 SOLANA_RUN_SH_CLUSTER_TYPE=${SOLANA_RUN_SH_CLUSTER_TYPE:-development}
 
 set -x
 if ! solana address; then
   echo Generating default keypair
-  solana-keygen new --no-passphrase
+  solana-keygen new --no-passphrase --force
 fi
 validator_identity="$dataDir/validator-identity.json"
 if [[ -e $validator_identity ]]; then
   echo "Use existing validator keypair"
 else
-  solana-keygen new --no-passphrase -so "$validator_identity"
+  solana-keygen new --no-passphrase -so "$validator_identity" --force
 fi
 validator_vote_account="$dataDir/validator-vote-account.json"
 if [[ -e $validator_vote_account ]]; then
   echo "Use existing validator vote account keypair"
 else
-  solana-keygen new --no-passphrase -so "$validator_vote_account"
+  solana-keygen new --no-passphrase -so "$validator_vote_account" --force
 fi
 validator_stake_account="$dataDir/validator-stake-account.json"
 if [[ -e $validator_stake_account ]]; then
   echo "Use existing validator stake account keypair"
 else
-  solana-keygen new --no-passphrase -so "$validator_stake_account"
+  solana-keygen new --no-passphrase -so "$validator_stake_account" --force
 fi
 
 if [[ -e "$ledgerDir"/genesis.bin || -e "$ledgerDir"/genesis.tar.bz2 ]]; then
