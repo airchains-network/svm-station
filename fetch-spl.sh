@@ -6,8 +6,13 @@
 
 set -e
 
-# Specify the path for downloading SPL programs
-download_path="./config/program"
+# Check if download path is provided as an argument
+if [ -z "$1" ]; then
+  echo "Error: Please provide the download path as an argument."
+  exit 1
+fi
+
+download_path="$1"
 
 upgradeableLoader=BPFLoaderUpgradeab1e11111111111111111111111
 
@@ -47,12 +52,6 @@ fetch_program() {
 
 }
 
-# Check if download path is provided as an argument
-if [ -z "$download_path" ]; then
-  echo "Error: Please provide the download path as an argument."
-  exit 1
-fi
-
 # Create the download path directory if it doesn't exist
 mkdir -p "$download_path"
 
@@ -75,4 +74,3 @@ echo "solana-genesis command-line arguments (spl-genesis-args.sh):"
 cat "$download_path/spl-genesis-args.sh"
 
 rm -rf "$download_path"/.cache
-

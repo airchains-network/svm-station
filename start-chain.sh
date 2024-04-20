@@ -15,7 +15,6 @@ if [[ -n $NDEBUG ]]; then
 fi
 PATH=$PWD/target/$profile:$PATH
 
-ok=true
 for program in solana-{faucet,genesis,keygen,validator}; do
   $program -V || ok=false
 done
@@ -62,7 +61,7 @@ fi
 if [[ -e "$ledgerDir"/genesis.bin || -e "$ledgerDir"/genesis.tar.bz2 ]]; then
   echo "Use existing genesis"
 else
-  ./fetch-spl.sh
+  ./fetch-spl.sh "$ledgerDir/program"
   if [[ -r spl-genesis-args.sh ]]; then
     SPL_GENESIS_ARGS=$(cat spl-genesis-args.sh)
   fi
@@ -70,13 +69,14 @@ else
   # shellcheck disable=SC2086
   solana-genesis \
     --hashes-per-tick sleep \
-    --faucet-lamports 500000000000000000 \
+    --faucet-lamports 10000000000000000000 \
+    --bootstrap-validator-stake-lamports 10000000000000000 \
     --bootstrap-validator \
       "$validator_identity" \
       "$validator_vote_account" \
       "$validator_stake_account" \
     --ledger "$ledgerDir" \
-    --cluster-type "$SOLANA_RUN_SH_CLUSTER_TYPE" \
+    --cluster-type mainnet-beta \
     $SPL_GENESIS_ARGS \
     $SOLANA_RUN_SH_GENESIS_ARGS
 fi
@@ -97,6 +97,8 @@ args=(
   --ledger "$ledgerDir"
   --gossip-port 8001
   --full-rpc-api
+  --rpc-bind-address 0.0.0.0
+  --bind-address 0.0.0.0
   --rpc-port 8899
   --rpc-faucet-address 127.0.0.1:9900
   --log -
