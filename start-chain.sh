@@ -9,7 +9,7 @@ else
 fi
 
 
-profile=debug
+profile=release
 if [[ -n $NDEBUG ]]; then
   profile=release
 fi
@@ -70,14 +70,17 @@ else
   solana-genesis \
     --hashes-per-tick sleep \
     --faucet-lamports 10000000000000000000 \
+    --bootstrap-validator-lamports 1000000000000000000 \
     --bootstrap-validator-stake-lamports 10000000000000000 \
     --bootstrap-validator \
       "$validator_identity" \
       "$validator_vote_account" \
       "$validator_stake_account" \
     --ledger "$ledgerDir" \
-    --cluster-type mainnet-beta \
+    --cluster-type testnet \
     $SPL_GENESIS_ARGS \
+    --ticks-per-slot 64 \
+    --slots-per-epoch 432000 \
     $SOLANA_RUN_SH_GENESIS_ARGS
 fi
 
@@ -95,6 +98,8 @@ args=(
   --identity "$validator_identity"
   --vote-account "$validator_vote_account"
   --ledger "$ledgerDir"
+  --no-poh-speed-test
+  --no-os-network-limits-test
   --gossip-port 8001
   --full-rpc-api
   --rpc-bind-address 0.0.0.0
@@ -107,7 +112,8 @@ args=(
   --init-complete-file "$dataDir"/init-completed
   --require-tower
   --no-wait-for-vote-to-start-leader
-  --no-os-network-limits-test
+  --snapshot-interval-slots 1000
+  --no-incremental-snapshots
 )
 # shellcheck disable=SC2086
 solana-validator "${args[@]}" $SOLANA_RUN_SH_VALIDATOR_ARGS &
