@@ -1,0 +1,20 @@
+./target/debug/solana-validator \
+--ledger ./config/chain \
+--rpc-port 8899 \
+--gossip-port 8001 \
+--snapshot-interval-slots 1000 \
+--no-incremental-snapshots \
+--identity ./config/keypair/validator-identity.json \
+--vote-account ./config/keypair/validator-vote-account.json \
+--rpc-faucet-address 127.0.0.1:9900 \
+--rpc-bind-address 0.0.0.0 \
+--bind-address 0.0.0.0 \
+--log - \
+--no-poh-speed-test \
+--no-os-network-limits-test \
+--no-wait-for-vote-to-start-leader \
+--full-rpc-api \
+--allow-private-addr \
+--enable-rpc-transaction-history \
+--enable-extended-tx-metadata-storage \
+--require-tower

@@ -1,0 +1,16 @@
+./target/debug/solana-genesis  \
+--hashes-per-tick sleep \
+--faucet-lamports 10000000000000000000 \
+--bootstrap-validator-lamports 100000000000000000 \
+--bootstrap-validator-stake-lamports 1000000000000000 \
+--bootstrap-validator ./config/keypair/validator-identity.json ./config/keypair/validator-vote-account.json ./config/keypair/validator-stake-account.json \
+--cluster-type testnet \
+--bpf-program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA BPFLoader2111111111111111111111111111111111 ./config/program/spl_token-3.5.0.so \
+--upgradeable-program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb BPFLoaderUpgradeab1e11111111111111111111111 ./config/program/spl_token-2022-0.9.0.so none \
+--bpf-program Memo1UhkJRfHyvLMcVucJwxXeuD728EqVDDwQDxFMNo BPFLoader1111111111111111111111111111111111 ./config/program/spl_memo-1.0.0.so \
+--bpf-program MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr BPFLoader2111111111111111111111111111111111 ./config/program/spl_memo-3.0.0.so \
+--bpf-program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL BPFLoader2111111111111111111111111111111111 ./config/program/spl_associated-token-account-1.1.2.so \
+--bpf-program Feat1YXHhH6t1juaWF74WLcfv4XoNocjXA6sPWHNgAse BPFLoader2111111111111111111111111111111111 ./config/program/spl_feature-proposal-1.0.0.so \
+--ticks-per-slot 64 \
+--slots-per-epoch 432000 \
+--ledger ./config/chain
