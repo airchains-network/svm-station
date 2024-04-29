@@ -154,6 +154,5 @@ faucet=$!
   --enable-extended-tx-metadata-storage \
   --require-tower \
   --no-os-network-limits-test &
-validator=$!
 
 wait "$validator"
