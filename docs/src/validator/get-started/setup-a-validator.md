@@ -58,15 +58,15 @@ On your local computer, create the 3 keypairs that you will need to run your val
 > **NOTE** Some operators choose to make vanity keypairs for their identity and vote account using the `grind` sub command ([docs for reference](../../running-validator/validator-start#vanity-keypair)).
 
 ```
-solana-keygen new -o validator-keypair.json
+svm-station-keygen new -o validator-keypair.json
 ```
 
 ```
-solana-keygen new -o vote-account-keypair.json
+svm-station-keygen new -o vote-account-keypair.json
 ```
 
 ```
-solana-keygen new -o authorized-withdrawer-keypair.json
+svm-station-keygen new -o authorized-withdrawer-keypair.json
 ```
 
 > **IMPORTANT** the `authorized-withdrawer-keypair.json` should be considered very sensitive information.  Many operators choose to use a multisig, hardware wallet, or paper wallet for the authorized withdrawer keypair.  A keypair is created on disk in this example for simplicity. Additionally, the withdrawer keypair should always be stored safely. The authorized withdrawer keypair should **never** be stored on the remote machine that the validator software runs on.  For more information, see [validator security best practices](../best-practices/security.md#do-not-store-your-withdrawer-key-on-your-validator)
@@ -245,7 +245,7 @@ Your system will need to be tuned in order to run properly. Your validator may n
 #### **Optimize sysctl knobs**
 
 ```bash
-sudo bash -c "cat >/etc/sysctl.d/21-solana-validator.conf <<EOF
+sudo bash -c "cat >/etc/sysctl.d/21-svm-station-validator.conf <<EOF
 # Increase UDP buffer sizes
 net.core.rmem_default = 134217728
 net.core.rmem_max = 134217728
@@ -261,7 +261,7 @@ EOF"
 ```
 
 ```bash
-sudo sysctl -p /etc/sysctl.d/21-solana-validator.conf
+sudo sysctl -p /etc/sysctl.d/21-svm-station-validator.conf
 ```
 
 #### **Increase systemd and session file limits**
@@ -338,7 +338,7 @@ nano /home/sol/bin/validator.sh
 Copy and paste the following contents into `validator.sh` then save the file:
 
 ```
-exec solana-validator \
+exec svm-station-validator \
     --identity validator-keypair.json \
     --vote-account vote-account-keypair.json \
     --known-validator 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on \
@@ -346,7 +346,7 @@ exec solana-validator \
     --known-validator Ft5fbkqNa76vnsjYNwjDZUXoTWpP7VYm3mtsaQckQADN \
     --known-validator 9QxCLckBiJc783jnMvXZubK4wH86Eqqvashtrwvcsgkv \
     --only-known-rpc \
-    --log /home/sol/solana-validator.log \
+    --log /home/sol/svm-station-validator.log \
     --ledger /mnt/ledger \
     --rpc-port 8899 \
     --dynamic-port-range 8000-8020 \
@@ -358,7 +358,7 @@ exec solana-validator \
     --limit-ledger-size
 ```
 
-Refer to `solana-validator --help` for more information on what each flag is doing in this script. Also refer to the section on [best practices for operating a validator](../best-practices/operations.md).
+Refer to `svm-station-validator --help` for more information on what each flag is doing in this script. Also refer to the section on [best practices for operating a validator](../best-practices/operations.md).
 
 ## Verifying Your Validator Is Working
 
@@ -368,13 +368,13 @@ Test that your `validator.sh` file is running properly by executing the `validat
 /home/sol/bin/validator.sh
 ```
 
-The script should execute the `solana-validator` process. In a new terminal window, shh into your server, then verify that the process is running:
+The script should execute the `svm-station-validator` process. In a new terminal window, shh into your server, then verify that the process is running:
 
 ```
-ps aux | grep solana-validator
+ps aux | grep svm-station-validator
 ```
 
-You should see a line in the output that includes `solana-validator` with all the flags that were added to your `validator.sh` script.
+You should see a line in the output that includes `svm-station-validator` with all the flags that were added to your `validator.sh` script.
 
 Next, we need to look at the logs to make sure everything is operating properly.
 
@@ -386,7 +386,7 @@ In a new terminal window, ssh into your validator machine, switch users to the `
 
 ```
 su - sol
-tail -f solana-validator.log
+tail -f svm-station-validator.log
 ```
 
 The `tail` command will continue to display the output of a file as the file changes. You should see a continuous stream of log output as your validator runs. Keep an eye out for any lines that say `_ERROR_`.
@@ -400,7 +400,7 @@ Gossip is a protocol used in the Solana clusters to communicate between validato
 In a new terminal window, connect to your server via ssh. Identify your validator's pubkey:
 
 ```
-solana-keygen pubkey ~/validator-keypair.json
+svm-station-keygen pubkey ~/validator-keypair.json
 ```
 
 The command `solana gossip` lists all validators that have registered with the protocol. To check that the newly setup validator is in gossip, we will `grep` for our pubkey in the output:
@@ -458,7 +458,7 @@ sudo systemctl enable --now sol
 Now verify that the validator is running properly by tailing the logs and using the commands mentioned earlier to check gossip and Solana validators:
 
 ```
-tail -f /home/sol/solana-validator*.log
+tail -f /home/sol/svm-station-validator*.log
 ```
 
 ## Monitoring

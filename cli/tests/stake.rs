@@ -10,7 +10,7 @@ use {
         test_utils::{check_ready, wait_for_next_epoch_plus_n_slots},
     },
     solana_cli_output::{parse_sign_only_reply_string, OutputFormat},
-    solana_faucet::faucet::run_local_faucet,
+    svm_station_faucet::faucet::run_local_faucet,
     solana_rpc_client::rpc_client::RpcClient,
     solana_rpc_client_api::{
         request::DELINQUENT_VALIDATOR_SLOT_DISTANCE,
@@ -34,7 +34,7 @@ use {
         },
     },
     solana_streamer::socket::SocketAddrSpace,
-    air_solana::{TestValidator, TestValidatorGenesis},
+    svm_station_test_validator::{TestValidator, TestValidatorGenesis},
 };
 
 #[test]

@@ -28,7 +28,7 @@ solana-rpc-client-api = { workspace = true }
 solana-runtime = { workspace = true }
 solana-sdk = { workspace = true }
 solana-streamer = { workspace = true }
-air-solana = { workspace = true }
+svm-station-test-validator = { workspace = true }
 solana-transaction-status = { workspace = true }
 solana-version = { workspace = true }
 systemstat = { workspace = true }

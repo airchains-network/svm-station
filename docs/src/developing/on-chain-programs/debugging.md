@@ -147,7 +147,7 @@ Note that `solana-ledger-tool` always loads a ledger database. Most
 on-chain programs interact with a ledger in some manner. Even if for
 debugging purpose a ledger is not needed, it has to be provided to
 `solana-ledger-tool`. A minimal ledger database can be created by
-running `air-solana`, which creates a ledger in
+running `svm-station-test-validator`, which creates a ledger in
 `test-ledger` subdirectory.
 
 In debugger mode `solana-ledger-tool program run` loads an `.so` file and

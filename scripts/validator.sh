@@ -1,4 +1,4 @@
-./target/debug/solana-validator \
+./target/debug/svm-station-validator \
 --ledger ./config/chain \
 --rpc-port 8899 \
 --gossip-port 8001 \

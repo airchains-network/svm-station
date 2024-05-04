@@ -11,7 +11,7 @@ use {
         pubkey::Pubkey, signature::Keypair, signer::Signer, system_instruction,
     },
     solana_streamer::socket::SocketAddrSpace,
-    air_solana::TestValidator,
+    svm_station_test_validator::TestValidator,
     std::sync::Arc,
 };
 

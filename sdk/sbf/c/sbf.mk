@@ -203,7 +203,7 @@ $1: $2
 	$(_@)mkdir -p $(dir $1)
 	$(_@)$(LLD) $(SBF_LLD_FLAGS) -o $1 $2 $(COMPILER_RT_DIR)/libcompiler_builtins-*.rlib
 ifeq (,$(wildcard $(subst .so,-keypair.json,$1)))
-	$(_@)solana-keygen new --no-passphrase --silent -o $(subst .so,-keypair.json,$1)
+	$(_@)svm-station-keygen new --no-passphrase --silent -o $(subst .so,-keypair.json,$1)
 endif
 	@echo To deploy this program:
 	@echo $$$$ solana program deploy $(abspath $1)

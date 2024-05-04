@@ -1,7 +1,7 @@
 #![allow(clippy::arithmetic_side_effects)]
 use {
     solana_cli::cli::{process_command, CliCommand, CliConfig},
-    solana_faucet::faucet::run_local_faucet,
+    svm_station_faucet::faucet::run_local_faucet,
     solana_rpc_client::rpc_client::RpcClient,
     solana_sdk::{
         commitment_config::CommitmentConfig,
@@ -9,7 +9,7 @@ use {
         signature::{Keypair, Signer},
     },
     solana_streamer::socket::SocketAddrSpace,
-    air_solana::TestValidator,
+    svm_station_test_validator::TestValidator,
 };
 
 #[test]

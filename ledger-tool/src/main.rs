@@ -2304,7 +2304,7 @@ fn main() {
 
                 if let Some(hashes_per_tick) = arg_matches.value_of("hashes_per_tick") {
                     genesis_config.poh_config.hashes_per_tick = match hashes_per_tick {
-                        // Note: Unlike `solana-genesis`, "auto" is not supported here.
+                        // Note: Unlike `svm-station-genesis`, "auto" is not supported here.
                         "sleep" => None,
                         _ => Some(value_t_or_exit!(arg_matches, "hashes_per_tick", u64)),
                     }
@@ -2955,7 +2955,7 @@ fn main() {
 
                             if let Some(hashes_per_tick) = hashes_per_tick {
                                 child_bank.set_hashes_per_tick(match hashes_per_tick {
-                                    // Note: Unlike `solana-genesis`, "auto" is not supported here.
+                                    // Note: Unlike `svm-station-genesis`, "auto" is not supported here.
                                     "sleep" => None,
                                     _ => {
                                         Some(value_t_or_exit!(arg_matches, "hashes_per_tick", u64))

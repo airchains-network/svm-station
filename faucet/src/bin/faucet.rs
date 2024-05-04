@@ -2,7 +2,7 @@ use {
     clap::{crate_description, crate_name, values_t, App, Arg},
     log::*,
     solana_clap_utils::input_parsers::{lamports_of_sol, value_of},
-    solana_faucet::{
+    svm_station_faucet::{
         faucet::{run_faucet, Faucet, FAUCET_PORT},
         socketaddr,
     },

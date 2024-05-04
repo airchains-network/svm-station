@@ -14,7 +14,7 @@ use {
         thin_client::ThinClient,
         tpu_client::{TpuClient, TpuClientConfig},
     },
-    solana_genesis::Base64Account,
+    svm_station_genesis::Base64Account,
     solana_gossip::gossip_service::{discover_cluster, get_client, get_multi_client},
     solana_rpc_client::rpc_client::RpcClient,
     solana_sdk::{

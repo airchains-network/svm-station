@@ -1,5 +1,5 @@
 [package]
-name = "air-solana"
+name = "svm-station-test-validator"
 description = "Blockchain, Rebuilt for Scale"
 readme = "../README.md"
 version = { workspace = true }

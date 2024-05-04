@@ -1,5 +1,5 @@
 use {
-    solana_faucet::faucet::{request_airdrop_transaction, run_local_faucet},
+    svm_station_faucet::faucet::{request_airdrop_transaction, run_local_faucet},
     solana_sdk::{
         hash::Hash,
         message::Message,

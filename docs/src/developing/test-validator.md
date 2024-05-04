@@ -4,7 +4,7 @@ title: Solana Test Validator
 
 During early stage development, it is often convenient to target a cluster with
 fewer restrictions and more configuration options than the public offerings
-provide. This is easily achieved with the `air-solana` binary, which
+provide. This is easily achieved with the `svm-station-test-validator` binary, which
 starts a full-featured, single-node cluster on the developer's workstation.
 
 ## Advantages
@@ -21,7 +21,7 @@ starts a full-featured, single-node cluster on the developer's workstation.
 
 ## Installation
 
-The `air-solana` binary ships with the Solana CLI Tool Suite.
+The `svm-station-test-validator` binary ships with the Solana CLI Tool Suite.
 [Install](/cli/install-solana-cli-tools) before continuing.
 
 ## Running
@@ -29,13 +29,13 @@ The `air-solana` binary ships with the Solana CLI Tool Suite.
 First take a look at the configuration options
 
 ```
-air-solana --help
+svm-station-test-validator --help
 ```
 
 Next start the test validator
 
 ```
-air-solana
+svm-station-test-validator
 ```
 
 By default, basic status information is printed while the process is running.
@@ -54,12 +54,12 @@ JSON RPC URL: http://127.0.0.1:8899
 ⠈ 00:36:02 | Processed Slot: 5142 | Confirmed Slot: 5142 | Finalized Slot: 5110 | Snapshot Slot: 5100 | Transactions: 5142 | ◎499.974295000
 ```
 
-Leave `air-solana` running in its own terminal. When it is no longer
+Leave `svm-station-test-validator` running in its own terminal. When it is no longer
 needed, it can be stopped with ctrl-c.
 
 ## Interacting
 
-Open a new terminal to interact with a [running](#running) `air-solana`
+Open a new terminal to interact with a [running](#running) `svm-station-test-validator`
 instance using other binaries from the Solana CLI Tool Suite or your own client
 software.
 
@@ -76,7 +76,7 @@ solana genesis-hash
 ```
 
 - **NOTE:** The result should match the `Genesis Hash:` field in the
-  `air-solana` status output
+  `svm-station-test-validator` status output
 
 #### Check the wallet balance
 
@@ -85,7 +85,7 @@ solana balance
 ```
 
 - **NOTE:** `Error: No such file or directory (os error 2)` means that the default
-  wallet does not yet exist. Create it with `solana-keygen new`.
+  wallet does not yet exist. Create it with `svm-station-keygen new`.
 - **NOTE:** If the wallet has a zero SOL balance, airdrop some localnet SOL with
   `solana airdrop 10`
 
@@ -165,5 +165,5 @@ solana feature status -ul
 Since this may not always be desired, especially when testing programs meant for deployment to mainnet, the CLI provides an option to deactivate specific features:
 
 ```bash
-air-solana --deactivate-feature <FEATURE_PUBKEY_1> --deactivate-feature <FEATURE_PUBKEY_2>
+svm-station-test-validator --deactivate-feature <FEATURE_PUBKEY_1> --deactivate-feature <FEATURE_PUBKEY_2>
 ```

@@ -818,7 +818,7 @@ pub mod test {
         super::*,
         solana_client::thin_client::ThinClient,
         solana_core::validator::ValidatorConfig,
-        solana_faucet::faucet::run_local_faucet,
+        svm_station_faucet::faucet::run_local_faucet,
         solana_gossip::contact_info::LegacyContactInfo,
         solana_local_cluster::{
             cluster::Cluster,

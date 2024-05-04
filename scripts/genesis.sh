@@ -1,4 +1,4 @@
-./target/debug/solana-genesis  \
+./target/debug/svm-station-genesis  \
 --hashes-per-tick sleep \
 --faucet-lamports 10000000000000000000 \
 --bootstrap-validator-lamports 100000000000000000 \

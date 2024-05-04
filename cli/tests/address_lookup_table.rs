@@ -7,14 +7,14 @@ use {
         cli::{process_command, CliCommand, CliConfig},
     },
     solana_cli_output::{CliAddressLookupTable, CliAddressLookupTableCreated, OutputFormat},
-    solana_faucet::faucet::run_local_faucet,
+    svm_station_faucet::faucet::run_local_faucet,
     solana_sdk::{
         native_token::LAMPORTS_PER_SOL,
         pubkey::Pubkey,
         signature::{Keypair, Signer},
     },
     solana_streamer::socket::SocketAddrSpace,
-    air_solana::TestValidator,
+    svm_station_test_validator::TestValidator,
     std::str::FromStr,
 };
 

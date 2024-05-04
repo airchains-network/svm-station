@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Fetches the latest SPL programs and produces the solana-genesis command-line
+# Fetches the latest SPL programs and produces the svm-station-genesis command-line
 # arguments needed to install them
 #
 
@@ -12,7 +12,8 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-download_path="$1"
+pathDir=$HOME/.svmstationd
+download_path="$pathDir/$1"
 
 upgradeableLoader=BPFLoaderUpgradeab1e11111111111111111111111
 
@@ -70,7 +71,7 @@ echo "Available SPL programs:"
 ls -l "$download_path"/spl_*.so
 
 echo
-echo "solana-genesis command-line arguments (spl-genesis-args.sh):"
+echo "svm-station-genesis command-line arguments (spl-genesis-args.sh):"
 cat "$download_path/spl-genesis-args.sh"
 
 rm -rf "$download_path"/.cache

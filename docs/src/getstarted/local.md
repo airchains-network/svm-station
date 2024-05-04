@@ -100,7 +100,7 @@ After a successful install, `solana-install update` may be used to easily update
 The Solana CLI comes with the [test validator](./../developing/test-validator.md) built in. This command line tool will allow you to run a full blockchain cluster on your machine.
 
 ```bash
-air-solana
+svm-station-test-validator
 ```
 
 > **PRO TIP:**
@@ -125,10 +125,10 @@ To deploy a program with Solana CLI, you will need a Solana wallet with SOL toke
 Let's create a simple file system wallet for testing:
 
 ```bash
-solana-keygen new
+svm-station-keygen new
 ```
 
-By default, the `solana-keygen` command will create a new file system wallet located at `~/.config/solana/id.json`. You can manually specify the output file location using the `--outfile /path` option.
+By default, the `svm-station-keygen` command will create a new file system wallet located at `~/.config/solana/id.json`. You can manually specify the output file location using the `--outfile /path` option.
 
 > **NOTE:**
 > If you already have a file system wallet saved at the default location, this command will **NOT** override it (unless you explicitly force override using the `--force` flag).

@@ -23,7 +23,7 @@ use {
         banking_trace::{DirByteLimit, BANKING_TRACE_DIR_DEFAULT_BYTE_LIMIT},
         validator::{BlockProductionMethod, BlockVerificationMethod},
     },
-    solana_faucet::faucet::{self, FAUCET_PORT},
+    svm_station_faucet::faucet::{self, FAUCET_PORT},
     solana_ledger::use_snapshot_archives_at_startup,
     solana_net_utils::{MINIMUM_VALIDATOR_PORT_RANGE_WIDTH, VALIDATOR_PORT_RANGE},
     solana_rpc::{rpc::MAX_REQUEST_BODY_SIZE, rpc_pubsub_service::PubSubConfig},
@@ -2084,7 +2084,7 @@ fn hash_validator(hash: String) -> Result<(), String> {
 /// Test validator
 
 pub fn test_app<'a>(version: &'a str, default_args: &'a DefaultTestArgs) -> App<'a, 'a> {
-    return App::new("air-solana")
+    return App::new("svm-station-test-validator")
         .about("Test Validator")
         .version(version)
         .arg({
@@ -2539,7 +2539,7 @@ impl DefaultTestArgs {
             faucet_port: FAUCET_PORT.to_string(),
             /* 10,000 was derived empirically by watching the size
              * of the rocksdb/ directory self-limit itself to the
-             * 40MB-150MB range when running `air-solana`
+             * 40MB-150MB range when running `svm-station-test-validator`
              */
             limit_ledger_size: 10_000.to_string(),
             faucet_sol: (1_000_000.).to_string(),

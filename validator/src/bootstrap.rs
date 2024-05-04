@@ -5,7 +5,7 @@ use {
     rayon::prelude::*,
     solana_core::validator::{ValidatorConfig, ValidatorStartProgress},
     solana_download_utils::{download_snapshot_archive, DownloadProgressRecord},
-    solana_genesis_utils::download_then_check_genesis_hash,
+    svm_station_genesis_utils::download_then_check_genesis_hash,
     solana_gossip::{
         cluster_info::{ClusterInfo, Node},
         contact_info::Protocol,
@@ -444,7 +444,7 @@ pub fn attempt_download_genesis_and_snapshot(
         )
         .unwrap_or_else(|err| {
             // Consider failures here to be more likely due to user error (eg,
-            // incorrect `solana-validator` command-line arguments) rather than the
+            // incorrect `svm-station-validator` command-line arguments) rather than the
             // RPC node failing.
             //
             // Power users can always use the `--no-check-vote-account` option to

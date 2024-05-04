@@ -385,7 +385,7 @@ mod tests {
 
         // no outfile
         process_test_command(&[
-            "solana-keygen",
+            "svm-station-keygen",
             "new",
             "elgamal",
             "--no-bip39-passphrase",
@@ -428,7 +428,7 @@ mod tests {
 
         // no outfile
         process_test_command(&[
-            "solana-keygen",
+            "svm-station-keygen",
             "new",
             "aes128",
             "--no-bip39-passphrase",
@@ -446,6 +446,6 @@ mod tests {
         let keypair = ElGamalKeypair::new_rand();
         keypair.write_to_file(&keypair_path).unwrap();
 
-        process_test_command(&["solana-keygen", "pubkey", "elgamal", &keypair_path]).unwrap();
+        process_test_command(&["svm-station-keygen", "pubkey", "elgamal", &keypair_path]).unwrap();
     }
 }

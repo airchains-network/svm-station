@@ -121,7 +121,7 @@ cat >> ~/solana/on-reboot <<EOF
   echo \$! > system-stats.pid
 
   if ${GPU_CUDA_OK} && [[ -e /dev/nvidia0 ]]; then
-    echo Selecting solana-validator-cuda
+    echo Selecting svm-station-validator-cuda
     export SOLANA_CUDA=1
   elif ${GPU_FAIL_IF_NONE} ; then
     echo "Expected GPU, found none!"
@@ -150,17 +150,17 @@ EOF
             cp net/keypairs/"$name".json config/"$name".json
           fi
         else
-          solana-keygen new --no-passphrase -so config/"$name".json
+          svm-station-keygen new --no-passphrase -so config/"$name".json
           if [[ "$name" =~ ^validator-identity- ]]; then
             name="${name//-identity-/-vote-}"
-            solana-keygen new --no-passphrase -so config/"$name".json
+            svm-station-keygen new --no-passphrase -so config/"$name".json
             name="${name//-vote-/-stake-}"
-            solana-keygen new --no-passphrase -so config/"$name".json
+            svm-station-keygen new --no-passphrase -so config/"$name".json
           fi
         fi
         if [[ -n $internalNodesLamports ]]; then
           declare pubkey
-          pubkey="$(solana-keygen pubkey config/"$name".json)"
+          pubkey="$(svm-station-keygen pubkey config/"$name".json)"
           cat >> config/validator-balances.yml <<EOF
 $pubkey:
   balance: $internalNodesLamports
@@ -231,9 +231,9 @@ EOF
           extraPrimordialStakes=$numNodes
         fi
         for i in $(seq "$extraPrimordialStakes"); do
-          args+=(--bootstrap-validator "$(solana-keygen pubkey "config/validator-identity-$i.json")"
-                                       "$(solana-keygen pubkey "config/validator-vote-$i.json")"
-                                       "$(solana-keygen pubkey "config/validator-stake-$i.json")"
+          args+=(--bootstrap-validator "$(svm-station-keygen pubkey "config/validator-identity-$i.json")"
+                                       "$(svm-station-keygen pubkey "config/validator-vote-$i.json")"
+                                       "$(svm-station-keygen pubkey "config/validator-stake-$i.json")"
           )
         done
       fi
@@ -362,11 +362,11 @@ EOF
     fi
 
     if [[ ! -f "$SOLANA_CONFIG_DIR"/validator-identity.json ]]; then
-      solana-keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/validator-identity.json
+      svm-station-keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/validator-identity.json
     fi
     args+=(--identity "$SOLANA_CONFIG_DIR"/validator-identity.json)
     if [[ ! -f "$SOLANA_CONFIG_DIR"/vote-account.json ]]; then
-      solana-keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/vote-account.json
+      svm-station-keygen new --no-passphrase -so "$SOLANA_CONFIG_DIR"/vote-account.json
     fi
     args+=(--vote-account "$SOLANA_CONFIG_DIR"/vote-account.json)
 

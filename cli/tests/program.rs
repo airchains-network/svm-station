@@ -8,7 +8,7 @@ use {
         test_utils::wait_n_slots,
     },
     solana_cli_output::OutputFormat,
-    solana_faucet::faucet::run_local_faucet,
+    svm_station_faucet::faucet::run_local_faucet,
     solana_rpc_client::rpc_client::RpcClient,
     solana_sdk::{
         account_utils::StateMut,
@@ -18,7 +18,7 @@ use {
         signature::{Keypair, Signer},
     },
     solana_streamer::socket::SocketAddrSpace,
-    air_solana::TestValidator,
+    svm_station_test_validator::TestValidator,
     std::{env, fs::File, io::Read, path::PathBuf, str::FromStr},
 };
 

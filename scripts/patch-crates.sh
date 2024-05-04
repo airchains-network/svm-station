@@ -16,8 +16,8 @@ update_solana_dependencies() {
   sed -i -e "s#\(solana-clap-utils = { version = \"\)[^\"]*\(\"\)#\1=$solana_ver\2#g" "${tomls[@]}" || return $?
   sed -i -e "s#\(solana-account-decoder = \"\)[^\"]*\(\"\)#\1=$solana_ver\2#g" "${tomls[@]}" || return $?
   sed -i -e "s#\(solana-account-decoder = { version = \"\)[^\"]*\(\"\)#\1=$solana_ver\2#g" "${tomls[@]}" || return $?
-  sed -i -e "s#\(solana-faucet = \"\)[^\"]*\(\"\)#\1=$solana_ver\2#g" "${tomls[@]}" || return $?
-  sed -i -e "s#\(solana-faucet = { version = \"\)[^\"]*\(\"\)#\1=$solana_ver\2#g" "${tomls[@]}" || return $?
+  sed -i -e "s#\(svm-station-faucet = \"\)[^\"]*\(\"\)#\1=$solana_ver\2#g" "${tomls[@]}" || return $?
+  sed -i -e "s#\(svm-station-faucet = { version = \"\)[^\"]*\(\"\)#\1=$solana_ver\2#g" "${tomls[@]}" || return $?
   sed -i -e "s#\(solana-zk-token-sdk = \"\)[^\"]*\(\"\)#\1=$solana_ver\2#g" "${tomls[@]}" || return $?
   sed -i -e "s#\(solana-zk-token-sdk = { version = \"\)[^\"]*\(\"\)#\1=$solana_ver\2#g" "${tomls[@]}" || return $?
 }
@@ -33,7 +33,7 @@ solana-client = { path = "$solana_dir/client" }
 solana-program = { path = "$solana_dir/sdk/program" }
 solana-program-test = { path = "$solana_dir/program-test" }
 solana-sdk = { path = "$solana_dir/sdk" }
-solana-faucet = { path = "$solana_dir/faucet" }
+svm-station-faucet = { path = "$solana_dir/faucet" }
 solana-zk-token-sdk = { path = "$solana_dir/zk-token-sdk" }
 EOF
 }

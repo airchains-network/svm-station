@@ -1,5 +1,5 @@
 #![allow(clippy::arithmetic_side_effects)]
-pub use air_solana as test_validator;
+pub use svm_station_test_validator as test_validator;
 use {
     console::style,
     fd_lock::{RwLock, RwLockWriteGuard},

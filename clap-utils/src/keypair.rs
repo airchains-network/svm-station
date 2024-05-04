@@ -177,7 +177,7 @@ impl DefaultSigner {
                     std::io::Error::new(
                         std::io::ErrorKind::Other,
                         format!(
-                        "No default signer found, run \"solana-keygen new -o {}\" to create a new one",
+                        "No default signer found, run \"svm-station-keygen new -o {}\" to create a new one",
                         self.path
                     ),
                     )
@@ -776,7 +776,7 @@ pub fn signer_from_path_with_config(
         SignerSourceKind::Filepath(path) => match read_keypair_file(&path) {
             Err(e) => Err(std::io::Error::new(
                 std::io::ErrorKind::Other,
-                format!("could not read keypair file \"{path}\". Run \"solana-keygen new\" to create a keypair file: {e}"),
+                format!("could not read keypair file \"{path}\". Run \"svm-station-keygen new\" to create a keypair file: {e}"),
             )
             .into()),
             Ok(file) => Ok(Box::new(file)),
@@ -900,7 +900,7 @@ pub fn resolve_signer_from_path(
                 std::io::ErrorKind::Other,
                 format!(
                     "could not read keypair file \"{path}\". \
-                    Run \"solana-keygen new\" to create a keypair file: {e}"
+                    Run \"svm-station-keygen new\" to create a keypair file: {e}"
                 ),
             )
             .into()),
@@ -1022,7 +1022,7 @@ pub fn keypair_from_path(
                 std::io::ErrorKind::Other,
                 format!(
                     "could not read keypair file \"{path}\". \
-                    Run \"solana-keygen new\" to create a keypair file: {e}"
+                    Run \"svm-station-keygen new\" to create a keypair file: {e}"
                 ),
             )
             .into()),

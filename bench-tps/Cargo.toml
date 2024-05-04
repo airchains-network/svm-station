@@ -21,8 +21,8 @@ solana-cli-config = { workspace = true }
 solana-client = { workspace = true }
 solana-connection-cache = { workspace = true }
 solana-core = { workspace = true }
-solana-faucet = { workspace = true }
-solana-genesis = { workspace = true }
+svm-station-faucet = { workspace = true }
+svm-station-genesis = { workspace = true }
 solana-gossip = { workspace = true }
 solana-logger = { workspace = true }
 solana-measure = { workspace = true }
@@ -44,7 +44,7 @@ thiserror = { workspace = true }
 [dev-dependencies]
 serial_test = { workspace = true }
 solana-local-cluster = { workspace = true }
-air-solana = { workspace = true }
+svm-station-test-validator = { workspace = true }
 tempfile = { workspace = true }
 
 [package.metadata.docs.rs]

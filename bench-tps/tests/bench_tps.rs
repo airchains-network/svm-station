@@ -12,7 +12,7 @@ use {
         tpu_client::{TpuClient, TpuClientConfig},
     },
     solana_core::validator::ValidatorConfig,
-    solana_faucet::faucet::run_local_faucet,
+    svm_station_faucet::faucet::run_local_faucet,
     solana_local_cluster::{
         local_cluster::{ClusterConfig, LocalCluster},
         validator_configs::make_identical_validator_configs,
@@ -27,7 +27,7 @@ use {
         signature::{Keypair, Signer},
     },
     solana_streamer::socket::SocketAddrSpace,
-    air_solana::TestValidatorGenesis,
+    svm_station_test_validator::TestValidatorGenesis,
     std::{sync::Arc, time::Duration},
 };
 

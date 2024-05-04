@@ -33,7 +33,7 @@ use {
         system_program, system_transaction,
     },
     solana_streamer::socket::SocketAddrSpace,
-    air_solana::TestValidator,
+    svm_station_test_validator::TestValidator,
     solana_transaction_status::{
         BlockEncodingOptions, ConfirmedBlock, TransactionDetails, UiTransactionEncoding,
     },

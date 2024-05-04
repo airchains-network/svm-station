@@ -28,15 +28,15 @@ come to the right place.
 
 ### Check your installation
 
-Check that `solana-keygen` is installed correctly by running:
+Check that `svm-station-keygen` is installed correctly by running:
 
 ```bash
-solana-keygen --version
+svm-station-keygen --version
 ```
 
 ## Creating a Paper Wallet
 
-Using the `solana-keygen` tool, it is possible to generate new seed phrases as
+Using the `svm-station-keygen` tool, it is possible to generate new seed phrases as
 well as derive a keypair from an existing seed phrase and (optional) passphrase.
 The seed phrase and passphrase can be used together as a paper wallet. As long
 as you keep your seed phrase and passphrase stored safely, you can use them to
@@ -46,7 +46,7 @@ access your account.
 
 ### Seed Phrase Generation
 
-Generating a new keypair can be done using the `solana-keygen new` command. The
+Generating a new keypair can be done using the `svm-station-keygen new` command. The
 command will generate a random seed phrase, ask you to enter an optional
 passphrase, and then will display the derived public key and the generated seed
 phrase for your paper wallet.
@@ -56,7 +56,7 @@ After copying down your seed phrase, you can use the
 have not made any errors.
 
 ```bash
-solana-keygen new --no-outfile
+svm-station-keygen new --no-outfile
 ```
 
 > If the `--no-outfile` flag is **omitted**, the default behavior is to write the keypair to `~/.config/solana/id.json`, resulting in a [file system wallet](file-system-wallet.md).
@@ -77,7 +77,7 @@ and "wallet address" are sometimes used interchangeably.
 For full usage details, run:
 
 ```bash
-solana-keygen new --help
+svm-station-keygen new --help
 ```
 
 
@@ -85,27 +85,27 @@ solana-keygen new --help
 
 Public keys can be derived from a seed phrase and a passphrase if you choose to
 use one. This is useful for using an offline-generated seed phrase to derive a
-valid public key. The `solana-keygen pubkey` command will walk you through how
+valid public key. The `svm-station-keygen pubkey` command will walk you through how
 to use your seed phrase (and a passphrase if you chose to use one) as a signer
 with the solana command-line tools using the `prompt` URI scheme.
 
 ```bash
-solana-keygen pubkey prompt://
+svm-station-keygen pubkey prompt://
 ```
 
 > Note that you could potentially use different passphrases for the same seed phrase. Each unique passphrase will yield a different keypair.
 
-The `solana-keygen` tool uses the same BIP39 standard English word list as it
+The `svm-station-keygen` tool uses the same BIP39 standard English word list as it
 does to generate seed phrases. If your seed phrase was generated with another
-tool that uses a different word list, you can still use `solana-keygen`, but
+tool that uses a different word list, you can still use `svm-station-keygen`, but
 will need to pass the `--skip-seed-phrase-validation` argument and forego this
 validation.
 
 ```bash
-solana-keygen pubkey prompt:// --skip-seed-phrase-validation
+svm-station-keygen pubkey prompt:// --skip-seed-phrase-validation
 ```
 
-After entering your seed phrase with `solana-keygen pubkey prompt://` the console
+After entering your seed phrase with `svm-station-keygen pubkey prompt://` the console
 will display a string of base-58 characters. This is the [derived](#hierarchical-derivation) solana BIP44 _wallet address_
 associated with your seed phrase.
 
@@ -114,7 +114,7 @@ associated with your seed phrase.
 If needed, you can access the legacy, raw keypair's pubkey by instead passing the `ASK` keyword:
 
 ```bash
-solana-keygen pubkey ASK
+svm-station-keygen pubkey ASK
 ```
 
 > A common next step is to [check the balance](#checking-account-balance) of the account associated with a public key
@@ -122,7 +122,7 @@ solana-keygen pubkey ASK
 For full usage details, run:
 
 ```bash
-solana-keygen pubkey --help
+svm-station-keygen pubkey --help
 ```
 
 ### Hierarchical Derivation
@@ -137,13 +137,13 @@ By default, `prompt:` will derive solana's base derivation path `m/44'/501'`. To
 derive a child key, supply the `?key=<ACCOUNT>/<CHANGE>` query string.
 
 ```bash
-solana-keygen pubkey prompt://?key=0/1
+svm-station-keygen pubkey prompt://?key=0/1
 ```
 
 To use a derivation path other than solana's standard BIP44, you can supply `?full-path=m/<PURPOSE>/<COIN_TYPE>/<ACCOUNT>/<CHANGE>`.
 
 ```bash
-solana-keygen pubkey prompt://?full-path=m/44/2017/0/1
+svm-station-keygen pubkey prompt://?full-path=m/44/2017/0/1
 ```
 
 Because Solana uses Ed25519 keypairs, as per
@@ -155,10 +155,10 @@ included in the query-string input.
 ## Verifying the Keypair
 
 To verify you control the private key of a paper wallet address, use
-`solana-keygen verify`:
+`svm-station-keygen verify`:
 
 ```bash
-solana-keygen verify <PUBKEY> prompt://
+svm-station-keygen verify <PUBKEY> prompt://
 ```
 
 where `<PUBKEY>` is replaced with the wallet address and the keyword `prompt://`

@@ -7,7 +7,7 @@ use {
         test_utils::check_ready,
     },
     solana_cli_output::{parse_sign_only_reply_string, OutputFormat},
-    solana_faucet::faucet::run_local_faucet,
+    svm_station_faucet::faucet::run_local_faucet,
     solana_rpc_client::rpc_client::RpcClient,
     solana_rpc_client_nonce_utils::blockhash_query::{self, BlockhashQuery},
     solana_sdk::{
@@ -19,7 +19,7 @@ use {
         system_program,
     },
     solana_streamer::socket::SocketAddrSpace,
-    air_solana::TestValidator,
+    svm_station_test_validator::TestValidator,
 };
 
 #[test]

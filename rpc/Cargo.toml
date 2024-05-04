@@ -33,7 +33,7 @@ solana-account-decoder = { workspace = true }
 solana-accounts-db = { workspace = true }
 solana-client = { workspace = true }
 solana-entry = { workspace = true }
-solana-faucet = { workspace = true }
+svm-station-faucet = { workspace = true }
 solana-gossip = { workspace = true }
 solana-ledger = { workspace = true }
 solana-measure = { workspace = true }

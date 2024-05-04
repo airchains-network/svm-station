@@ -202,8 +202,8 @@ killNodes() {
   # Try to use the RPC exit API to cleanly exit the first two nodes
   # (dynamic nodes, -x, are just killed)
   echo "--- RPC exit"
-  $solana_validator --ledger "$SOLANA_CONFIG_DIR"/bootstrap-validator exit --force || true
-  $solana_validator --ledger "$SOLANA_CONFIG_DIR"/validator exit --force || true
+  $svm_station_validator --ledger "$SOLANA_CONFIG_DIR"/bootstrap-validator exit --force || true
+  $svm_station_validator --ledger "$SOLANA_CONFIG_DIR"/validator exit --force || true
 
   # Give the nodes a splash of time to cleanly exit before killing them
   sleep 2
@@ -316,7 +316,7 @@ while [[ $iteration -le $iterations ]]; do
   (
     set -x
     client_keypair=/tmp/client-id.json-$$
-    $solana_keygen new --no-passphrase -fso $client_keypair || exit $?
+    $svm_station_keygen new --no-passphrase -fso $client_keypair || exit $?
     $solana_gossip --allow-private-addr spy -n 127.0.0.1:8001 --num-nodes-exactly $numNodes || exit $?
     rm -rf $client_keypair
   ) || flag_error

@@ -92,9 +92,9 @@ if [[ $CI_OS_NAME = windows ]]; then
     solana
     solana-install
     solana-install-init
-    solana-keygen
+    svm-station-keygen
     solana-stake-accounts
-    air-solana
+    svm-station-test-validator
     solana-tokens
   )
 else
@@ -103,14 +103,14 @@ else
   BINS=(
     solana
     solana-bench-tps
-    solana-faucet
+    svm-station-faucet
     solana-gossip
     solana-install
-    solana-keygen
+    svm-station-keygen
     solana-ledger-tool
     solana-log-analyzer
     solana-net-shaper
-    solana-validator
+    svm-station-validator
     rbpf-cli
   )
 
@@ -124,15 +124,15 @@ else
       solana-dos
       solana-install-init
       solana-stake-accounts
-      air-solana
+      svm-station-test-validator
       solana-tokens
       solana-watchtower
     )
   fi
 
-  #XXX: Ensure `solana-genesis` is built LAST!
+  #XXX: Ensure `svm-station-genesis` is built LAST!
   # See https://github.com/solana-labs/solana/issues/5826
-  BINS+=(solana-genesis)
+  BINS+=(svm-station-genesis)
 fi
 
 binArgs=()

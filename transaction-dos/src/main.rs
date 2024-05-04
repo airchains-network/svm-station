@@ -11,7 +11,7 @@ use {
         program::ProgramCliCommand,
     },
     solana_client::transaction_executor::TransactionExecutor,
-    solana_faucet::faucet::{request_airdrop_transaction, FAUCET_PORT},
+    svm_station_faucet::faucet::{request_airdrop_transaction, FAUCET_PORT},
     solana_gossip::gossip_service::discover,
     solana_rpc_client::rpc_client::RpcClient,
     solana_sdk::{

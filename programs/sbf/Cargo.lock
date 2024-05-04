@@ -5070,7 +5070,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "solana-faucet"
+name = "svm-station-faucet"
 version = "1.18.0"
 dependencies = [
  "bincode",
@@ -5125,7 +5125,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "solana-genesis-utils"
+name = "svm-station-genesis-utils"
 version = "1.18.0"
 dependencies = [
  "log",
@@ -5607,7 +5607,7 @@ dependencies = [
  "solana-accounts-db",
  "solana-client",
  "solana-entry",
- "solana-faucet",
+ "svm-station-faucet",
  "solana-gossip",
  "solana-ledger",
  "solana-measure",
@@ -6148,7 +6148,7 @@ dependencies = [
  "solana-program",
  "solana-program-test",
  "solana-sdk",
- "solana-validator",
+ "svm-station-validator",
 ]
 
 [[package]]
@@ -6369,7 +6369,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "air-solana"
+name = "svm-station-test-validator"
 version = "1.18.0"
 dependencies = [
  "base64 0.21.5",
@@ -6505,7 +6505,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "solana-validator"
+name = "svm-station-validator"
 version = "1.18.0"
 dependencies = [
  "chrono",
@@ -6538,8 +6538,8 @@ dependencies = [
  "solana-core",
  "solana-download-utils",
  "solana-entry",
- "solana-faucet",
- "solana-genesis-utils",
+ "svm-station-faucet",
+ "svm-station-genesis-utils",
  "solana-geyser-plugin-interface",
  "solana-geyser-plugin-manager",
  "solana-gossip",
@@ -6557,7 +6557,7 @@ dependencies = [
  "solana-send-transaction-service",
  "solana-storage-bigtable",
  "solana-streamer",
- "air-solana",
+ "svm-station-test-validator",
  "solana-tpu-client",
  "solana-version",
  "solana-vote-program",

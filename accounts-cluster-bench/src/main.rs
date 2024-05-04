@@ -705,14 +705,14 @@ pub mod test {
         super::*,
         solana_accounts_db::inline_spl_token,
         solana_core::validator::ValidatorConfig,
-        solana_faucet::faucet::run_local_faucet,
+        svm_station_faucet::faucet::run_local_faucet,
         solana_local_cluster::{
             local_cluster::{ClusterConfig, LocalCluster},
             validator_configs::make_identical_validator_configs,
         },
         solana_measure::measure::Measure,
         solana_sdk::{native_token::sol_to_lamports, poh_config::PohConfig},
-        air_solana::TestValidator,
+        svm_station_test_validator::TestValidator,
         spl_token::{
             solana_program::program_pack::Pack,
             state::{Account, Mint},

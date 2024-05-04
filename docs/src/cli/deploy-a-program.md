@@ -127,7 +127,7 @@ needed to recover the generated intermediate buffer's keypair:
 ```
 ==================================================================================
 Recover the intermediate account's ephemeral keypair file with
-`solana-keygen recover` and the following 12-word seed phrase:
+`svm-station-keygen recover` and the following 12-word seed phrase:
 ==================================================================================
 valley flat great hockey share token excess clever benefit traffic avocado athlete
 ==================================================================================
@@ -141,7 +141,7 @@ Or to recover the account's lamports, pass it as the
 To recover the keypair:
 
 ```bash
-solana-keygen recover -o <KEYPAIR_PATH>
+svm-station-keygen recover -o <KEYPAIR_PATH>
 ```
 
 When asked, enter the 12-word seed phrase.

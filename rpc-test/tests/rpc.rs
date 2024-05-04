@@ -28,7 +28,7 @@ use {
         transaction::Transaction,
     },
     solana_streamer::socket::SocketAddrSpace,
-    air_solana::TestValidator,
+    svm_station_test_validator::TestValidator,
     solana_tpu_client::tpu_client::DEFAULT_TPU_CONNECTION_POOL_SIZE,
     solana_transaction_status::TransactionStatus,
     std::{

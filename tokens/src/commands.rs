@@ -1313,7 +1313,7 @@ mod tests {
             stake::instruction::StakeInstruction,
         },
         solana_streamer::socket::SocketAddrSpace,
-        air_solana::TestValidator,
+        svm_station_test_validator::TestValidator,
         solana_transaction_status::TransactionConfirmationStatus,
     };
 

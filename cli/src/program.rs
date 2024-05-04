@@ -2398,7 +2398,7 @@ fn report_ephemeral_mnemonic(words: usize, mnemonic: bip39::Mnemonic) {
     let phrase: &str = mnemonic.phrase();
     let divider = String::from_utf8(vec![b'='; phrase.len()]).unwrap();
     eprintln!("{divider}\nRecover the intermediate account's ephemeral keypair file with");
-    eprintln!("`solana-keygen recover` and the following {words}-word seed phrase:");
+    eprintln!("`svm-station-keygen recover` and the following {words}-word seed phrase:");
     eprintln!("{divider}\n{phrase}\n{divider}");
     eprintln!("To resume a deploy, pass the recovered keypair as the");
     eprintln!("[BUFFER_SIGNER] to `solana program deploy` or `solana program write-buffer'.");

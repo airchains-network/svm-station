@@ -4,7 +4,7 @@ use {
         bench_tps_client::BenchTpsClient,
     },
     log::*,
-    solana_genesis::Base64Account,
+    svm_station_genesis::Base64Account,
     solana_sdk::signature::{Keypair, Signer},
     std::{collections::HashMap, fs::File, path::Path, process::exit, sync::Arc},
 };

@@ -64,7 +64,7 @@ while [[ -n $1 ]]; do
     elif [[ $1 = --no-airdrop ]]; then
       airdrops_enabled=0
       shift
-    # solana-validator options
+    # svm-station-validator options
     elif [[ $1 = --expected-genesis-hash ]]; then
       args+=("$1" "$2")
       shift 2
@@ -270,9 +270,9 @@ if [[ $maybeRequireTower = true ]]; then
 fi
 
 if [[ -n $SOLANA_CUDA ]]; then
-  program=$solana_validator_cuda
+  program=$svm_station_validator_cuda
 else
-  program=$solana_validator
+  program=$svm_station_validator
 fi
 
 set -e
@@ -337,9 +337,9 @@ setup_validator_accounts() {
 # shellcheck disable=SC2086
 rpc_url=$($solana_gossip --allow-private-addr rpc-url --timeout 180 --entrypoint "$gossip_entrypoint")
 
-[[ -r "$identity" ]] || $solana_keygen new --no-passphrase -so "$identity"
-[[ -r "$vote_account" ]] || $solana_keygen new --no-passphrase -so "$vote_account"
-[[ -r "$authorized_withdrawer" ]] || $solana_keygen new --no-passphrase -so "$authorized_withdrawer"
+[[ -r "$identity" ]] || $svm_station_keygen new --no-passphrase -so "$identity"
+[[ -r "$vote_account" ]] || $svm_station_keygen new --no-passphrase -so "$vote_account"
+[[ -r "$authorized_withdrawer" ]] || $svm_station_keygen new --no-passphrase -so "$authorized_withdrawer"
 
 setup_validator_accounts "$node_sol"
 
