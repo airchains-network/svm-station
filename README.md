@@ -117,7 +117,7 @@ This command generates a cryptographic key pair specifically for a node in the S
 ```shell
 ./target/debug/svm-station-keygen new --no-passphrase -so $HOME/.svmstationd/keys/validator-stake-account.json --force
 ```
-
+
 
 ### Step 2 **Initialize the Program**
 
