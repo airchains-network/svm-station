@@ -77,7 +77,7 @@ else
   --bootstrap-validator-stake-lamports 1000000000000000 \
   --bootstrap-validator  "$validator_identity" "$validator_vote_account" "$validator_stake_account" \
   --cluster-type testnet \
-  --ticks-per-slot 44 \
+  --ticks-per-slot 64 \
   --slots-per-epoch 432000 \
   $SPL_GENESIS_ARGS
 fi

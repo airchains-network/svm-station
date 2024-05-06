@@ -118,6 +118,13 @@ This command generates a cryptographic key pair specifically for a node in the S
 ./target/debug/svm-station-keygen new --no-passphrase -so $HOME/.svmstationd/keys/validator-stake-account.json --force
 ```
 
+### Step 2 **Setup Station SVM Config**
+
+fetch_spl_programs.sh is to automate the process of fetching the latest Solana Program Library (SPL) programs generating the necessary command-line arguments for installing them using the Solana blockchain's solana-genesis tool.
+
+```shell
+./target/release/svm-station config set --keypair $HOME/.svmstationd/keys/faucet.json
+```
 
 ### Step 2 **Initialize the Program**
 
@@ -125,7 +132,7 @@ fetch_spl_programs.sh is to automate the process of fetching the latest Solana P
 
 ```shell
 chmod +x fetch_spl_programs.sh
-./fetch_spl_programs.sh &lt;path to program&gt;  # path to download spl program example : = "program"
+./fetch_spl_programs.sh <path to program>  # path to download spl program example : = "program"
 ```
 
 ### Step 3 **Create Genesis**
@@ -156,7 +163,7 @@ Loading Programs :
   $HOME/.svmstationd/keys/validator-vote-account.json \
   $HOME/.svmstationd/keys/validator-stake-account.json \
   --cluster-type testnet \
-  --ticks-per-slot 44 \
+  --ticks-per-slot 64 \
   --slots-per-epoch 432000 \
   --bpf-program_ TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA BPFLoader2111111111111111111111111111111111 $HOME/.svmstationd/spl_token-3.5.0.so \
   --bpf-program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb BPFLoaderUpgradeab1e11111111111111111111111111 $HOME/.svmstationd/spl_token-2022-0.9.0.so \
