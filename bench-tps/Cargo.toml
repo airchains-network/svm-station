@@ -1,0 +1,52 @@
+[package]
+name = "solana-bench-tps"
+publish = false
+version = { workspace = true }
+authors = { workspace = true }
+repository = { workspace = true }
+homepage = { workspace = true }
+license = { workspace = true }
+edition = { workspace = true }
+
+[dependencies]
+clap = { workspace = true }
+crossbeam-channel = { workspace = true }
+log = { workspace = true }
+rand = { workspace = true }
+rayon = { workspace = true }
+serde_json = { workspace = true }
+serde_yaml = { workspace = true }
+solana-clap-utils = { workspace = true }
+solana-cli-config = { workspace = true }
+solana-client = { workspace = true }
+solana-connection-cache = { workspace = true }
+solana-core = { workspace = true }
+svm-station-faucet = { workspace = true }
+svm-station-genesis = { workspace = true }
+solana-gossip = { workspace = true }
+solana-logger = { workspace = true }
+solana-measure = { workspace = true }
+solana-metrics = { workspace = true }
+solana-net-utils = { workspace = true }
+solana-rpc = { workspace = true }
+solana-rpc-client = { workspace = true }
+solana-rpc-client-api = { workspace = true }
+solana-rpc-client-nonce-utils = { workspace = true }
+solana-runtime = { workspace = true }
+solana-sdk = { workspace = true }
+solana-streamer = { workspace = true }
+solana-thin-client = { workspace = true }
+solana-tpu-client = { workspace = true }
+solana-version = { workspace = true }
+spl-instruction-padding = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+serial_test = { workspace = true }
+solana-local-cluster = { workspace = true }
+solana-runtime = { workspace = true, features = ["dev-context-only-utils"] }
+svm-station-test-validator = { workspace = true }
+tempfile = { workspace = true }
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
